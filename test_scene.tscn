@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhbtwquigvuid"]
+[gd_scene load_steps=16 format=3 uid="uid://dhbtwquigvuid"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_uhqqe"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_ia1lp"]
@@ -18,7 +18,11 @@ sky = SubResource("Sky_uhqqe")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coq8p"]
+albedo_color = Color(0.560955, 0.560955, 0.560955, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_6adnx"]
+material = SubResource("StandardMaterial3D_coq8p")
 size = Vector2(10, 10)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
@@ -47,16 +51,14 @@ radius = 3.0
 environment = SubResource("Environment_ia1lp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 6.20719, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -9.32776, 6.20719, 2.83448)
 shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.817466, 3.23204)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_6adnx")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+top_level = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -69,14 +71,16 @@ mesh = SubResource("CapsuleMesh_6adnx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_6adnx")
+debug_color = Color(0, 0.278431, 0.329412, 0.843137)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82654, -0.372338)
 mesh = SubResource("BoxMesh_6adnx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81724, -0.365104)
 shape = SubResource("ConvexPolygonShape3D_uhqqe")
+debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 
 [node name="InteractionArea" type="Area3D" parent="CharacterBody3D"]
 collision_layer = 0
@@ -86,6 +90,14 @@ ItemTypes = Array[ExtResource("3_sasra")]([SubResource("Resource_coq8p")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractionArea"]
 shape = SubResource("SphereShape3D_uhqqe")
+
+[node name="HorizontalPivot" type="Node3D" parent="CharacterBody3D"]
+
+[node name="VerticalPivot" type="Node3D" parent="CharacterBody3D/HorizontalPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="ItemTestCube" parent="." instance=ExtResource("4_coq8p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25323, 1.97633, 0)
