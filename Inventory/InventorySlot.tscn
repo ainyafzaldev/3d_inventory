@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://blc40qtonvnfd"]
+
+[ext_resource type="Script" uid="uid://dgvlssoac7yef" path="res://Inventory/InventorySlot.gd" id="1_1dltb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0c1ht"]
+bg_color = Color(0.344075, 0.344076, 0.344075, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.70173, 0.70173, 0.70173, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="InventorySlot" type="Button" node_paths=PackedStringArray("IconSlot")]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_0c1ht")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0c1ht")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0c1ht")
+script = ExtResource("1_1dltb")
+IconSlot = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+expand_mode = 1

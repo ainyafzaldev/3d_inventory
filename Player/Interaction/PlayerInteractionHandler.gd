@@ -1,7 +1,7 @@
 extends Area3D
 
 # controls items in an area around player
-
+signal OnItemPickedUp(item)
 @export var ItemTypes : Array[ItemData] = []
 var NearbyBodies : Array[InteractableItem]
 
@@ -28,6 +28,7 @@ func PickupNearestItem():
 			if (ItemTypes[i].ItemModelPrefab != null and ItemTypes[i].ItemModelPrefab.resource_path == itemPrefab):
 				# replace with pick up item handler
 				print("Item id:" + str(i) + " Item Name:" + ItemTypes[i].ItemName)
+				OnItemPickedUp.emit(ItemTypes[i])
 				return
 		print("Item not found")
 # Identify and highlight inventory objects 

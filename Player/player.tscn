@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2onfrpu6itfk"]
+
+[ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
+[ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
+[ext_resource type="Script" uid="uid://dwyq2nc7fnqp7" path="res://Inventory/ItemData.gd" id="3_fhl08"]
+[ext_resource type="Texture2D" uid="uid://cwaxocryx1wcw" path="res://Textures/BoxIcon.png" id="4_fhl08"]
+[ext_resource type="PackedScene" uid="uid://b8rfakefr35fy" path="res://Inventory/TestCube.tscn" id="4_vtle1"]
+[ext_resource type="Script" uid="uid://3res1gbl6nn8" path="res://Inventory/InventoryHandler.gd" id="6_vtle1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6adnx"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6adnx"]
+size = Vector3(0.8, 0.5, 0.8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uhqqe"]
+points = PackedVector3Array(0.387471, 0.247619, 0.4, -0.396269, -0.25, -0.396269, -0.396269, -0.25, 0.396269, 0.396269, -0.25, -0.396269, -0.4, 0.24757, -0.4, 0.387471, 0.247619, -0.4, -0.4, 0.24757, 0.4, 0.396269, -0.25, 0.396269)
+
+[sub_resource type="Resource" id="Resource_coq8p"]
+script = ExtResource("3_fhl08")
+ItemName = "TestCube"
+ItemModelPrefab = ExtResource("4_vtle1")
+Icon = ExtResource("4_fhl08")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uhqqe"]
+radius = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnis"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.0235294)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+top_level = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_gwnis")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_6adnx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_6adnx")
+debug_color = Color(0, 0.278431, 0.329412, 0.843137)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82654, -0.372338)
+mesh = SubResource("BoxMesh_6adnx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81724, -0.365104)
+shape = SubResource("ConvexPolygonShape3D_uhqqe")
+debug_color = Color(0, 0.358585, 0.422965, 0.92549)
+
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_k53q1")
+ItemTypes = Array[ExtResource("3_fhl08")]([SubResource("Resource_coq8p")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_uhqqe")
+
+[node name="HorizontalPivot" type="Node3D" parent="."]
+
+[node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_vtle1")
+InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
+
+[node name="Panel" type="Panel" parent="InventoryUI"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -330.0
+offset_right = 414.0
+offset_bottom = -45.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gwnis")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="InventoryUI/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[connection signal="OnItemPickedUp" from="InteractionArea" to="InventoryUI" method="PickupItem"]
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="OnObjectEnteredArea"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="OnObjectExitedArea"]
