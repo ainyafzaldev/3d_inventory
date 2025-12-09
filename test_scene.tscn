@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhbtwquigvuid"]
+[gd_scene load_steps=17 format=3 uid="uid://dhbtwquigvuid"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_uhqqe"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_ia1lp"]
@@ -17,13 +17,6 @@ background_mode = 2
 sky = SubResource("Sky_uhqqe")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coq8p"]
-albedo_color = Color(0.560955, 0.560955, 0.560955, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_6adnx"]
-material = SubResource("StandardMaterial3D_coq8p")
-size = Vector2(10, 10)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -45,6 +38,16 @@ metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 [sub_resource type="SphereShape3D" id="SphereShape3D_uhqqe"]
 radius = 3.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coq8p"]
+albedo_color = Color(0.560955, 0.560955, 0.560955, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6adnx"]
+material = SubResource("StandardMaterial3D_coq8p")
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_coq8p"]
+size = Vector3(10, 0.5, 10)
+
 [node name="TestScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -53,9 +56,6 @@ environment = SubResource("Environment_ia1lp")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -9.32776, 6.20719, 2.83448)
 shadow_enabled = true
-
-[node name="Floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_6adnx")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 top_level = true
@@ -101,6 +101,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="ItemTestCube" parent="." instance=ExtResource("4_coq8p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25323, 1.97633, 0)
+mass = 2.424
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_6adnx")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_coq8p")
+debug_color = Color(0.321569, 0.454902, 0.992157, 0.945098)
 
 [connection signal="body_entered" from="CharacterBody3D/InteractionArea" to="CharacterBody3D/InteractionArea" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="CharacterBody3D/InteractionArea" to="CharacterBody3D/InteractionArea" method="OnObjectExitedArea"]

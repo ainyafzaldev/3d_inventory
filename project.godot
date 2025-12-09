@@ -64,7 +64,7 @@ Interact={
 
 [physics]
 
-3d/default_gravity_vector=Vector3(0, 0, 0)
+3d/physics_engine="GodotPhysics3D"
 
 [rendering]
 

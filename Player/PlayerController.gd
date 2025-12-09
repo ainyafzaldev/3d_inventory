@@ -4,7 +4,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-var mouse_sensitivity := 0.001
+var horizontal_speed := 0.01
+var vertical_speed := 0.001
 var vertical_input := 0.0 # pitch
 var horizontal_input := 0.0 #twist
 
@@ -17,14 +18,13 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			horizontal_input = - event.relative.x * mouse_sensitivity
-			vertical_input = - event.relative.y * mouse_sensitivity
-			horizontal_pivot.rotate_y(horizontal_input)
-			rotate_y(deg_to_rad(-event.relative.x) * 0.5)
+			horizontal_input = - event.relative.x * horizontal_speed
+			vertical_input = - event.relative.y * vertical_speed
+			rotate_y(horizontal_input)
 			vertical_pivot.rotate_x(vertical_input)
 			vertical_pivot.rotation.x = clamp(
 				vertical_pivot.rotation.x,
-				deg_to_rad(-30),
+				deg_to_rad(-60),
 				deg_to_rad(30)
 			)
 		vertical_input = 0.0
