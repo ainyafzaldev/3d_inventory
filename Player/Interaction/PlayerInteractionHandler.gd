@@ -50,6 +50,7 @@ func PickupNearestItem():
 
 
 func OnObjectEnteredArea(body: Node3D):
+	print(body)
 	if(body is InteractableItem):
 		NearbyBodies.append(body)
 		

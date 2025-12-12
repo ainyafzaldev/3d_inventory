@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=4 uid="uid://br6aveoiqkj52"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8wo5"]
+resource_name = "wood"
+albedo_color = Color(0.9397, 0.754398, 0.585619, 1)
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hnyri"]
+_surfaces = [{
+"aabb": AABB(0, 0, -1, 1, 0.05, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAwABAAAAAgAEAAAAAAAFAAMAAwAGAAIABwAFAAAAAwAFAAcAAAAEAAcABwAGAAMABwAEAAIAAgAGAAcA"),
+"name": "wood",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD//wAAAAAAAP////8AAAAAAAD//wAA////////AAAAAAAAAAAAAP////8AAAAA//8AAP//AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ua1te"]
+resource_name = "floorFull_Mesh floorFull"
+_surfaces = [{
+"aabb": AABB(0, 0, -1, 1, 0.05, 1),
+"attribute_data": PackedByteArray("AADEfP9/xHz/f1WDAABVg///VYP/f1WD/38AAP//AAAAAAAA/38AAP9/VYMAAFWD/3/EfP9/VYMAAFWDAADEfP//xHz//1WD/39Vg/9/xHz//1WD/39Vg/9/xHz//8R8"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
+"material": SubResource("StandardMaterial3D_m8wo5"),
+"name": "wood",
+"primitive": 3,
+"uv_scale": Vector4(78.7402, 76.7402, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAD//wAA/78AAP//////vwAAAAD///+/AAAAAAAA/7//////////vwAA//////+/AAD//wAA/7//////AAD/v///AAAAAP//AAAAAAAA//8AAAAA////////AAD/////AAD//wAA//8AAAAAAAD/////AAAAAP///////wAA//////////8AgP//AAD//wCAAAAAAP//AIAAAP////8AgP//AAAAAP+///8AAP///7//////////v/////8AAP+//3////9/////f////3///////3////9/////f////3//f/8//3//P/9//z//f/8//3////9/////f////3////9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_hnyri")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hm0fh"]
+points = PackedVector3Array(0, 0, -1, 0, 0.05, -1, 1, 0, -1, 0, 0, 0, 0, 0.05, 0, 1, 0.05, -1, 1, 0, 0, 1, 0.05, 0)
+
+[node name="floorFull" type="Node3D"]
+
+[node name="floorFull(Clone)" type="MeshInstance3D" parent="."]
+transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 12, -6, 0, 6)
+mesh = SubResource("ArrayMesh_ua1te")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floorFull(Clone)"]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floorFull(Clone)/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_hm0fh")

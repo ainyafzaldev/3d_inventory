@@ -1,15 +1,20 @@
 extends StaticBody3D
 class_name InteractableItem
 @onready var model : MeshInstance3D = $Model
-@onready var collision_shape : CollisionShape3D = $ModelCollision
+#@onready var collision_shape : CollisionShape3D = $ModelCollision
+@onready var collision_shape : CollisionShape3D = %ModelCollision
 @onready var clipping_hitbox : Area3D = $ClippingHitBox
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var outline: MeshInstance3D = $Model/Outline
+@onready var outline: MeshInstance3D = %Outline
 
 var red_material: Material = load("res://Textures/red.tres")
 var blue_material: Material = load("res://Textures/blue.tres")
 
 var can_place = true
+
+func _ready() -> void:
+	unfocus()
+	collision_shape.set_deferred("disabled", true)
 
 func _process(delta: float) -> void:
 	if clipping_hitbox:
@@ -18,8 +23,10 @@ func _process(delta: float) -> void:
 		if can_place:
 			model.material_override = blue_material
 		else:
+			print(clipping_hitbox.get_overlapping_bodies())
 			model.material_override = red_material 
 func focus():
+	print("highlight")
 	outline.visible = true
 	
 func unfocus():

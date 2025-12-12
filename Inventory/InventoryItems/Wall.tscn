@@ -1,40 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8tcrmitcnij0"]
+[gd_scene load_steps=2 format=3 uid="uid://c2yjpv7v2jgaw"]
 
-[ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_bxtwn"]
-[ext_resource type="ArrayMesh" uid="uid://eh65x1cab0q2" path="res://Inventory/mesh/Wall.obj" id="2_uc3r2"]
+[ext_resource type="PackedScene" uid="uid://clhqoyr50cmgk" path="res://Assets/wall.glb" id="1_0bh43"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_w5sqh"]
-size = Vector3(1.5, 0.15, 1.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_28gu1"]
-size = Vector3(1, 0.15, 1)
-
-[node name="Wall" type="StaticBody3D" groups=["Objects"]]
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("1_bxtwn")
-
-[node name="Model" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-transparency = 0.5
-mesh = ExtResource("2_uc3r2")
-
-[node name="ModelCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
-shape = SubResource("BoxShape3D_w5sqh")
-
-[node name="ClippingHitBox" type="Area3D" parent="."]
-collision_layer = 8
-collision_mask = 7
-
-[node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
-shape = SubResource("BoxShape3D_28gu1")
-
-[node name="FloatingHitBox" type="Area3D" parent="." groups=["Objects"]]
-collision_layer = 8
-collision_mask = 7
-
-[node name="FloatingCollision" type="CollisionShape3D" parent="FloatingHitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011, 0.08, -0.007)
-shape = SubResource("BoxShape3D_w5sqh")
+[node name="Wall" instance=ExtResource("1_0bh43")]
