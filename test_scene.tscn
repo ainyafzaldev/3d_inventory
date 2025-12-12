@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhbtwquigvuid"]
+[gd_scene load_steps=8 format=3 uid="uid://dhbtwquigvuid"]
 
 [ext_resource type="PackedScene" uid="uid://b2onfrpu6itfk" path="res://Player/player.tscn" id="2_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://b8rfakefr35fy" path="res://Inventory/TestCube.tscn" id="4_coq8p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6adnx"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -35,11 +34,8 @@ environment = SubResource("Environment_ia1lp")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -9.32776, 6.20719, 2.83448)
 shadow_enabled = true
 
-[node name="ItemTestCube" parent="." instance=ExtResource("4_coq8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25323, 1.97633, 0)
-mass = 2.424
-
 [node name="Ground" type="StaticBody3D" parent="."]
+collision_mask = 7
 
 [node name="Floor" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("PlaneMesh_6adnx")
@@ -51,3 +47,5 @@ shape = SubResource("BoxShape3D_coq8p")
 debug_color = Color(0.321569, 0.454902, 0.992157, 0.945098)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_ia1lp")]
+collision_layer = 2
+collision_mask = 7

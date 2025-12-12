@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
-[ext_resource type="Script" uid="uid://dwyq2nc7fnqp7" path="res://Inventory/ItemData.gd" id="3_fhl08"]
+[ext_resource type="Script" uid="uid://dwyq2nc7fnqp7" path="res://Inventory/InventoryItems/ItemData.gd" id="3_fhl08"]
 [ext_resource type="Texture2D" uid="uid://cwaxocryx1wcw" path="res://Textures/BoxIcon.png" id="4_fhl08"]
-[ext_resource type="PackedScene" uid="uid://b8rfakefr35fy" path="res://Inventory/TestCube.tscn" id="4_vtle1"]
+[ext_resource type="PackedScene" uid="uid://8hjob6yku2e3" path="res://Inventory/InventoryItems/Floor.tscn" id="4_k53q1"]
 [ext_resource type="Script" uid="uid://3res1gbl6nn8" path="res://Inventory/InventoryHandler.gd" id="6_vtle1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
@@ -18,15 +18,15 @@ size = Vector3(0.8, 0.5, 0.8)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uhqqe"]
 points = PackedVector3Array(0.387471, 0.247619, 0.4, -0.396269, -0.25, -0.396269, -0.396269, -0.25, 0.396269, 0.396269, -0.25, -0.396269, -0.4, 0.24757, -0.4, 0.387471, 0.247619, -0.4, -0.4, 0.24757, 0.4, 0.396269, -0.25, 0.396269)
 
-[sub_resource type="Resource" id="Resource_coq8p"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_uhqqe"]
+radius = 1.64
+
+[sub_resource type="Resource" id="Resource_fhl08"]
 script = ExtResource("3_fhl08")
-ItemName = "TestCube"
-ItemModelPrefab = ExtResource("4_vtle1")
+ItemName = "Floor"
+ItemModelPrefab = ExtResource("4_k53q1")
 Icon = ExtResource("4_fhl08")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_uhqqe"]
-radius = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnis"]
 border_width_left = 2
@@ -66,21 +66,24 @@ shape = SubResource("ConvexPolygonShape3D_uhqqe")
 debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 
 [node name="InteractionArea" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 2
+collision_mask = 6
 script = ExtResource("2_k53q1")
-ItemTypes = Array[ExtResource("3_fhl08")]([SubResource("Resource_coq8p")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(0.89, 0, 0, 0, 0.75, 0, 0, 0, 1.25, 0, 0.750799, -1.73023)
 shape = SubResource("SphereShape3D_uhqqe")
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
 [node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4, 0)
+
+[node name="HandTarget" type="Marker3D" parent="HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -6)
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
 layout_mode = 3
@@ -92,6 +95,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_vtle1")
 InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
+ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08")])
 
 [node name="Panel" type="Panel" parent="InventoryUI"]
 custom_minimum_size = Vector2(100, 100)
@@ -125,6 +129,8 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 5
 
-[connection signal="OnItemPickedUp" from="InteractionArea" to="InventoryUI" method="PickupItem"]
+[connection signal="BuildModeChange" from="." to="InteractionArea" method="build_mode_change"]
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="OnObjectExitedArea"]
+[connection signal="BuildModeExited" from="InventoryUI" to="." method="exit_build"]
+[connection signal="OnItemChanged" from="InventoryUI" to="." method="new_build"]
