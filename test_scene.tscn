@@ -41,18 +41,20 @@ transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, 0, 0)
 collision_layer = 2
 collision_mask = 7
 
-[node name="Wall" parent="." instance=ExtResource("3_sasra")]
+[node name="Walls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="Wall" parent="Walls" instance=ExtResource("3_sasra")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, -6, 0, 0)
 
-[node name="Wall2" parent="." instance=ExtResource("3_sasra")]
+[node name="Wall2" parent="Walls" instance=ExtResource("3_sasra")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, 6, 0, 0)
 
-[node name="Wall3" parent="." instance=ExtResource("3_sasra")]
+[node name="Wall3" parent="Walls" instance=ExtResource("3_sasra")]
 transform = Transform3D(-4.37114e-08, 0, 6, 0, 1, 0, -1, 0, -2.62268e-07, 0, 0, 6)
 
-[node name="Wall4" parent="." instance=ExtResource("3_sasra")]
+[node name="Wall4" parent="Walls" instance=ExtResource("3_sasra")]
 transform = Transform3D(-4.37114e-08, 0, 6, 0, 1, 0, -1, 0, -2.62268e-07, 0, 0, -6)
 
-[node name="Furniture" type="Node" parent="."]
-
 [node name="floorFull" parent="." instance=ExtResource("4_2nij2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)

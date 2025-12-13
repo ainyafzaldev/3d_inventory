@@ -160,12 +160,12 @@ collision_mask = 7
 script = ExtResource("1_oe5b3")
 
 [node name="ClippingHitBox" type="Area3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.190493, 0.120714, -0.103956)
 collision_layer = 8
 collision_mask = 7
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242851, 0.109337, -0.115098)
 shape = SubResource("BoxShape3D_pscqu")
 
@@ -186,5 +186,3 @@ disabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_28gu1")
 }
-
-[node name="Sofa" type="Node3D" parent="."]

@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 			print(clipping_hitbox.get_overlapping_bodies())
 			model.material_override = red_material 
 func focus():
-	print("highlight")
 	outline.visible = true
 	
 func unfocus():

@@ -32,7 +32,6 @@ func _ready() -> void:
 func _input(event: InputEvent)-> void:
 	var previously_selected = selectedSlot
 	if Input.is_action_just_pressed("NextItem"):
-		print("next")
 		selectedSlot += 1
 	if Input.is_action_just_pressed("PreviousItem"):
 		selectedSlot -= 1

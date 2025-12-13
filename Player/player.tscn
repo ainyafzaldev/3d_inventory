@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=29 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://clmxmtgxf4lp5" path="res://Textures/Sofa.png" id="5_fhl08"]
 [ext_resource type="PackedScene" uid="uid://vpfbqj3nxlke" path="res://Inventory/InventoryItems/Sofa.tscn" id="6_od3ui"]
 [ext_resource type="Script" uid="uid://3res1gbl6nn8" path="res://Inventory/InventoryHandler.gd" id="6_vtle1"]
+[ext_resource type="Texture2D" uid="uid://cwaxocryx1wcw" path="res://Textures/BoxIcon.png" id="7_od3ui"]
+[ext_resource type="PackedScene" uid="uid://bdna00pdjh5up" path="res://Inventory/InventoryItems/Bed.tscn" id="8_od3ui"]
+[ext_resource type="PackedScene" uid="uid://b14cug4pi7h26" path="res://Inventory/InventoryItems/CornerCouchLong.tscn" id="9_x3vf3"]
+[ext_resource type="PackedScene" uid="uid://0y4233h2grgm" path="res://Inventory/InventoryItems/CoffeeTable.tscn" id="10_x3vf3"]
+[ext_resource type="PackedScene" uid="uid://cwv5hj6xur7nj" path="res://Inventory/InventoryItems/Bookshelf.tscn" id="11_apopc"]
+[ext_resource type="PackedScene" uid="uid://bjnmamwmac55t" path="res://Inventory/InventoryItems/Rug.tscn" id="12_5htga"]
+[ext_resource type="PackedScene" uid="uid://bbwbvymp037lg" path="res://Inventory/InventoryItems/Television.tscn" id="13_p5o4e"]
+[ext_resource type="PackedScene" uid="uid://dc05pxpf5lc2a" path="res://Inventory/InventoryItems/TVCabinet.tscn" id="14_gu6f8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -26,6 +34,55 @@ script = ExtResource("3_fhl08")
 ItemName = "Sofa"
 ItemModelPrefab = ExtResource("6_od3ui")
 Icon = ExtResource("5_fhl08")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_x3vf3"]
+script = ExtResource("3_fhl08")
+ItemName = "Bed"
+ItemModelPrefab = ExtResource("8_od3ui")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_apopc"]
+script = ExtResource("3_fhl08")
+ItemName = "CornerCouch"
+ItemModelPrefab = ExtResource("9_x3vf3")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_5htga"]
+script = ExtResource("3_fhl08")
+ItemName = "CoffeeTable"
+ItemModelPrefab = ExtResource("10_x3vf3")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_p5o4e"]
+script = ExtResource("3_fhl08")
+ItemName = "Bookshelf"
+ItemModelPrefab = ExtResource("11_apopc")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_gu6f8"]
+script = ExtResource("3_fhl08")
+ItemName = "Rug"
+ItemModelPrefab = ExtResource("12_5htga")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_dkpta"]
+script = ExtResource("3_fhl08")
+ItemName = "Television"
+ItemModelPrefab = ExtResource("13_p5o4e")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_lfmf2"]
+script = ExtResource("3_fhl08")
+ItemName = "TVCabinet"
+ItemModelPrefab = ExtResource("14_gu6f8")
+Icon = ExtResource("7_od3ui")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnis"]
@@ -95,7 +152,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_vtle1")
 InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
-ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08")])
+ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08"), SubResource("Resource_x3vf3"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_dkpta"), SubResource("Resource_lfmf2")])
 
 [node name="Panel" type="Panel" parent="InventoryUI"]
 custom_minimum_size = Vector2(100, 100)
