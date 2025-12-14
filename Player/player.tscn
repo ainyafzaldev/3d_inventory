@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=47 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
@@ -14,6 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://bjnmamwmac55t" path="res://Inventory/InventoryItems/Rug.tscn" id="12_5htga"]
 [ext_resource type="PackedScene" uid="uid://bbwbvymp037lg" path="res://Inventory/InventoryItems/Television.tscn" id="13_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://dc05pxpf5lc2a" path="res://Inventory/InventoryItems/TVCabinet.tscn" id="14_gu6f8"]
+[ext_resource type="PackedScene" uid="uid://dsg25cmw6pcyb" path="res://Inventory/InventoryItems/Cushion.tscn" id="15_pisgm"]
+[ext_resource type="PackedScene" uid="uid://dxhlxcx1ek3nm" path="res://Inventory/InventoryItems/CushionLong.tscn" id="16_b1ygp"]
+[ext_resource type="PackedScene" uid="uid://bfv0ajo2yibga" path="res://Inventory/InventoryItems/CushionExtraLong.tscn" id="17_o28un"]
+[ext_resource type="PackedScene" uid="uid://bjuald7glcihv" path="res://Inventory/InventoryItems/Monitor.tscn" id="18_b1ygp"]
+[ext_resource type="PackedScene" uid="uid://biaag46me01ed" path="res://Inventory/InventoryItems/mouse.tscn" id="19_o28un"]
+[ext_resource type="PackedScene" uid="uid://bfbtd54hfqo5p" path="res://Inventory/InventoryItems/Keyboard.tscn" id="20_n471f"]
+[ext_resource type="PackedScene" uid="uid://ct3fnb1l3dn5l" path="res://Inventory/InventoryItems/Desk.tscn" id="21_7emwf"]
+[ext_resource type="PackedScene" uid="uid://djhudxc2nc56v" path="res://Inventory/InventoryItems/Chair.tscn" id="22_hshwv"]
+[ext_resource type="PackedScene" uid="uid://bev6b42odrl8u" path="res://Inventory/InventoryItems/Books.tscn" id="23_gpjlu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -85,6 +94,69 @@ ItemModelPrefab = ExtResource("14_gu6f8")
 Icon = ExtResource("7_od3ui")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
+[sub_resource type="Resource" id="Resource_n471f"]
+script = ExtResource("3_fhl08")
+ItemName = "Cushion"
+ItemModelPrefab = ExtResource("15_pisgm")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_7emwf"]
+script = ExtResource("3_fhl08")
+ItemName = "CushionLong"
+ItemModelPrefab = ExtResource("16_b1ygp")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_hshwv"]
+script = ExtResource("3_fhl08")
+ItemName = "CushionExtraLong"
+ItemModelPrefab = ExtResource("17_o28un")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_o28un"]
+script = ExtResource("3_fhl08")
+ItemName = "Monitor"
+ItemModelPrefab = ExtResource("18_b1ygp")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_gpjlu"]
+script = ExtResource("3_fhl08")
+ItemName = "Mouse"
+ItemModelPrefab = ExtResource("19_o28un")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_8mwp6"]
+script = ExtResource("3_fhl08")
+ItemName = "Keyboard"
+ItemModelPrefab = ExtResource("20_n471f")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_qemgg"]
+script = ExtResource("3_fhl08")
+ItemName = "Desk"
+ItemModelPrefab = ExtResource("21_7emwf")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_8viyr"]
+script = ExtResource("3_fhl08")
+ItemName = "Chair"
+ItemModelPrefab = ExtResource("22_hshwv")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_sm0op"]
+script = ExtResource("3_fhl08")
+ItemName = "Books"
+ItemModelPrefab = ExtResource("23_gpjlu")
+Icon = ExtResource("7_od3ui")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnis"]
 border_width_left = 2
 border_width_top = 2
@@ -152,7 +224,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_vtle1")
 InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
-ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08"), SubResource("Resource_x3vf3"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_dkpta"), SubResource("Resource_lfmf2")])
+ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08"), SubResource("Resource_x3vf3"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_dkpta"), SubResource("Resource_lfmf2"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_sm0op")])
 
 [node name="Panel" type="Panel" parent="InventoryUI"]
 custom_minimum_size = Vector2(100, 100)

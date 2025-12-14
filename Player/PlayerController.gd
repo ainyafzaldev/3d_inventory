@@ -50,7 +50,8 @@ func building(delta):
 
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 	var x = round(position.x / grid_snap) * grid_snap
-	var y = 0
+	#var y = 0
+	var y = round(position.y / grid_snap) * grid_snap
 	var z = round(position.z / grid_snap) * grid_snap
 	return Vector3(x, y, z)
 	

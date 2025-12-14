@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/desk.glb-dbad9f33d21a552c021c13e6a7b067ed.scn
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="StaticBody3D"
+nodes/root_name="Desk"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -32,6 +32,16 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:desk(Clone)": {
+"generate/physics": true,
+"mesh_instance/layers": 4,
+"physics/layer": 4,
+"physics/mask": 7,
+"physics/shape_type": 2
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
