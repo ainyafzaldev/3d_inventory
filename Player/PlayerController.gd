@@ -19,8 +19,7 @@ var horizontal_input := 0.0 #twist
 
 var grid_size = 0.25
 var ghost_block: InteractableItem = null
-var new_rotation = 0.0
-var rotation_complete = true
+
 var currentObject: ItemData = null
 
 func _ready() -> void:
@@ -31,15 +30,9 @@ func building(delta):
 	var snap_pos : Vector3 = snap_to_grid(hand_target.global_position, grid_size)
 	# slowly move from a to be based on speed c
 	ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
-	if Input.is_action_just_pressed("Rotate") and rotation_complete:
-		rotation_complete = false
-		new_rotation = ghost_block.rotation.y
-		new_rotation += deg_to_rad(90)
+	if Input.is_action_just_pressed("Rotate"):
+		ghost_block.rotation.y += deg_to_rad(90)
 		
-	if not rotation_complete:
-		ghost_block.rotation.y = lerp(ghost_block.rotation.y, new_rotation, 0.1)
-		if ghost_block.rotation.y == new_rotation:
-			rotation_complete = true
 		
 	if Input.is_action_just_pressed("Interact") and ghost_block.can_place:
 		var block_instance = currentObject.ItemModelPrefab.instantiate()
