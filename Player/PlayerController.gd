@@ -9,7 +9,7 @@ signal BuildModeChange(new_build_mode: bool)
 @onready var build_mode = $InteractionArea.build_mode
 
 
-const SPEED = 5.0
+const SPEED = 1.0
 const JUMP_VELOCITY = 4.5
 
 var horizontal_speed := 0.01
@@ -17,7 +17,7 @@ var vertical_speed := 0.001
 var vertical_input := 0.0 # pitch
 var horizontal_input := 0.0 #twist
 
-var grid_size = 0.25
+var grid_size = 0.2
 var ghost_block: InteractableItem = null
 
 var currentObject: ItemData = null
@@ -31,7 +31,9 @@ func building(delta):
 	# slowly move from a to be based on speed c
 	ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
 	if Input.is_action_just_pressed("Rotate"):
-		ghost_block.rotation.y += deg_to_rad(90)
+		#ghost_block.rotation.y += deg_to_rad(90)
+		ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, ghost_block.rotation_degrees +Vector3(0, 90, 0), 0.5)
+		
 		
 		
 	if Input.is_action_just_pressed("Interact") and ghost_block.can_place:
