@@ -36,7 +36,7 @@ func PickupNearestItem():
 	var nearestItem: InteractableItem = FindNearestItem()
 	# remove item from view
 	if (nearestItem != null):
-		nearestItem.queue_free()
+		nearestItem.destroy()
 		NearbyBodies.remove_at(NearbyBodies.find(nearestItem))
 		var itemPrefab = nearestItem.scene_file_path
 		# adding item to inventory, not needed right now

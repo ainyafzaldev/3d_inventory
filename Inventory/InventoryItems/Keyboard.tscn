@@ -88,31 +88,31 @@ size = Vector3(0.239319, 0.0250473, 0.101074)
 [sub_resource type="Animation" id="Animation_rlfp4"]
 resource_name = "Destroy"
 length = 0.2
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Model:scale")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.5, 0.5, 0.5), Vector3(1.1, 1.1, 1.1), Vector3(0.1, 0.1, 0.1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"delete"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(1.1, 1.1, 1.1), Vector3(0.1, 0.1, 0.1)]
 }
 
 [sub_resource type="Animation" id="Animation_w5sqh"]
@@ -121,7 +121,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Model:scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,18 +133,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_28gu1"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_28gu1"]
 _data = {
@@ -154,11 +142,14 @@ _data = {
 }
 
 [node name="Keyboard" type="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_qs8ym")
 
 [node name="Model" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143384, 0, 0.0544169)
 mesh = SubResource("ArrayMesh_6f3bp")
 skeleton = NodePath("")
 
@@ -168,10 +159,12 @@ mesh = SubResource("ArrayMesh_mbs7s")
 
 [node name="ModelCollision" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143384, 0, 0.0544169)
 shape = SubResource("ConvexPolygonShape3D_dcdx8")
 
 [node name="ClippingHitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143384, 0, 0.0544169)
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145905, 0.013958, -0.057373)

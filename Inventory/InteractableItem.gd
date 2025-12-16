@@ -1,6 +1,6 @@
 extends StaticBody3D
 class_name InteractableItem
-@onready var model : MeshInstance3D = $Model
+@onready var model : MeshInstance3D = %Model
 #@onready var collision_shape : CollisionShape3D = $ModelCollision
 @onready var collision_shape : CollisionShape3D = %ModelCollision
 @onready var clipping_hitbox : Area3D = $ClippingHitBox
@@ -15,6 +15,7 @@ var can_place = true
 func _ready() -> void:
 	unfocus()
 	collision_shape.set_deferred("disabled", true)
+	scale = Vector3(1.0, 1.0, 1.0)
 
 func _process(delta: float) -> void:
 	if clipping_hitbox:
