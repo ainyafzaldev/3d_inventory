@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=49 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
@@ -35,8 +35,16 @@ size = Vector3(0.8, 0.5, 0.8)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uhqqe"]
 points = PackedVector3Array(0.387471, 0.247619, 0.4, -0.396269, -0.25, -0.396269, -0.396269, -0.25, 0.396269, 0.396269, -0.25, -0.396269, -0.4, 0.24757, -0.4, 0.387471, 0.247619, -0.4, -0.4, 0.24757, 0.4, 0.396269, -0.25, 0.396269)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_uhqqe"]
-radius = 1.64
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpjlu"]
+albedo_color = Color(0.338473, 0.338473, 0.338473, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8mwp6"]
+material = SubResource("StandardMaterial3D_gpjlu")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gpjlu"]
+radius = 0.170117
 
 [sub_resource type="Resource" id="Resource_fhl08"]
 script = ExtResource("3_fhl08")
@@ -169,8 +177,10 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="InvisiblePlayer" type="CharacterBody3D"]
 top_level = true
+collision_layer = 512
+collision_mask = 0
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -179,6 +189,7 @@ script = ExtResource("1_gwnis")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
+layers = 512
 mesh = SubResource("CapsuleMesh_6adnx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -190,6 +201,7 @@ debug_color = Color(0, 0.278431, 0.329412, 0.843137)
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82654, -0.372338)
 visible = false
+layers = 512
 mesh = SubResource("BoxMesh_6adnx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -198,22 +210,27 @@ visible = false
 shape = SubResource("ConvexPolygonShape3D_uhqqe")
 debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 
-[node name="InteractionArea" type="Area3D" parent="."]
-collision_layer = 2
-collision_mask = 6
-script = ExtResource("2_k53q1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(0.89, 0, 0, 0, 0.75, 0, 0, 0, 1.25, 0, 0.750799, -1.73023)
-shape = SubResource("SphereShape3D_uhqqe")
-
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
 [node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984807, 0.173648, 0, -0.173648, 0.984807, 0, 2, 0)
 
 [node name="HandTarget" type="Marker3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.0950311, -5.84043)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -1, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
+layers = 16
+mesh = SubResource("SphereMesh_8mwp6")
+
+[node name="InteractionArea" type="Area3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("2_k53q1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("SphereShape3D_gpjlu")
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
@@ -262,8 +279,8 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 5
 
-[connection signal="BuildModeChange" from="." to="InteractionArea" method="build_mode_change"]
-[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="OnObjectEnteredArea"]
-[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="OnObjectExitedArea"]
+[connection signal="BuildModeChange" from="." to="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" method="build_mode_change"]
+[connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" to="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" method="OnObjectEnteredArea"]
+[connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" to="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" method="OnObjectExitedArea"]
 [connection signal="BuildModeExited" from="InventoryUI" to="." method="exit_build"]
 [connection signal="OnItemChanged" from="InventoryUI" to="." method="new_build"]

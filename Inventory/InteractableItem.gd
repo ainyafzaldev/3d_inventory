@@ -20,10 +20,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if clipping_hitbox:
 		model.transparency = 0.6
-		can_place = clipping_hitbox.get_overlapping_bodies().is_empty()
+		var bodies = clipping_hitbox.get_overlapping_bodies()
+		can_place = bodies.is_empty() or (bodies.size() == 1 and bodies[0] is InvisiblePlayer)
 		if can_place:
 			model.material_override = blue_material
 		else:
+			print(clipping_hitbox.get_overlapping_bodies())
 			model.material_override = red_material 
 func focus():
 	outline.visible = true

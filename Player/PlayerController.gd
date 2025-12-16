@@ -1,12 +1,13 @@
 extends CharacterBody3D
 # camera movements from youtube tut by bramwell 
+class_name InvisiblePlayer
 
 signal BuildModeChange(new_build_mode: bool)
 
 @onready var horizontal_pivot := $HorizontalPivot
 @onready var vertical_pivot := $HorizontalPivot/VerticalPivot
 @onready var hand_target: Marker3D = $HorizontalPivot/VerticalPivot/HandTarget
-@onready var build_mode = $InteractionArea.build_mode
+@onready var build_mode = %InteractionArea.build_mode
 
 
 const SPEED = 1.0
@@ -29,11 +30,12 @@ func _ready() -> void:
 func building(delta):
 	var snap_pos : Vector3 = snap_to_grid(hand_target.global_position, grid_size)
 	# slowly move from a to be based on speed c
-	ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
+	#ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
+	ghost_block.global_position = snap_pos
 	if Input.is_action_just_pressed("Rotate"):
 		#ghost_block.rotation.y += deg_to_rad(90)
 		ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, ghost_block.rotation_degrees +Vector3(0, 90, 0), 0.5)
-		
+
 		
 		
 	if Input.is_action_just_pressed("Interact") and ghost_block.can_place:
@@ -46,7 +48,8 @@ func building(delta):
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 	var x = round(position.x / grid_snap) * grid_snap
 	#var y = 0
-	var y = round(position.y / grid_snap) * grid_snap
+	#var y = round(position.y / grid_snap) * grid_snap
+	var y = position.y
 	var z = round(position.z / grid_snap) * grid_snap
 	return Vector3(x, y, z)
 	
@@ -55,6 +58,7 @@ func spawn_ghost_block() -> void:
 	get_parent().add_child(ghost_block)
 	ghost_block.global_position = self.global_position
 	ghost_block.global_position.y = 0.5
+	ghost_block.rotation.y = self.rotation.y
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -72,6 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			)
 		vertical_input = 0.0
 		horizontal_input = 0.0
+		if hand_target.global_position.y < 0:
+			hand_target.global_position.y = 0
 		
 func new_build(item: ItemData) -> void:
 	# TODO: show different ghost object when changing
