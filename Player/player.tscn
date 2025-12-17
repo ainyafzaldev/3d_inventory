@@ -233,7 +233,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_gpjlu")
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 0.988681, 0.150036, 0, -0.150036, 0.988681, 0, 0.457662, 1.40447)
 
 [node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
 layout_mode = 3

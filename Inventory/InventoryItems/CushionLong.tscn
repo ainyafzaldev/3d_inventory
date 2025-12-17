@@ -119,6 +119,7 @@ _data = {
 [node name="CushionLong" type="StaticBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_dpocx")
+isDecoration = true
 
 [node name="Model" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

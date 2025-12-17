@@ -59,3 +59,5 @@ func OnObjectExitedArea(body: Node3D):
 
 func build_mode_change(new_build_mode: bool) -> void:
 	build_mode = new_build_mode
+	if (highlightedObject != null):
+		highlightedObject.unfocus()

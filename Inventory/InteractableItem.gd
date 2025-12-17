@@ -7,6 +7,8 @@ class_name InteractableItem
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var outline: MeshInstance3D = %Outline
 
+@export var isDecoration : bool = false
+
 var red_material: Material = load("res://Textures/red.tres")
 var blue_material: Material = load("res://Textures/blue.tres")
 
@@ -25,7 +27,7 @@ func _process(delta: float) -> void:
 		if can_place:
 			model.material_override = blue_material
 		else:
-			print(clipping_hitbox.get_overlapping_bodies())
+			#print(clipping_hitbox.get_overlapping_bodies())
 			model.material_override = red_material 
 func focus():
 	outline.visible = true

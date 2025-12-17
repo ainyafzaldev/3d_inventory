@@ -29,6 +29,7 @@ func _ready() -> void:
 	
 func building(delta):
 	var snap_pos : Vector3 = snap_to_grid(hand_target.global_position, grid_size)
+
 	# slowly move from a to be based on speed c
 	#ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
 	ghost_block.global_position = snap_pos
@@ -46,11 +47,12 @@ func building(delta):
 		block_instance.global_rotation = ghost_block.global_rotation
 
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
+	if ghost_block.isDecoration:
+		return position
+	var y = 0
 	var x = round(position.x / grid_snap) * grid_snap
-	#var y = 0
-	#var y = round(position.y / grid_snap) * grid_snap
-	var y = position.y
 	var z = round(position.z / grid_snap) * grid_snap
+	
 	return Vector3(x, y, z)
 	
 func spawn_ghost_block() -> void:
@@ -95,6 +97,7 @@ func exit_build() -> void:
 func change_build_mode(new_build_mode: bool) -> void:
 	BuildModeChange.emit(new_build_mode)
 	build_mode = new_build_mode
+	
 func _physics_process(delta: float) -> void:
 		
 	if ghost_block:
