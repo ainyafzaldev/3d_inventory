@@ -50,5 +50,5 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="floorFull(Clone)"]
 collision_mask = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floorFull(Clone)/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floorFull(Clone)/StaticBody3D" groups=["Surface"]]
 shape = SubResource("ConvexPolygonShape3D_hm0fh")

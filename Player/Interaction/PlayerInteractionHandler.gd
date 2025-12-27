@@ -29,8 +29,7 @@ func HighlightNearestItem():
 		highlightedObject.unfocus()
 	if nearestItem != null:
 		highlightedObject = nearestItem
-		nearestItem.focus()
-		
+		nearestItem.focus()	
 	
 func PickupNearestItem():
 	var nearestItem: InteractableItem = FindNearestItem()
@@ -48,16 +47,15 @@ func PickupNearestItem():
 				#return
 		#print("Item not found")
 
-
 func OnObjectEnteredArea(body: Node3D):
 	if(body is InteractableItem):
 		NearbyBodies.append(body)
-		
+
 func OnObjectExitedArea(body: Node3D):
 	if(body is InteractableItem and NearbyBodies.has(body)):
 		NearbyBodies.remove_at(NearbyBodies.find(body))
 
-func build_mode_change(new_build_mode: bool) -> void:
+func build_mode_changed(new_build_mode: bool) -> void:
 	build_mode = new_build_mode
 	if (highlightedObject != null):
 		highlightedObject.unfocus()

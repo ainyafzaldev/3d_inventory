@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 		model.transparency = 0.6
 		var bodies = clipping_hitbox.get_overlapping_bodies()
 		can_place = bodies.is_empty() or (bodies.size() == 1 and bodies[0] is InvisiblePlayer)
+
 		if can_place:
 			model.material_override = blue_material
 		else:

@@ -38,8 +38,6 @@ sky_mode = 1
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_ia1lp")]
 transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, 0, 0)
-collision_layer = 2
-collision_mask = 7
 
 [node name="Walls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)

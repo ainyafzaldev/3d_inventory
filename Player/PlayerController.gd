@@ -1,14 +1,10 @@
 extends CharacterBody3D
 # camera movements from youtube tut by bramwell 
 class_name InvisiblePlayer
-
-signal BuildModeChange(new_build_mode: bool)
-
 @onready var horizontal_pivot := $HorizontalPivot
 @onready var vertical_pivot := $HorizontalPivot/VerticalPivot
 @onready var hand_target: Marker3D = $HorizontalPivot/VerticalPivot/HandTarget
-@onready var build_mode = %InteractionArea.build_mode
-
+@onready var camera = $HorizontalPivot/VerticalPivot/Camera3D
 
 const SPEED = 1.0
 const JUMP_VELOCITY = 4.5
@@ -24,7 +20,6 @@ var ghost_block: InteractableItem = null
 var currentObject: ItemData = null
 
 func _ready() -> void:
-	change_build_mode(false)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func building(delta):
@@ -34,11 +29,9 @@ func building(delta):
 	#ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
 	ghost_block.global_position = snap_pos
 	if Input.is_action_just_pressed("Rotate"):
-		#ghost_block.rotation.y += deg_to_rad(90)
-		ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, ghost_block.rotation_degrees +Vector3(0, 90, 0), 0.5)
+		ghost_block.rotation.y += deg_to_rad(45)
+		#ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, ghost_block.rotation_degrees +Vector3(0, 90, 0), 0.5)
 
-		
-		
 	if Input.is_action_just_pressed("Interact") and ghost_block.can_place:
 		var block_instance = currentObject.ItemModelPrefab.instantiate()
 		get_parent().add_child(block_instance)
@@ -60,9 +53,16 @@ func spawn_ghost_block() -> void:
 	get_parent().add_child(ghost_block)
 	ghost_block.global_position = self.global_position
 	ghost_block.global_position.y = 0.5
-	ghost_block.rotation.y = self.rotation.y
-	
-	
+	#ghost_block.rotation.y = self.rotation.y
+	ghost_block.rotation_degrees.y = round(self.rotation_degrees.y / 45) * 45
+		
+func new_build(item: ItemData) -> void:
+	if ghost_block:
+		ghost_block.destroy()
+	if item:
+		currentObject = item
+		spawn_ghost_block()
+
 func _unhandled_input(event: InputEvent) -> void:
 	# mouse movement for camera
 	if event is InputEventMouseMotion:
@@ -80,24 +80,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		horizontal_input = 0.0
 		if hand_target.global_position.y < 0:
 			hand_target.global_position.y = 0
-		
-func new_build(item: ItemData) -> void:
-	# TODO: show different ghost object when changing
-	# TODO set build status based on item selected
-	# signal handler from Inventory Handler
-	change_build_mode(true)
-	currentObject = item
-	if ghost_block:
-		ghost_block.destroy()
-	spawn_ghost_block()
-func exit_build() -> void:
-	change_build_mode(false)
-	if ghost_block:
-		ghost_block.destroy()
-func change_build_mode(new_build_mode: bool) -> void:
-	BuildModeChange.emit(new_build_mode)
-	build_mode = new_build_mode
-	
 func _physics_process(delta: float) -> void:
 		
 	if ghost_block:
@@ -116,7 +98,23 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	if Input.is_action_just_released("ZoomIn"):
+		camera.position.z -= 0.5
+		camera.position.y -= 0.5
+		camera.position =  clamp(
+			camera.position,
+			Vector3(0.0, 0.0, 0.0),
+			Vector3(0.0, 5.0, 5.0)
+		)
+	if Input.is_action_just_released("ZoomOut"):
+		camera.position.z += 0.5
+		camera.position.y += 0.5
+		camera.position =  clamp(
+			camera.position,
+			Vector3(0.0, 0.0, 0.0),
+			Vector3(0.0, 5.0, 5.0)
+		)
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")

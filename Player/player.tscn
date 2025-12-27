@@ -177,10 +177,10 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="InvisiblePlayer" type="CharacterBody3D"]
+[node name="PlayerController" type="CharacterBody3D"]
 top_level = true
-collision_layer = 512
-collision_mask = 0
+collision_layer = 2
+collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -188,25 +188,21 @@ script = ExtResource("1_gwnis")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-layers = 512
+layers = 2
 mesh = SubResource("CapsuleMesh_6adnx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_6adnx")
 debug_color = Color(0, 0.278431, 0.329412, 0.843137)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82654, -0.372338)
-visible = false
-layers = 512
+layers = 2
 mesh = SubResource("BoxMesh_6adnx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81724, -0.365104)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_uhqqe")
 debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 
@@ -222,20 +218,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -1, -
 layers = 16
 mesh = SubResource("SphereMesh_8mwp6")
 
-[node name="InteractionArea" type="Area3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
+[node name="PlayerInteractionHandler" type="Area3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("2_k53q1")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_gpjlu")
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.988681, 0.150036, 0, -0.150036, 0.988681, 0, 0.457662, 1.40447)
 
-[node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
+[node name="InventoryHandler" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -247,7 +242,7 @@ script = ExtResource("6_vtle1")
 InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
 ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08"), SubResource("Resource_x3vf3"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_dkpta"), SubResource("Resource_lfmf2"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_sm0op")])
 
-[node name="Panel" type="Panel" parent="InventoryUI"]
+[node name="Panel" type="Panel" parent="InventoryHandler"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 2
@@ -260,7 +255,7 @@ offset_bottom = -45.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gwnis")
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryHandler/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -272,15 +267,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="GridContainer" type="GridContainer" parent="InventoryUI/Panel/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="InventoryHandler/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 5
 
-[connection signal="BuildModeChange" from="." to="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" method="build_mode_change"]
-[connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" to="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" method="OnObjectEnteredArea"]
-[connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" to="HorizontalPivot/VerticalPivot/HandTarget/InteractionArea" method="OnObjectExitedArea"]
-[connection signal="BuildModeExited" from="InventoryUI" to="." method="exit_build"]
-[connection signal="OnItemChanged" from="InventoryUI" to="." method="new_build"]
+[connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectEnteredArea"]
+[connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]
+[connection signal="BuildModeChanged" from="InventoryHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="build_mode_changed"]
+[connection signal="OnItemChanged" from="InventoryHandler" to="." method="new_build"]

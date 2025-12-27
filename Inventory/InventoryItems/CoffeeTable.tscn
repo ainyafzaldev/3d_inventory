@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://0y4233h2grgm"]
+[gd_scene load_steps=14 format=4 uid="uid://0y4233h2grgm"]
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_wgc2h"]
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_yqt4x"]
@@ -116,6 +116,9 @@ _data = {
 &"RESET": SubResource("Animation_28gu1")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wgc2h"]
+size = Vector3(0.661133, 0.030304, 0.394287)
+
 [node name="CoffeeTable" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 7
@@ -149,3 +152,7 @@ shape = SubResource("BoxShape3D_yqt4x")
 libraries = {
 &"": SubResource("AnimationLibrary_28gu1")
 }
+
+[node name="SurfaceCollision" type="CollisionShape3D" parent="." groups=["Surface"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0268555, 0.242046, -0.00817871)
+shape = SubResource("BoxShape3D_wgc2h")

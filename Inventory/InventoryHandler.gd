@@ -1,7 +1,7 @@
 extends Node
 class_name InventoryHandler
 signal OnItemChanged(item: ItemData)
-signal BuildModeExited()
+signal BuildModeChanged(new_build_mode: bool)
 @export var ItemSlotsCount : int = 20
 @export var InventoryGrid : GridContainer
 @export var InventorySlotPrefab : PackedScene = preload('res://Inventory/InventoryUI/InventorySlot.tscn')
@@ -43,9 +43,11 @@ func _input(event: InputEvent)-> void:
 			selectedSlot -= InventorySlots.size()
 		if InventorySlots[selectedSlot].SlotFilled:
 			# slot should have item in it
-			OnItemChanged.emit(InventorySlots[selectedSlot].SlotData)
+			BuildModeChanged.emit(true)
 		else:
-			BuildModeExited.emit()
+			BuildModeChanged.emit(false)
+		OnItemChanged.emit(InventorySlots[selectedSlot].SlotData)
+			
 		focus(previously_selected, selectedSlot)
 func focus(prev: int, curr: int):
 	InventorySlots[prev].release_focus()
