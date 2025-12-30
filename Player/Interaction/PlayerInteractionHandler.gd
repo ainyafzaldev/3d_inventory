@@ -40,7 +40,8 @@ func PickupNearestItem():
 		var itemPrefab = nearestItem.scene_file_path
 		# adding item to inventory, not needed right now
 		#for i in ItemTypes.size():
-			#if (ItemTypes[i].ItemModelPrefab != null and ItemTypes[i].ItemModelPrefab.resource_path == itemPrefab):
+			#if (ItemTypes[i].ItemModelPrefab != null and 
+			#ItemTypes[i].ItemModelPrefab.resource_path == itemPrefab):
 				## replace with pick up item handler
 				#print("Item id:" + str(i) + " Item Name:" + ItemTypes[i].ItemName)
 				##OnItemPickedUp.emit(ItemTypes[i])
@@ -55,6 +56,7 @@ func OnObjectExitedArea(body: Node3D):
 	if(body is InteractableItem and NearbyBodies.has(body)):
 		NearbyBodies.remove_at(NearbyBodies.find(body))
 
+# handles signal when new inventory item is selected
 func build_mode_changed(new_build_mode: bool) -> void:
 	build_mode = new_build_mode
 	if (highlightedObject != null):
