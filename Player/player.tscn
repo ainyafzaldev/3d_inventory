@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=55 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
@@ -23,6 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://ct3fnb1l3dn5l" path="res://Inventory/InventoryItems/Desk.tscn" id="21_7emwf"]
 [ext_resource type="PackedScene" uid="uid://djhudxc2nc56v" path="res://Inventory/InventoryItems/Chair.tscn" id="22_hshwv"]
 [ext_resource type="PackedScene" uid="uid://bev6b42odrl8u" path="res://Inventory/InventoryItems/Books.tscn" id="23_gpjlu"]
+[ext_resource type="Texture2D" uid="uid://dlmdtgdf8oto4" path="res://Textures/SphereIcon.png" id="24_8mwp6"]
+[ext_resource type="FontFile" uid="uid://cq5ml08id03fp" path="res://Assets/UI/Nunito-Bold.ttf" id="24_qemgg"]
+[ext_resource type="StyleBox" uid="uid://budtm6yftao1v" path="res://Textures/purple.tres" id="25_sm0op"]
+[ext_resource type="FontFile" uid="uid://mi6mq23sa8b5" path="res://Assets/UI/MaterialSymbolsRounded_Filled_28pt-Bold.ttf" id="26_8viyr"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -165,17 +169,46 @@ ItemModelPrefab = ExtResource("23_gpjlu")
 Icon = ExtResource("7_od3ui")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnis"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8, 0.8, 0.8, 0.0235294)
+[sub_resource type="FontVariation" id="FontVariation_sm0op"]
+base_font = ExtResource("26_8viyr")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mwp6"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.923888, 0.932189, 0.995506, 0.574)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.945283, 0.823646, 0.907971, 0.82)
 border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.408, 0.049, 0.559, 0.418)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm0op"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.717647)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.945283, 0.823646, 0.907971, 0.82)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0.408, 0.049, 0.559, 0.418)
+shadow_size = 5
 
 [node name="PlayerController" type="CharacterBody3D"]
 top_level = true
@@ -230,7 +263,7 @@ shape = SubResource("SphereShape3D_gpjlu")
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
 
-[node name="InventoryHandler" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -239,27 +272,246 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_vtle1")
-InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
+ItemSlotsCount = 24
+InventoryGrid = NodePath("InventoryBox/Panel/MarginContainer/GridContainer")
 ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08"), SubResource("Resource_x3vf3"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_dkpta"), SubResource("Resource_lfmf2"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_sm0op")])
 
-[node name="Panel" type="Panel" parent="InventoryHandler"]
+[node name="MenuBar" type="Control" parent="UI"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 114.0
+grow_horizontal = 2
+
+[node name="Buttons" type="GridContainer" parent="UI/MenuBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+columns = 4
+
+[node name="Mode" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "construction"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ZoomIn" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "zoom_in"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ZoomOut" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "zoom_out"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "man"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mode2" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "self_improvement"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mode3" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "home
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mode4" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "arrows_input"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionBar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="UI/ActionBar"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -130.0
+offset_right = -65.0
+offset_bottom = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/v_separation = 20
+
+[node name="Select" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+text = "Select [F]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/ActionBar/GridContainer/Select"]
+visible = false
+show_behind_parent = true
+custom_minimum_size = Vector2(222, 86)
+layout_mode = 0
+offset_right = 41.15
+offset_bottom = 40.0
+texture = ExtResource("24_8mwp6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Place" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+text = "Place [F]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Rotate" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+text = "Rotate [R]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Delete" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+text = "Delete [X]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Cancel" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+text = "Cancel [X]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="InventoryBox" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 1880.0
+offset_top = 1040.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Panel" type="Panel" parent="UI/InventoryBox"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = -330.0
-offset_right = 414.0
-offset_bottom = -45.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_gwnis")
+offset_left = -1830.0
+offset_top = -840.0
+offset_right = -1218.0
+offset_bottom = 67.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sm0op")
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryHandler/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/InventoryBox/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
@@ -267,14 +519,48 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="GridContainer" type="GridContainer" parent="InventoryHandler/Panel/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="UI/InventoryBox/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-columns = 5
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="Left" type="RichTextLabel" parent="UI/InventoryBox"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = -1810.0
+offset_top = 90.0
+offset_right = -1746.0
+offset_bottom = 156.0
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "arrow_back"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="RichTextLabel" parent="UI/InventoryBox"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = -1300.0
+offset_top = 90.0
+offset_right = -1236.0
+offset_bottom = 156.0
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/normal = ExtResource("25_sm0op")
+text = "arrow_forward"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]
-[connection signal="BuildModeChanged" from="InventoryHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="build_mode_changed"]
-[connection signal="OnItemChanged" from="InventoryHandler" to="." method="new_build"]
+[connection signal="BuildModeChanged" from="UI" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="build_mode_changed"]
+[connection signal="OnItemChanged" from="UI" to="." method="new_build"]

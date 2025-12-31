@@ -1,43 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://blc40qtonvnfd"]
+[gd_scene load_steps=3 format=3 uid="uid://blc40qtonvnfd"]
 
 [ext_resource type="Script" uid="uid://dgvlssoac7yef" path="res://Inventory/InventoryUI/InventorySlot.gd" id="1_7pj65"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dltb"]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.949389, 0.949389, 0.949389, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0c1ht"]
-bg_color = Color(0.344075, 0.344076, 0.344075, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.70173, 0.70173, 0.70173, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="StyleBox" uid="uid://c2mr0fqkdwb18" path="res://Inventory/InventoryUI/slot.tres" id="1_f6ouk"]
 
 [node name="InventorySlot" type="Button" node_paths=PackedStringArray("IconSlot")]
-custom_minimum_size = Vector2(64, 64)
-offset_right = 60.0
-offset_bottom = 60.0
-theme_override_styles/focus = SubResource("StyleBoxFlat_1dltb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0c1ht")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0c1ht")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0c1ht")
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/focus = ExtResource("1_f6ouk")
+theme_override_styles/hover = ExtResource("1_f6ouk")
+theme_override_styles/normal = ExtResource("1_f6ouk")
 script = ExtResource("1_7pj65")
 IconSlot = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_right = 128.0
+offset_bottom = 128.0
 expand_mode = 1

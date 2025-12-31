@@ -1,0 +1,51 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cy0eel5gp7tjs"
+path="res://.godot/imported/floor.glb-9e591603e3f55e014bce22b93344599b.scn"
+
+[deps]
+
+source_file="res://Assets/Furniture/floor.glb"
+dest_files=["res://.godot/imported/floor.glb-9e591603e3f55e014bce22b93344599b.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Floor"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"colormap": {
+"use_external/enabled": true,
+"use_external/path": "uid://dspobhtc1uacc"
+}
+},
+"nodes": {
+"PATH:floor": {
+"generate/physics": true,
+"physics/mask": 15,
+"physics/shape_type": 1
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

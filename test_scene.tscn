@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhbtwquigvuid"]
 
 [ext_resource type="PackedScene" uid="uid://b2onfrpu6itfk" path="res://Player/player.tscn" id="2_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://clhqoyr50cmgk" path="res://Assets/wall.glb" id="3_sasra"]
+[ext_resource type="PackedScene" uid="uid://clhqoyr50cmgk" path="res://Assets/Furniture/wall.glb" id="3_sasra"]
 [ext_resource type="PackedScene" uid="uid://br6aveoiqkj52" path="res://Inventory/InventoryItems/WoodFloor.tscn" id="4_2nij2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6adnx"]

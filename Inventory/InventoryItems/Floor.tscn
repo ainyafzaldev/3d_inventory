@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://b6vjidfhpchua"]
 
-[ext_resource type="PackedScene" uid="uid://cy0eel5gp7tjs" path="res://Assets/floor.glb" id="1_qjfo0"]
+[ext_resource type="PackedScene" uid="uid://cy0eel5gp7tjs" path="res://Assets/Furniture/floor.glb" id="1_qjfo0"]
 
 [node name="Floor" instance=ExtResource("1_qjfo0")]
