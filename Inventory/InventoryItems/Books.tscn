@@ -2,26 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_phmr3"]
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_vcpa2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gihv8"]
-resource_name = "carpetDarker"
-albedo_color = Color(0.802457, 0.581887, 0.570462, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyfrc"]
-resource_name = "carpetWhite"
-albedo_color = Color(0.987835, 1, 1, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ynv0"]
-resource_name = "plant"
-albedo_color = Color(0.463691, 0.916646, 0.783252, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djeng"]
-resource_name = "metal"
-albedo_color = Color(0.875925, 0.917687, 0.925891, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://d4alv0woj5pqk" path="res://Assets/Textures/linenBrown.tres" id="2_umxqh"]
+[ext_resource type="Material" uid="uid://dq6lhoxqdqfln" path="res://Assets/Textures/linenWhite.tres" id="3_jslx7"]
+[ext_resource type="Material" uid="uid://1ohhnubcr10s" path="res://Assets/Textures/carpetDarker.tres" id="4_p1bi2"]
+[ext_resource type="Material" uid="uid://bfbuo5bbaqrrg" path="res://Assets/Textures/carpet.tres" id="5_wntlg"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_x7owa"]
 _surfaces = [{
@@ -75,8 +59,8 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 111,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABwAIAAYABgAIAAQACAAJAAQACQAKAAQACgALAAQACwAMAAQADAANAAQADgAPABAAEAARAA4AEgATABQAFAAVABIAFgAXABgAGAAZABYAGgAbABwAHAAdABoAHgAfACAAIAAhAB4AIgAjACQAJAAlACIAJQAmACIAJwAoACkAKQAqACcAKwAsAC0ALQAuACsALgAvACsAMAAuAC0ALQAxADAAMQAyADAAMwAwADIAMgA0ADMANQA2ADcANwA4ADUAOQA6ADsAOwA8ADkA"),
-"material": SubResource("StandardMaterial3D_gihv8"),
-"name": "carpetDarker",
+"material": ExtResource("2_umxqh"),
+"name": "endBooks",
 "primitive": 3,
 "uv_scale": Vector4(11.8463, 6.40389, 0, 0),
 "vertex_count": 61,
@@ -87,8 +71,8 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 12,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQA"),
-"material": SubResource("StandardMaterial3D_cyfrc"),
-"name": "carpetWhite",
+"material": ExtResource("3_jslx7"),
+"name": "thirdBook",
 "primitive": 3,
 "uv_scale": Vector4(7.87776, 5.44094, 0, 0),
 "vertex_count": 8,
@@ -99,8 +83,8 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 33,
 "index_data": PackedByteArray("AAABAAIAAwACAAEAAgAEAAAAAgAFAAQABgAHAAgACAAJAAYACQAKAAYACwAMAA0ADQAOAAsADwAQABEAEQASAA8A"),
-"material": SubResource("StandardMaterial3D_0ynv0"),
-"name": "plant",
+"material": ExtResource("4_p1bi2"),
+"name": "fourthBook",
 "primitive": 3,
 "uv_scale": Vector4(9.86201, 5.93701, 0, 0),
 "vertex_count": 19,
@@ -111,8 +95,8 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 30,
 "index_data": PackedByteArray("AAABAAIAAgADAAAAAgAEAAMABAAFAAMABgAHAAgACAAJAAYACgALAAwADAANAAoADgAPABAAEAARAA4A"),
-"material": SubResource("StandardMaterial3D_djeng"),
-"name": "metal",
+"material": ExtResource("5_wntlg"),
+"name": "secondBook",
 "primitive": 3,
 "uv_scale": Vector4(7.44094, 5.93701, 0, 0),
 "vertex_count": 18,

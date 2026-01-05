@@ -2,11 +2,8 @@
 
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_0sn31"]
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_hfebg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwqh7"]
-resource_name = "wood"
-albedo_color = Color(0.952921, 0.798667, 0.660025, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://dg85x14y45dbu" path="res://Assets/Textures/wood.tres" id="2_umtb2"]
+[ext_resource type="Material" uid="uid://b5t7ewbs8w7fs" path="res://Assets/Textures/metal.tres" id="3_130p1"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_y6mm5"]
 _surfaces = [{
@@ -30,7 +27,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 462,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACwAIAAoACwAKAAwADQALAAwADQAMAA4ADgAPAA0AEAARABIAEgATABAAFAAVABYAFgAXABQAFwAYABQAFwAZABgAGgAYABkAGQAbABoAGgAbABwAHAAdABoAGwAeABwAHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALwAuAC0ALQAwAC8ALQAxADAAMQAyADAAMgAzADAANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQAA+AD0APgBBAD8APQBCAEAAQQBDAD8AQgBDAEAAQgA/AEMARABFAEYARgBHAEQASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUgBTAFAAVABVAFYAVgBXAFQAVgBYAFcAWQBWAFUAVQBaAFkAWgBbAFkAXABdAF4AXgBfAFwAYABhAGIAYgBjAGAAYgBkAGMAZQBiAGEAYQBmAGUAZgBnAGUAaABpAGoAagBrAGgAawBsAGgAbQBoAGwAbgBtAGwAbABvAG4AcABxAHIAcgBzAHAAdAB1AHYAdgB3AHQAdgB4AHcAeQB2AHUAdQB6AHkAegB7AHkAfAB9AH4AfgB/AHwAgACBAIIAggCDAIAAggCEAIMAhQCCAIEAgQCGAIUAhgCHAIUAiACJAIoAigCLAIgAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAlACVAJYAlgCXAJQAmACZAJoAmgCbAJgAnACdAJ4AngCfAJwAoAChAKIAogCjAKAApAClAKYApgCnAKQAqACpAKoAqgCrAKgArACtAK4ArgCvAKwArwCwAKwAsACxAKwAsgCzALQAtAC1ALIAtgC0ALMAtgCzALcAuAC2ALcAuQC4ALcAugC5ALcAtwC7ALoAvAC5ALoAugC9ALwAvgC/AMAAwADBAL4AwgDDAMQAxADFAMIAxgDHAMgAyADJAMYAyQDKAMYAywDMAM0AzQDOAMsAzgDPAMsAzwDQAMsA0QDSANMA0wDUANEA1ADVANEA1gDXANgA2ADZANYA2gDbANwA3ADdANoA3gDfAOAA4ADhAN4A4QDiAN4A4gDhAOMA4gDkAN4A5QDiAOMA5gDeAOQA5QDjAOcA5gDkAOgA5wDpAOUA6ADlAOkA5gDoAOkA6gDmAOkA6QDrAOoA"),
-"material": SubResource("StandardMaterial3D_hwqh7"),
+"material": ExtResource("2_umtb2"),
 "name": "wood",
 "primitive": 3,
 "uv_scale": Vector4(57.0453, 28.2683, 0, 0),
@@ -39,11 +36,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y6mm5")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77dnu"]
-resource_name = "metal"
-albedo_color = Color(0.875925, 0.917687, 0.925891, 1)
-emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_88iap"]
 _surfaces = [{
@@ -77,7 +69,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 102,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAGAAUABgAJAAcABQAKAAgACQALAAcACgALAAgACgAHAAsADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGQAYABsAGgAcABgAGwAdABkAGgAeABwAHgAdABwAHQAeAB8AHQAfABkAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAA"),
-"material": SubResource("StandardMaterial3D_hwqh7"),
+"material": ExtResource("2_umtb2"),
 "name": "wood",
 "primitive": 3,
 "uv_scale": Vector4(15.4961, 14.9134, 0, 0),
@@ -89,7 +81,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 30,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAA"),
-"material": SubResource("StandardMaterial3D_77dnu"),
+"material": ExtResource("3_130p1"),
 "name": "metal",
 "primitive": 3,
 "uv_scale": Vector4(15.2931, 15.2582, 0, 0),

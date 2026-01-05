@@ -25,8 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://bev6b42odrl8u" path="res://Inventory/InventoryItems/Books.tscn" id="23_gpjlu"]
 [ext_resource type="Texture2D" uid="uid://dlmdtgdf8oto4" path="res://Textures/SphereIcon.png" id="24_8mwp6"]
 [ext_resource type="FontFile" uid="uid://cq5ml08id03fp" path="res://Assets/UI/Nunito-Bold.ttf" id="24_qemgg"]
-[ext_resource type="StyleBox" uid="uid://budtm6yftao1v" path="res://Textures/purple.tres" id="25_sm0op"]
+[ext_resource type="StyleBox" uid="uid://cfq6j6oveovrs" path="res://Assets/Textures/brownUI.tres" id="25_76lrf"]
+[ext_resource type="StyleBox" uid="uid://budtm6yftao1v" path="res://Assets/Textures/purple.tres" id="25_sm0op"]
 [ext_resource type="FontFile" uid="uid://mi6mq23sa8b5" path="res://Assets/UI/MaterialSymbolsRounded_Filled_28pt-Bold.ttf" id="26_8viyr"]
+[ext_resource type="StyleBox" uid="uid://c2vt0ck5g7rwk" path="res://Assets/Textures/brownUIRect.tres" id="28_efx54"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -172,44 +174,6 @@ metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 [sub_resource type="FontVariation" id="FontVariation_sm0op"]
 base_font = ExtResource("26_8viyr")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mwp6"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.923888, 0.932189, 0.995506, 0.574)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.945283, 0.823646, 0.907971, 0.82)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_color = Color(0.408, 0.049, 0.559, 0.418)
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm0op"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(1, 1, 1, 0.717647)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.945283, 0.823646, 0.907971, 0.82)
-border_blend = true
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color(0.408, 0.049, 0.559, 0.418)
-shadow_size = 5
-
 [node name="PlayerController" type="CharacterBody3D"]
 top_level = true
 collision_layer = 2
@@ -231,6 +195,7 @@ debug_color = Color(0, 0.278431, 0.329412, 0.843137)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82654, -0.372338)
+visible = false
 layers = 2
 mesh = SubResource("BoxMesh_6adnx")
 
@@ -307,7 +272,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("25_76lrf")
 text = "construction"
 fit_content = true
 autowrap_mode = 0
@@ -429,7 +394,7 @@ custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+theme_override_styles/normal = ExtResource("28_efx54")
 text = "Select [F]"
 fit_content = true
 autowrap_mode = 0
@@ -451,7 +416,7 @@ custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+theme_override_styles/normal = ExtResource("28_efx54")
 text = "Place [F]"
 fit_content = true
 autowrap_mode = 0
@@ -462,7 +427,7 @@ custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+theme_override_styles/normal = ExtResource("28_efx54")
 text = "Rotate [R]"
 fit_content = true
 autowrap_mode = 0
@@ -473,7 +438,7 @@ custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+theme_override_styles/normal = ExtResource("28_efx54")
 text = "Delete [X]"
 fit_content = true
 autowrap_mode = 0
@@ -484,7 +449,7 @@ custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_8mwp6")
+theme_override_styles/normal = ExtResource("28_efx54")
 text = "Cancel [X]"
 fit_content = true
 autowrap_mode = 0
@@ -503,7 +468,7 @@ offset_left = -1830.0
 offset_top = -840.0
 offset_right = -1218.0
 offset_bottom = 67.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sm0op")
+theme_override_styles/panel = ExtResource("28_efx54")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/InventoryBox/Panel"]
 layout_mode = 1

@@ -21,6 +21,7 @@ var currentItem: ItemData = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	camera.position =  Vector3(0.0, 3.0, 3.0)
 	
 func move_ghost(delta):
 	

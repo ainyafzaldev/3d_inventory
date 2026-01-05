@@ -2,19 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_lyfxe"]
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_onbaf"]
+[ext_resource type="Material" uid="uid://bfbuo5bbaqrrg" path="res://Assets/Textures/carpet.tres" id="2_ms0oi"]
+[ext_resource type="Material" uid="uid://1ohhnubcr10s" path="res://Assets/Textures/carpetDarker.tres" id="3_1j13c"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qikv0"]
 points = PackedVector3Array(0, 0, -0.92, 0, 0, 0, 0, 0.01, -0.92, 1.57, 0, -0.92, 0, 0.01, 0, 1.57, 0, 0, 1.57, 0.01, -0.92, 1.57, 0.01, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ox3t"]
-resource_name = "carpet"
-albedo_color = Color(0.974694, 0.639944, 0.620211, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7la06"]
-resource_name = "carpetDarker"
-albedo_color = Color(0.802457, 0.581887, 0.570462, 1)
-emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_m0ea7"]
 _surfaces = [{
@@ -48,7 +40,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAAKAAkACgANAAsACQAOAAwADQAPAAsADgAPAAwADgALAA8AEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwA"),
-"material": SubResource("StandardMaterial3D_1ox3t"),
+"material": ExtResource("2_ms0oi"),
 "name": "carpet",
 "primitive": 3,
 "uv_scale": Vector4(123.622, 70.4409, 0, 0),
@@ -60,7 +52,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 24,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAACAAEAAgAFAAMAAQAGAAQABQAHAAMABgAHAAQABgADAAcA"),
-"material": SubResource("StandardMaterial3D_7la06"),
+"material": ExtResource("3_1j13c"),
 "name": "carpetDarker",
 "primitive": 3,
 "uv_scale": Vector4(114.674, 61.4925, 0, 0),
@@ -151,24 +143,23 @@ script = ExtResource("1_lyfxe")
 
 [node name="ModelCollision" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40122, 0, 0.980299)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.792664, 0, 0.496447)
 shape = SubResource("ConvexPolygonShape3D_qikv0")
 
 [node name="Model" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40122, 0, 0.980299)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.40122, 0, 0.980299)
 layers = 4
 mesh = SubResource("ArrayMesh_k43tc")
 skeleton = NodePath("")
 
 [node name="Outline" type="MeshInstance3D" parent="Model"]
 unique_name_in_owner = true
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_eyp2u")
 
 [node name="ClippingHitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40122, 0, 0.980299)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.40122, 0, 0.980299)
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.784162, 0.00497605, -0.463501)

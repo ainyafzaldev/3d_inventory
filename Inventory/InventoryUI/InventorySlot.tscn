@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://blc40qtonvnfd"]
+[gd_scene load_steps=4 format=3 uid="uid://blc40qtonvnfd"]
 
 [ext_resource type="Script" uid="uid://dgvlssoac7yef" path="res://Inventory/InventoryUI/InventorySlot.gd" id="1_7pj65"]
-[ext_resource type="StyleBox" uid="uid://c2mr0fqkdwb18" path="res://Inventory/InventoryUI/slot.tres" id="1_f6ouk"]
+[ext_resource type="StyleBox" uid="uid://c2vt0ck5g7rwk" path="res://Assets/Textures/brownUIRect.tres" id="1_y0teo"]
+[ext_resource type="StyleBox" uid="uid://cfq6j6oveovrs" path="res://Assets/Textures/brownUI.tres" id="2_y0teo"]
 
 [node name="InventorySlot" type="Button" node_paths=PackedStringArray("IconSlot")]
 custom_minimum_size = Vector2(128, 128)
 offset_right = 128.0
 offset_bottom = 128.0
-theme_override_styles/focus = ExtResource("1_f6ouk")
-theme_override_styles/hover = ExtResource("1_f6ouk")
-theme_override_styles/normal = ExtResource("1_f6ouk")
+theme_override_styles/focus = ExtResource("1_y0teo")
+theme_override_styles/hover = ExtResource("1_y0teo")
+theme_override_styles/normal = ExtResource("2_y0teo")
 script = ExtResource("1_7pj65")
 IconSlot = NodePath("TextureRect")
 

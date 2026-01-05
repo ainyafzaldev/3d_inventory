@@ -16,8 +16,11 @@ var can_place = true
 
 func _ready() -> void:
 	unfocus()
-	collision_shape.set_deferred("disabled", true)
 	scale = Vector3(1.0, 1.0, 1.0)
+	
+	collision_shape.set_deferred("disabled", true)
+	# uncomment for testing
+	#clipping_hitbox.queue_free()
 
 func _process(delta: float) -> void:
 	if clipping_hitbox:

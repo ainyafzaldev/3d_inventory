@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dj5jcjuvxab0f"]
+
+[resource]
+resource_name = "metal"
+albedo_color = Color(0.735622, 0.768974, 0.94239, 1)
+emission_enabled = true

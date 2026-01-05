@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_dpocx"]
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_nx46b"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbevw"]
-resource_name = "carpet"
-albedo_color = Color(0.974694, 0.639944, 0.620211, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://bfbuo5bbaqrrg" path="res://Assets/Textures/carpet.tres" id="2_3din0"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ij00t"]
 _surfaces = [{
@@ -30,7 +26,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 150,
 "index_data": PackedByteArray("AAABAAIAAgADAAAAAgAEAAMABAAFAAMABgAHAAgACQAKAAsADAANAA4ADgAPAAwAEAARABIAEgATABAAEgAUABMAFAAVABMAFAAWABUAFgAXABUAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAHwAgABwAHwAhACAAIgAjACQAJAAlACIAJAAmACUAJgAnACUAKAApACoAKwAsAC0ALQAuACsALwAwADEAMgAzADQANAA1ADIANQA2ADIANQA3ADYAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASwBMAE0ATQBOAEsATwBQAFEAUQBSAE8AUwBUAFUAVgBXAFgAWQBaAFsAWwBcAFkAXQBeAF8A"),
-"material": SubResource("StandardMaterial3D_hbevw"),
+"material": ExtResource("2_3din0"),
 "name": "carpet",
 "primitive": 3,
 "uv_scale": Vector4(30.439, 17.6227, 0, 0),

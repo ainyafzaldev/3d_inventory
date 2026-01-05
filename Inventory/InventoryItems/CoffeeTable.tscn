@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_wgc2h"]
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_yqt4x"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2gtm"]
-resource_name = "wood"
-albedo_color = Color(0.952921, 0.798667, 0.660025, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://dg85x14y45dbu" path="res://Assets/Textures/wood.tres" id="2_lxc77"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_03oa3"]
 _surfaces = [{
@@ -30,7 +26,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 372,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAABAAUABQAGAAQABwAGAAgACAAJAAcABQAKAAsACwAMAAUADQAOAAQABAAPAA0AEAARABIAEgATABAAEQAUABUAFQAWABEAFwAYABIAEgAZABcAGgAZABYAFgAbABoAHAAdAB4AHgAfABwAHAAgACEAIQAiABwAIwAgACQAJAAlACMAJgAnACEAIQAoACYAKQAiACoAKgArACkALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQANgA4ADcAOQA1ADQANAA6ADkAOQA7ADUAOAA8ADcAOwA9ADUAOAA9ADwAOwA8AD0AOwA+ADwAPgA/ADwAQABBAEIAQgBBAEMAQgBEAEAAQwBFAEIAQwBGAEUAQgBHAEQARgBIAEUARgBJAEgASQBHAEgARwBJAEQASQBKAEQASgBLAEQATABNAE4ATgBPAEwAUABOAE0AUABNAFEAUgBQAFEAUwBSAFEAVABTAFEAUQBVAFQAVgBTAFQAVABXAFYAWABZAFoAWgBbAFgAWwBcAFgAXABdAFgAXQBeAFgAWwBfAFwAYABYAF4AYQBcAF8AYABeAGEAYABhAF8AYgBgAF8AXwBjAGIAZABlAGYAZgBnAGQAaABpAGoAagBrAGgAbABtAG4AbgBvAGwAcABxAG0AbQByAHAAcwBsAHQAdAB1AHMAdgBuAHcAdwB4AHYAbwB5AHoAegB7AG8AfAB9AH4AfwB9AIAAgACBAH8AfgCCAHwAgwCEAIIAggCFAIMAhgCHAH4AfgCIAIYAfACJAIoAigCLAHwAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAkQCUAJUAlQCWAJEAlwCYAJIAkgCZAJcAmgCZAJYAlgCbAJoAnACdAJ4AngCfAJwAnwCgAJwAoAChAJwAoQCiAJwAnwCjAKAApACcAKIApQCgAKMApACiAKUApAClAKMApgCkAKMAowCnAKYA"),
-"material": SubResource("StandardMaterial3D_v2gtm"),
+"material": ExtResource("2_lxc77"),
 "name": "wood",
 "primitive": 3,
 "uv_scale": Vector4(36.2989, 21.622, 0, 0),

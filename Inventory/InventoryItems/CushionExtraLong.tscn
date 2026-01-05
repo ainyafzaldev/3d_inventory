@@ -2,12 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_0qhnj"]
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_hksis"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwsm7"]
-resource_name = "carpetBlue"
-albedo_color = Color(0.631193, 0.746212, 0.939535, 1)
-metallic = 0.5
-emission_enabled = true
+[ext_resource type="Material" uid="uid://1ohhnubcr10s" path="res://Assets/Textures/carpetDarker.tres" id="2_or1fa"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sxipq"]
 _surfaces = [{
@@ -31,7 +26,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 150,
 "index_data": PackedByteArray("AAABAAIAAgADAAAAAgAEAAMABAAFAAMABgAHAAgACQAKAAsADAANAA4ADgAPAAwAEAARABIAEgATABAAEgAUABMAFAAVABMAFAAWABUAFgAXABUAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAHwAgABwAHwAhACAAIgAjACQAJAAlACIAJAAmACUAJgAnACUAKAApACoAKwAsAC0ALQAuACsALwAwADEAMgAzADQANAA1ADIANQA2ADIANQA3ADYAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASwBMAE0ATQBOAEsATwBQAFEAUQBSAE8AUwBUAFUAVgBXAFgAWQBaAFsAWwBcAFkAXQBeAF8A"),
-"material": SubResource("StandardMaterial3D_jwsm7"),
+"material": ExtResource("2_or1fa"),
 "name": "carpetBlue",
 "primitive": 3,
 "uv_scale": Vector4(30.439, 17.6227, 0, 0),
