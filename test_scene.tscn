@@ -1,25 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhbtwquigvuid"]
+[gd_scene load_steps=7 format=3 uid="uid://dhbtwquigvuid"]
 
 [ext_resource type="PackedScene" uid="uid://b2onfrpu6itfk" path="res://Player/player.tscn" id="2_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://clhqoyr50cmgk" path="res://Assets/Furniture/wall.glb" id="3_sasra"]
+[ext_resource type="PackedScene" uid="uid://c2yjpv7v2jgaw" path="res://Inventory/InventoryItems/Wall.tscn" id="2_sasra"]
 [ext_resource type="PackedScene" uid="uid://br6aveoiqkj52" path="res://Inventory/InventoryItems/WoodFloor.tscn" id="4_2nij2"]
-[ext_resource type="PackedScene" uid="uid://vpfbqj3nxlke" path="res://Inventory/InventoryItems/Sofa.tscn" id="4_7cbxl"]
-[ext_resource type="PackedScene" uid="uid://bdna00pdjh5up" path="res://Inventory/InventoryItems/Bed.tscn" id="4_coq8p"]
-[ext_resource type="PackedScene" uid="uid://dc05pxpf5lc2a" path="res://Inventory/InventoryItems/TVCabinet.tscn" id="4_g6y4b"]
-[ext_resource type="PackedScene" uid="uid://bbwbvymp037lg" path="res://Inventory/InventoryItems/Television.tscn" id="5_pvxhv"]
-[ext_resource type="PackedScene" uid="uid://dsg25cmw6pcyb" path="res://Inventory/InventoryItems/Cushion.tscn" id="6_6h1ut"]
-[ext_resource type="PackedScene" uid="uid://cwv5hj6xur7nj" path="res://Inventory/InventoryItems/Bookshelf.tscn" id="6_8pr8v"]
-[ext_resource type="PackedScene" uid="uid://bev6b42odrl8u" path="res://Inventory/InventoryItems/Books.tscn" id="9_6m80x"]
-[ext_resource type="PackedScene" uid="uid://djhudxc2nc56v" path="res://Inventory/InventoryItems/Chair.tscn" id="11_cqn77"]
-[ext_resource type="PackedScene" uid="uid://0y4233h2grgm" path="res://Inventory/InventoryItems/CoffeeTable.tscn" id="12_22oil"]
-[ext_resource type="PackedScene" uid="uid://b14cug4pi7h26" path="res://Inventory/InventoryItems/CornerCouchLong.tscn" id="13_p7tmn"]
-[ext_resource type="PackedScene" uid="uid://bfv0ajo2yibga" path="res://Inventory/InventoryItems/CushionExtraLong.tscn" id="14_b11sm"]
-[ext_resource type="PackedScene" uid="uid://dxhlxcx1ek3nm" path="res://Inventory/InventoryItems/CushionLong.tscn" id="15_mfkbt"]
-[ext_resource type="PackedScene" uid="uid://ct3fnb1l3dn5l" path="res://Inventory/InventoryItems/Desk.tscn" id="16_077gh"]
-[ext_resource type="PackedScene" uid="uid://bfbtd54hfqo5p" path="res://Inventory/InventoryItems/Keyboard.tscn" id="17_5qgi0"]
-[ext_resource type="PackedScene" uid="uid://bjuald7glcihv" path="res://Inventory/InventoryItems/Monitor.tscn" id="18_7kp7o"]
-[ext_resource type="PackedScene" uid="uid://biaag46me01ed" path="res://Inventory/InventoryItems/mouse.tscn" id="19_8fq6b"]
-[ext_resource type="PackedScene" uid="uid://bjnmamwmac55t" path="res://Inventory/InventoryItems/Rug.tscn" id="20_oy8sc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6adnx"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -40,7 +23,7 @@ glow_enabled = true
 environment = SubResource("Environment_ia1lp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -9.32776, 6.20719, 2.83448)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 16.3737, 6.20719, 2.83448)
 light_color = Color(0.994169, 0.980266, 0.964132, 1)
 light_energy = 0.25
 light_indirect_energy = 5.63
@@ -49,10 +32,13 @@ light_angular_distance = 74.6
 shadow_enabled = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0917656, -0.862372, 0.497889, -2.7806e-08, 0.499998, 0.866026, -0.995781, -0.0794714, 0.0458826, -9.32776, 6.20719, 22.4432)
-light_energy = 0.3
-light_angular_distance = 60.0
+transform = Transform3D(0.0222373, -0.694072, -0.719561, 0.0890305, -0.715505, 0.692912, -0.995781, -0.0794714, 0.0458826, -9.32776, 6.20719, 22.4432)
+light_energy = 0.11
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 56.1
+light_specular = 6.011
 shadow_enabled = true
+directional_shadow_mode = 1
 sky_mode = 1
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_ia1lp")]
@@ -61,71 +47,20 @@ transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, 0, -3.40515)
 [node name="Walls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
-[node name="Wall" parent="Walls" instance=ExtResource("3_sasra")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, -6, 0, 0)
+[node name="Wall" parent="Walls" instance=ExtResource("2_sasra")]
+transform = Transform3D(-4.37114e-08, 0, 4, 0, 1, 0, -1, 0, -1.74846e-07, 0, 0.0123964, -5.83164)
 
-[node name="Wall2" parent="Walls" instance=ExtResource("3_sasra")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, 6, 0, 0)
+[node name="Wall2" parent="Walls" instance=ExtResource("2_sasra")]
+transform = Transform3D(-4.37114e-08, 0, 4, 0, 1, 0, -1, 0, -1.74846e-07, 0, 0.0123964, -0.212421)
 
-[node name="Wall3" parent="Walls" instance=ExtResource("3_sasra")]
-transform = Transform3D(-4.37114e-08, 0, 6, 0, 1, 0, -1, 0, -2.62268e-07, 0, 0, 6)
+[node name="Wall3" parent="Walls" instance=ExtResource("2_sasra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.85951, 4.02571, 0.0123964, -3.03601)
 
-[node name="Wall4" parent="Walls" instance=ExtResource("3_sasra")]
-transform = Transform3D(-4.37114e-08, 0, 6, 0, 1, 0, -1, 0, -2.62268e-07, 0, 0, -6)
+[node name="Wall4" parent="Walls" instance=ExtResource("2_sasra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.82995, -4.02571, 0.0123964, -3.02203)
+
+[node name="Wall5" parent="Walls" instance=ExtResource("2_sasra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.84323, -0.75482, 0.0123964, -2.0156)
 
 [node name="floorFull" parent="." instance=ExtResource("4_2nij2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-
-[node name="TestFurniture" type="Node3D" parent="."]
-visible = false
-
-[node name="TVCabinet" parent="TestFurniture" instance=ExtResource("4_g6y4b")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.67294, 0, -2.27373)
-
-[node name="Television" parent="TestFurniture" instance=ExtResource("5_pvxhv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72292, 0, -2.71098)
-
-[node name="Cushion" parent="TestFurniture" instance=ExtResource("6_6h1ut")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.62442, 0.117218, -4.62977)
-
-[node name="BedStaticBody" parent="TestFurniture" instance=ExtResource("4_coq8p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.74734, 0, -5.37375)
-
-[node name="SofaStaticBody" parent="TestFurniture" instance=ExtResource("4_7cbxl")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.09071, 0, -5.48017)
-
-[node name="Books" parent="TestFurniture" instance=ExtResource("9_6m80x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06191, 0, -4.93474)
-
-[node name="bookshelf" parent="TestFurniture" instance=ExtResource("6_8pr8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0109, 0, -5.48017)
-
-[node name="Chair" parent="TestFurniture" instance=ExtResource("11_cqn77")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.03692, 0, -4.13519)
-
-[node name="CoffeeTable" parent="TestFurniture" instance=ExtResource("12_22oil")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06191, 0, -4.80981)
-
-[node name="cornerCouchLong" parent="TestFurniture" instance=ExtResource("13_p7tmn")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.77289, 0, -4.36006)
-
-[node name="CushionExtraLong" parent="TestFurniture" instance=ExtResource("14_b11sm")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.91036, 0.142063, -4.55627)
-
-[node name="CushionLong" parent="TestFurniture" instance=ExtResource("15_mfkbt")]
-transform = Transform3D(0.0156007, 0, -0.499756, 0, 0.5, 0, 0.499756, 0, 0.0156007, 4.06341, 0.130419, -4.3042)
-
-[node name="Desk" parent="TestFurniture" instance=ExtResource("16_077gh")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.01193, 0, -3.79787)
-
-[node name="Keyboard" parent="TestFurniture" instance=ExtResource("17_5qgi0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.999441, 0, -3.2232)
-
-[node name="Monitor" parent="TestFurniture" instance=ExtResource("18_7kp7o")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.52415, 0, -3.24818)
-
-[node name="Mouse" parent="TestFurniture" instance=ExtResource("19_8fq6b")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.47418, 0, -2.94835)
-
-[node name="Rug" parent="TestFurniture" instance=ExtResource("20_oy8sc")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.23569, 0, -3.78538)
+transform = Transform3D(0.689829, 0, 0, 0, 1, 0, 0, 0, 0.490698, 0, -0.1, -3.00517)

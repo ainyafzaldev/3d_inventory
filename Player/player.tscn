@@ -1,34 +1,47 @@
-[gd_scene load_steps=55 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=68 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
 [ext_resource type="Script" uid="uid://dwyq2nc7fnqp7" path="res://Inventory/ItemData.gd" id="3_fhl08"]
-[ext_resource type="Texture2D" uid="uid://clmxmtgxf4lp5" path="res://Textures/Sofa.png" id="5_fhl08"]
+[ext_resource type="Texture2D" uid="uid://b3w5nlu3svyb3" path="res://Textures/InventoryItems/sofa.png" id="5_8ynux"]
 [ext_resource type="PackedScene" uid="uid://vpfbqj3nxlke" path="res://Inventory/InventoryItems/Sofa.tscn" id="6_od3ui"]
 [ext_resource type="Script" uid="uid://3res1gbl6nn8" path="res://Inventory/InventoryHandler.gd" id="6_vtle1"]
-[ext_resource type="Texture2D" uid="uid://cwaxocryx1wcw" path="res://Textures/BoxIcon.png" id="7_od3ui"]
+[ext_resource type="Texture2D" uid="uid://dlue08shn80su" path="res://Textures/InventoryItems/bed.png" id="7_d30e8"]
 [ext_resource type="PackedScene" uid="uid://bdna00pdjh5up" path="res://Inventory/InventoryItems/Bed.tscn" id="8_od3ui"]
+[ext_resource type="Texture2D" uid="uid://dk7ojxloco1u" path="res://Textures/InventoryItems/lshapedcouch.png" id="9_6pogt"]
 [ext_resource type="PackedScene" uid="uid://b14cug4pi7h26" path="res://Inventory/InventoryItems/CornerCouchLong.tscn" id="9_x3vf3"]
 [ext_resource type="PackedScene" uid="uid://0y4233h2grgm" path="res://Inventory/InventoryItems/CoffeeTable.tscn" id="10_x3vf3"]
 [ext_resource type="PackedScene" uid="uid://cwv5hj6xur7nj" path="res://Inventory/InventoryItems/Bookshelf.tscn" id="11_apopc"]
+[ext_resource type="Texture2D" uid="uid://dce05k6jf2ixh" path="res://Textures/InventoryItems/table.png" id="11_ie76m"]
 [ext_resource type="PackedScene" uid="uid://bjnmamwmac55t" path="res://Inventory/InventoryItems/Rug.tscn" id="12_5htga"]
+[ext_resource type="Texture2D" uid="uid://wj4kgsb7w1an" path="res://Textures/InventoryItems/bookshelf.png" id="13_dy65m"]
 [ext_resource type="PackedScene" uid="uid://bbwbvymp037lg" path="res://Inventory/InventoryItems/Television.tscn" id="13_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://dc05pxpf5lc2a" path="res://Inventory/InventoryItems/TVCabinet.tscn" id="14_gu6f8"]
+[ext_resource type="Texture2D" uid="uid://ccikxu3pw7ajs" path="res://Textures/InventoryItems/rug.png" id="15_maysp"]
 [ext_resource type="PackedScene" uid="uid://dsg25cmw6pcyb" path="res://Inventory/InventoryItems/Cushion.tscn" id="15_pisgm"]
 [ext_resource type="PackedScene" uid="uid://dxhlxcx1ek3nm" path="res://Inventory/InventoryItems/CushionLong.tscn" id="16_b1ygp"]
+[ext_resource type="Texture2D" uid="uid://bmkje7bkeg7ct" path="res://Textures/InventoryItems/tv.png" id="17_1l10g"]
 [ext_resource type="PackedScene" uid="uid://bfv0ajo2yibga" path="res://Inventory/InventoryItems/CushionExtraLong.tscn" id="17_o28un"]
 [ext_resource type="PackedScene" uid="uid://bjuald7glcihv" path="res://Inventory/InventoryItems/Monitor.tscn" id="18_b1ygp"]
+[ext_resource type="Texture2D" uid="uid://cj5g26w8h13qm" path="res://Textures/InventoryItems/tvTable.png" id="19_6rl0i"]
 [ext_resource type="PackedScene" uid="uid://biaag46me01ed" path="res://Inventory/InventoryItems/mouse.tscn" id="19_o28un"]
 [ext_resource type="PackedScene" uid="uid://bfbtd54hfqo5p" path="res://Inventory/InventoryItems/Keyboard.tscn" id="20_n471f"]
 [ext_resource type="PackedScene" uid="uid://ct3fnb1l3dn5l" path="res://Inventory/InventoryItems/Desk.tscn" id="21_7emwf"]
+[ext_resource type="Texture2D" uid="uid://c5n7vesnqfjqd" path="res://Textures/InventoryItems/cushion.png" id="21_7x5p2"]
 [ext_resource type="PackedScene" uid="uid://djhudxc2nc56v" path="res://Inventory/InventoryItems/Chair.tscn" id="22_hshwv"]
+[ext_resource type="Texture2D" uid="uid://iqajj2vvf4ki" path="res://Textures/InventoryItems/cushionlong.png" id="23_6eb1q"]
 [ext_resource type="PackedScene" uid="uid://bev6b42odrl8u" path="res://Inventory/InventoryItems/Books.tscn" id="23_gpjlu"]
-[ext_resource type="Texture2D" uid="uid://dlmdtgdf8oto4" path="res://Textures/SphereIcon.png" id="24_8mwp6"]
 [ext_resource type="FontFile" uid="uid://cq5ml08id03fp" path="res://Assets/UI/Nunito-Bold.ttf" id="24_qemgg"]
-[ext_resource type="StyleBox" uid="uid://cfq6j6oveovrs" path="res://Assets/Textures/brownUI.tres" id="25_76lrf"]
 [ext_resource type="StyleBox" uid="uid://budtm6yftao1v" path="res://Assets/Textures/purple.tres" id="25_sm0op"]
+[ext_resource type="Texture2D" uid="uid://c4lfpudkjdio0" path="res://Textures/InventoryItems/cushionxlong.png" id="25_wvbyc"]
 [ext_resource type="FontFile" uid="uid://mi6mq23sa8b5" path="res://Assets/UI/MaterialSymbolsRounded_Filled_28pt-Bold.ttf" id="26_8viyr"]
+[ext_resource type="Texture2D" uid="uid://8jp81euaflce" path="res://Textures/InventoryItems/monitor.png" id="27_6pogt"]
 [ext_resource type="StyleBox" uid="uid://c2vt0ck5g7rwk" path="res://Assets/Textures/brownUIRect.tres" id="28_efx54"]
+[ext_resource type="Texture2D" uid="uid://cdye6xb3uw1gi" path="res://Textures/InventoryItems/keyboard.png" id="29_gvnt1"]
+[ext_resource type="Texture2D" uid="uid://i4ogp2eophv1" path="res://Textures/InventoryItems/mouse.png" id="29_ie76m"]
+[ext_resource type="Texture2D" uid="uid://sr0q2rxhb4by" path="res://Textures/InventoryItems/desk.png" id="31_1kmt7"]
+[ext_resource type="Texture2D" uid="uid://cwa3t2p281a8l" path="res://Textures/InventoryItems/chair.png" id="33_c4i3b"]
+[ext_resource type="Texture2D" uid="uid://bleta7n2vhd33" path="res://Textures/InventoryItems/books.png" id="35_uvbbp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -56,119 +69,119 @@ radius = 0.170117
 script = ExtResource("3_fhl08")
 ItemName = "Sofa"
 ItemModelPrefab = ExtResource("6_od3ui")
-Icon = ExtResource("5_fhl08")
+Icon = ExtResource("5_8ynux")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_x3vf3"]
 script = ExtResource("3_fhl08")
 ItemName = "Bed"
 ItemModelPrefab = ExtResource("8_od3ui")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("7_d30e8")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_apopc"]
 script = ExtResource("3_fhl08")
 ItemName = "CornerCouch"
 ItemModelPrefab = ExtResource("9_x3vf3")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("9_6pogt")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_5htga"]
 script = ExtResource("3_fhl08")
 ItemName = "CoffeeTable"
 ItemModelPrefab = ExtResource("10_x3vf3")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("11_ie76m")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_p5o4e"]
 script = ExtResource("3_fhl08")
 ItemName = "Bookshelf"
 ItemModelPrefab = ExtResource("11_apopc")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("13_dy65m")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_gu6f8"]
 script = ExtResource("3_fhl08")
 ItemName = "Rug"
 ItemModelPrefab = ExtResource("12_5htga")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("15_maysp")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_dkpta"]
 script = ExtResource("3_fhl08")
 ItemName = "Television"
 ItemModelPrefab = ExtResource("13_p5o4e")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("17_1l10g")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_lfmf2"]
 script = ExtResource("3_fhl08")
 ItemName = "TVCabinet"
 ItemModelPrefab = ExtResource("14_gu6f8")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("19_6rl0i")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_n471f"]
 script = ExtResource("3_fhl08")
 ItemName = "Cushion"
 ItemModelPrefab = ExtResource("15_pisgm")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("21_7x5p2")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_7emwf"]
 script = ExtResource("3_fhl08")
 ItemName = "CushionLong"
 ItemModelPrefab = ExtResource("16_b1ygp")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("23_6eb1q")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_hshwv"]
 script = ExtResource("3_fhl08")
 ItemName = "CushionExtraLong"
 ItemModelPrefab = ExtResource("17_o28un")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("25_wvbyc")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_o28un"]
 script = ExtResource("3_fhl08")
 ItemName = "Monitor"
 ItemModelPrefab = ExtResource("18_b1ygp")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("27_6pogt")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_gpjlu"]
 script = ExtResource("3_fhl08")
 ItemName = "Mouse"
 ItemModelPrefab = ExtResource("19_o28un")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("29_ie76m")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_8mwp6"]
 script = ExtResource("3_fhl08")
 ItemName = "Keyboard"
 ItemModelPrefab = ExtResource("20_n471f")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("29_gvnt1")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_qemgg"]
 script = ExtResource("3_fhl08")
 ItemName = "Desk"
 ItemModelPrefab = ExtResource("21_7emwf")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("31_1kmt7")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_8viyr"]
 script = ExtResource("3_fhl08")
 ItemName = "Chair"
 ItemModelPrefab = ExtResource("22_hshwv")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("33_c4i3b")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_sm0op"]
 script = ExtResource("3_fhl08")
 ItemName = "Books"
 ItemModelPrefab = ExtResource("23_gpjlu")
-Icon = ExtResource("7_od3ui")
+Icon = ExtResource("35_uvbbp")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="FontVariation" id="FontVariation_sm0op"]
@@ -210,7 +223,7 @@ debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 transform = Transform3D(1, 0, 0, 0, 0.984807, 0.173648, 0, -0.173648, 0.984807, 0, 2, 0)
 
 [node name="HandTarget" type="Marker3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -1, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0.601457, -6.24231)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
 layers = 16
@@ -227,6 +240,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_gpjlu")
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118421, -0.671601)
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
 layout_mode = 3
@@ -272,7 +286,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_76lrf")
+theme_override_styles/normal = ExtResource("25_sm0op")
 text = "construction"
 fit_content = true
 autowrap_mode = 0
@@ -368,54 +382,44 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -160.0
+offset_top = -80.0
+offset_right = -31.0
+offset_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="UI/ActionBar"]
+custom_minimum_size = Vector2(120, 60)
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -260.0
-offset_top = -130.0
-offset_right = -65.0
-offset_bottom = -67.0
-grow_horizontal = 0
+offset_top = -56.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/v_separation = 20
 
 [node name="Select" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+visible = false
 clip_contents = false
-custom_minimum_size = Vector2(40, 20)
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
 text = "Select [F]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="UI/ActionBar/GridContainer/Select"]
-visible = false
-show_behind_parent = true
-custom_minimum_size = Vector2(222, 86)
-layout_mode = 0
-offset_right = 41.15
-offset_bottom = 40.0
-texture = ExtResource("24_8mwp6")
-expand_mode = 1
-stretch_mode = 5
-
 [node name="Place" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
 text = "Place [F]"
 fit_content = true
@@ -426,18 +430,19 @@ clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
 text = "Rotate [R]"
 fit_content = true
 autowrap_mode = 0
 
 [node name="Delete" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
 text = "Delete [X]"
 fit_content = true
@@ -448,7 +453,7 @@ clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
 text = "Cancel [X]"
 fit_content = true
@@ -466,8 +471,8 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 offset_left = -1830.0
 offset_top = -840.0
-offset_right = -1218.0
-offset_bottom = 67.0
+offset_right = -1258.0
+offset_bottom = 8.0
 theme_override_styles/panel = ExtResource("28_efx54")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/InventoryBox/Panel"]
@@ -487,8 +492,8 @@ theme_override_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="UI/InventoryBox/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 20
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 4
 
 [node name="Left" type="RichTextLabel" parent="UI/InventoryBox"]

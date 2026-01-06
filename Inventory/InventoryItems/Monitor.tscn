@@ -2,16 +2,8 @@
 
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_5t7rd"]
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_42rp6"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wrd5"]
-resource_name = "metalDark"
-albedo_color = Color(0.589021, 0.656282, 0.656282, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0n7e"]
-resource_name = "metal"
-albedo_color = Color(0.875925, 0.917687, 0.925891, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://dgnd5ghkyy4yv" path="res://Assets/Textures/applianceDark.tres" id="2_ud6bf"]
+[ext_resource type="Material" uid="uid://gx1xtamfm4s" path="res://Assets/Textures/applianceWhite.tres" id="3_35223"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_11u37"]
 _surfaces = [{
@@ -45,7 +37,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 210,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAAKAAkACgANAAsACQAOAAwADQAPAAsADgAPAAwADgALAA8AEAARABIAEgATABAAFAASABEAEgAVABMAEQAWABQAFQAXABMAFgAXABQAFgATABcAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQANwA4ADQAOAA5ADQAOAA6ADkAOwA8AD0APQA+ADsAPgA9AD8APgBAADsAQABBADsAQgBDAEQARABFAEIARgBHAEgASABJAEYASgBLAEwATABNAEoATgBMAEsATABPAE0ASwBQAE4ATwBRAE0AUABRAE4AUABNAFEAUgBTAFQAVABVAFIAVgBXAFgAWABZAFYAWgBbAFwAXABdAFoAXgBfAGAAYABhAF4AYgBjAGQAZABlAGIAZgBnAGgAaABpAGYAagBrAGwAbABtAGoA"),
-"material": SubResource("StandardMaterial3D_0wrd5"),
+"material": ExtResource("2_ud6bf"),
 "name": "metalDark",
 "primitive": 3,
 "uv_scale": Vector4(30.9203, 21.6587, 0, 0),
@@ -57,7 +49,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAgADAAAA"),
-"material": SubResource("StandardMaterial3D_h0n7e"),
+"material": ExtResource("3_35223"),
 "name": "metal",
 "primitive": 3,
 "uv_scale": Vector4(30.3868, 21.1251, 0, 0),

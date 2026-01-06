@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clmxmtgxf4lp5"
-path="res://.godot/imported/Sofa.png-19ce3bf8f088193ac16e2a75c2556b5f.ctex"
+uid="uid://8jp81euaflce"
+path="res://.godot/imported/monitor.png-cf92ae85706ac3f01aa75cc7d0675a4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Sofa.png"
-dest_files=["res://.godot/imported/Sofa.png-19ce3bf8f088193ac16e2a75c2556b5f.ctex"]
+source_file="res://Textures/InventoryItems/monitor.png"
+dest_files=["res://.godot/imported/monitor.png-cf92ae85706ac3f01aa75cc7d0675a4b.ctex"]
 
 [params]
 

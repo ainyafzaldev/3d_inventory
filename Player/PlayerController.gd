@@ -87,7 +87,10 @@ func _physics_process(delta: float) -> void:
 	
 	# allow mouse to excape to quit
 	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
 		move_and_slide()
 		return

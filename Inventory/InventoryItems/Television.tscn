@@ -2,16 +2,8 @@
 
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_6h16m"]
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_mpyfq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw0i2"]
-resource_name = "metalDark"
-albedo_color = Color(0.589021, 0.656282, 0.656282, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ense8"]
-resource_name = "metal"
-albedo_color = Color(0.875925, 0.917687, 0.925891, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://dgnd5ghkyy4yv" path="res://Assets/Textures/applianceDark.tres" id="2_55lnn"]
+[ext_resource type="Material" uid="uid://gx1xtamfm4s" path="res://Assets/Textures/applianceWhite.tres" id="3_t3u2r"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_myypj"]
 _surfaces = [{
@@ -45,7 +37,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 210,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAaABkAGgAdABsAGQAeABwAHQAfABsAHgAfABwAHgAbAB8AIAAhACIAIgAjACAAJAAiACEAIgAlACMAIQAmACQAJQAnACMAJgAnACQAJgAjACcAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQAOAA2ADUANgA5ADcANQA6ADgAOQA7ADcAOgA7ADgAOgA3ADsAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASgBLAEgASwBMAEgATABNAEgATQBOAEgATwBQAFEAUQBSAE8AUwBUAFUAVQBWAFMAVwBYAFkAWQBaAFcAWwBcAF0AXQBeAFsAXwBgAGEAYQBiAF8AYwBkAGUAZQBmAGMAZgBnAGMAaABmAGUAZQBpAGgAagBrAGwAbABtAGoA"),
-"material": SubResource("StandardMaterial3D_mw0i2"),
+"material": ExtResource("2_55lnn"),
 "name": "metalDark",
 "primitive": 3,
 "uv_scale": Vector4(26.9606, 33.8071, 0, 0),
@@ -57,7 +49,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAgADAAAA"),
-"material": SubResource("StandardMaterial3D_ense8"),
+"material": ExtResource("3_t3u2r"),
 "name": "metal",
 "primitive": 3,
 "uv_scale": Vector4(26.302, 33.1484, 0, 0),

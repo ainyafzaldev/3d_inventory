@@ -2,14 +2,10 @@
 
 [ext_resource type="Material" uid="uid://c3nnsuipmoxuo" path="res://Textures/outline.tres" id="1_hv4kx"]
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_ueq3o"]
+[ext_resource type="Material" uid="uid://dq6lhoxqdqfln" path="res://Assets/Textures/linenWhite.tres" id="2_g4o4j"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ac58y"]
 points = PackedVector3Array(0.02485, 0.0153324, -0.0229004, 0.012425, 0, 0, 0.02485, 0, -0.0229004, 0.02485, 0.023572, -0.0595543, -0.02485, 0.0153324, -0.0229004, -0.012425, 0, 0, 0.02485, 0, -0.0595543, 0.0243246, 0.023572, -0.0660687, -0.02485, 0.023572, -0.0595543, -0.02485, 0, -0.0229004, 0.0243246, 0, -0.0660687, 0.0220235, 0.023572, -0.0722166, -0.0243295, 0.023572, -0.0660687, -0.02485, 0, -0.0595543, 0.0220235, 0, -0.0722166, 0.0181024, 0.023572, -0.0775314, -0.0243295, 0, -0.0660687, -0.0220283, 0.023572, -0.0722166, 0.0181024, 0, -0.0775314, 0.012858, 0.023572, -0.0816383, -0.0220283, 0, -0.0722166, -0.0181072, 0.023572, -0.0775314, 0.012858, 0, -0.0816383, 0.00667467, 0.023572, -0.0842208, -0.0181072, 0, -0.0775314, -0.0128628, 0.023572, -0.0816383, 0.00667467, 0, -0.0842208, 0, 0.023572, -0.0851038, -0.0128628, 0, -0.0816383, -0.00667953, 0.023572, -0.0842208, 0, 0, -0.0851038, -0.00667953, 0, -0.0842208)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0oty"]
-resource_name = "metalDark"
-albedo_color = Color(0.589021, 0.656282, 0.656282, 1)
-emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4ju0a"]
 _surfaces = [{
@@ -33,7 +29,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 213,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACAAJAAYACgALAAwADAANAAoADQAOAAoADQAPAA4ADQAQAA8ADQARABAADQASABEAEgATABEAEgAUABMAEgAVABQAEgAWABUAFgAXABUAFgAYABcAFgAZABgAFgAaABkAGwAcAB0AHQAeABsAHwAgACEAIQAiAB8AIwAkACUAJQAmACMAJwAoACkAKQAqACcAKgArACcAKwAsACcALAAtACcALQAuACcALgAvACcALwAwACcAMAAxACcAMQAyACcAMgAzACcANAA1ADYANwA2ADUAOAA3ADUAOQA4ADUAOgA5ADUAOwA6ADUAPAA7ADUAPQA8ADUAPgA9ADUAPwA+ADUAQAA/ADUAQQBCAEMAQwBEAEEARQBGAEcARwBIAEUASQBKAEsASwBMAEkATQBOAE8ATwBQAE0AUQBSAFMAUwBUAFEAVQBWAFcAVwBYAFUAWQBaAFsAWwBcAFkAXQBeAF8AXwBgAF0AYQBiAGMAYwBkAGEAZQBmAGcAZwBoAGUAaQBqAGsAawBsAGkAbQBuAG8AbwBwAG0A"),
-"material": SubResource("StandardMaterial3D_o0oty"),
+"material": ExtResource("2_g4o4j"),
 "name": "metalDark",
 "primitive": 3,
 "uv_scale": Vector4(5.0328, 4.70109, 0, 0),

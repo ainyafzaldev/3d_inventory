@@ -126,4 +126,5 @@ ZoomOut={
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/use_debanding=true
 lights_and_shadows/quality/msaa_3d=1

@@ -1,16 +1,8 @@
 [gd_scene load_steps=13 format=4 uid="uid://bfbtd54hfqo5p"]
 
 [ext_resource type="Script" uid="uid://c0jxx64r3wgee" path="res://Inventory/InteractableItem.gd" id="1_qs8ym"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmskr"]
-resource_name = "metalDark"
-albedo_color = Color(0.589021, 0.656282, 0.656282, 1)
-emission_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vuk2"]
-resource_name = "metalMedium"
-albedo_color = Color(0.641088, 0.71296, 0.71296, 1)
-emission_enabled = true
+[ext_resource type="Material" uid="uid://dq6lhoxqdqfln" path="res://Assets/Textures/linenWhite.tres" id="2_qre73"]
+[ext_resource type="Material" uid="uid://bfbuo5bbaqrrg" path="res://Assets/Textures/carpet.tres" id="3_03lsi"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_d6vsl"]
 _surfaces = [{
@@ -44,7 +36,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 84,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACwAKAAkACgAMAAgACQANAAsADQAOAAsACgAPAAwADwAOABAADwAQAAwAEQAQAA4ADQARAA4AEAASAAwADQATABEAEgATAAwADQAMABMAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAHwAgABwAIQAiACMAIwAkACEAJAAlACEA"),
-"material": SubResource("StandardMaterial3D_bmskr"),
+"material": ExtResource("2_qre73"),
 "name": "metalDark",
 "primitive": 3,
 "uv_scale": Vector4(22.2205, 7.30646, 0, 0),
@@ -56,7 +48,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 12,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQA"),
-"material": SubResource("StandardMaterial3D_0vuk2"),
+"material": ExtResource("3_03lsi"),
 "name": "metalMedium",
 "primitive": 3,
 "uv_scale": Vector4(20.7178, 4.5972, 0, 0),
