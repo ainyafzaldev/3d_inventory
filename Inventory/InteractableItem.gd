@@ -13,6 +13,7 @@ var red_material: Material = load("res://Textures/red.tres")
 var blue_material: Material = load("res://Textures/blue.tres")
 
 var can_place = true
+var first_place_hit = false
 
 func _ready() -> void:
 	unfocus()

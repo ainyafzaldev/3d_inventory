@@ -7,15 +7,15 @@
 [sub_resource type="Theme" id="Theme_ykhwb"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y0teo"]
-load_path = "res://.godot/imported/keyboard.png-17336714c8e8f9145cedb3bb0ef1e5ca.ctex"
 
 [node name="InventorySlot" type="Button" node_paths=PackedStringArray("IconSlot")]
 clip_children = 2
 custom_minimum_size = Vector2(128, 128)
 offset_right = 128.0
 offset_bottom = 128.0
-theme_override_styles/focus = ExtResource("1_m4pin")
-theme_override_styles/hover = ExtResource("1_m4pin")
+focus_mode = 0
+theme_override_styles/hover = ExtResource("2_y0teo")
+theme_override_styles/pressed = ExtResource("1_m4pin")
 theme_override_styles/normal = ExtResource("2_y0teo")
 expand_icon = true
 script = ExtResource("1_7pj65")

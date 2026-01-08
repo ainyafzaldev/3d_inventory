@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=69 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://iqajj2vvf4ki" path="res://Textures/InventoryItems/cushionlong.png" id="23_6eb1q"]
 [ext_resource type="PackedScene" uid="uid://bev6b42odrl8u" path="res://Inventory/InventoryItems/Books.tscn" id="23_gpjlu"]
 [ext_resource type="FontFile" uid="uid://cq5ml08id03fp" path="res://Assets/UI/Nunito-Bold.ttf" id="24_qemgg"]
-[ext_resource type="StyleBox" uid="uid://budtm6yftao1v" path="res://Assets/Textures/purple.tres" id="25_sm0op"]
+[ext_resource type="StyleBox" uid="uid://budtm6yftao1v" path="res://Assets/Textures/roundUIHover.tres" id="25_sm0op"]
 [ext_resource type="Texture2D" uid="uid://c4lfpudkjdio0" path="res://Textures/InventoryItems/cushionxlong.png" id="25_wvbyc"]
 [ext_resource type="FontFile" uid="uid://mi6mq23sa8b5" path="res://Assets/UI/MaterialSymbolsRounded_Filled_28pt-Bold.ttf" id="26_8viyr"]
 [ext_resource type="Texture2D" uid="uid://8jp81euaflce" path="res://Textures/InventoryItems/monitor.png" id="27_6pogt"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://sr0q2rxhb4by" path="res://Textures/InventoryItems/desk.png" id="31_1kmt7"]
 [ext_resource type="Texture2D" uid="uid://cwa3t2p281a8l" path="res://Textures/InventoryItems/chair.png" id="33_c4i3b"]
 [ext_resource type="Texture2D" uid="uid://bleta7n2vhd33" path="res://Textures/InventoryItems/books.png" id="35_uvbbp"]
+[ext_resource type="StyleBox" uid="uid://dgd8c7gs7t8md" path="res://Assets/Textures/roundUI.tres" id="40_ie76m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -281,12 +282,15 @@ theme_override_constants/h_separation = 40
 columns = 4
 
 [node name="Mode" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/focus = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("40_ie76m")
 text = "construction"
 fit_content = true
 autowrap_mode = 0
@@ -294,12 +298,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ZoomIn" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/focus = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("40_ie76m")
 text = "zoom_in"
 fit_content = true
 autowrap_mode = 0
@@ -307,12 +314,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ZoomOut" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/focus = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("40_ie76m")
 text = "zoom_out"
 fit_content = true
 autowrap_mode = 0
@@ -320,56 +330,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Camera" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/focus = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("40_ie76m")
 text = "man"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mode2" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
-text = "self_improvement"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mode3" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
-text = "home
-"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mode4" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
-text = "arrows_input"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -396,24 +366,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -56.0
+offset_top = -132.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/v_separation = 20
-
-[node name="Select" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/normal = ExtResource("28_efx54")
-text = "Select [F]"
-fit_content = true
-autowrap_mode = 0
+theme_override_constants/v_separation = 10
 
 [node name="Place" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
 visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
@@ -424,8 +383,11 @@ theme_override_styles/normal = ExtResource("28_efx54")
 text = "Place [F]"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="Rotate" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
@@ -435,8 +397,10 @@ theme_override_styles/normal = ExtResource("28_efx54")
 text = "Rotate [R]"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="Delete" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
 visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
@@ -447,8 +411,11 @@ theme_override_styles/normal = ExtResource("28_efx54")
 text = "Delete [X]"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="Cancel" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
@@ -458,6 +425,78 @@ theme_override_styles/normal = ExtResource("28_efx54")
 text = "Cancel [X]"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Toggle" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = ExtResource("28_efx54")
+text = "Toggle [Z]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Click" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = ExtResource("28_efx54")
+text = "Click [Z]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Left" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = ExtResource("28_efx54")
+text = "Left [Q]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Right" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = ExtResource("28_efx54")
+text = "Right [E]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Move" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+unique_name_in_owner = true
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("24_qemgg")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = ExtResource("28_efx54")
+text = "Move
+[W, A, S ,D]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="InventoryBox" type="Control" parent="UI"]
 anchors_preset = 0
@@ -496,34 +535,40 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
 
-[node name="Left" type="RichTextLabel" parent="UI/InventoryBox"]
+[node name="LeftArrow" type="RichTextLabel" parent="UI/InventoryBox"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
-offset_left = -1810.0
-offset_top = 90.0
-offset_right = -1746.0
-offset_bottom = 156.0
+offset_left = -1820.0
+offset_top = 40.0
+offset_right = -1756.0
+offset_bottom = 106.0
+focus_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/focus = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("40_ie76m")
 text = "arrow_back"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Right" type="RichTextLabel" parent="UI/InventoryBox"]
+[node name="RightArrow" type="RichTextLabel" parent="UI/InventoryBox"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
-offset_left = -1300.0
-offset_top = 90.0
-offset_right = -1236.0
-offset_bottom = 156.0
+offset_left = -1340.0
+offset_top = 40.0
+offset_right = -1276.0
+offset_bottom = 106.0
+focus_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
 theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("25_sm0op")
+theme_override_styles/focus = ExtResource("25_sm0op")
+theme_override_styles/normal = ExtResource("40_ie76m")
 text = "arrow_forward"
 fit_content = true
 autowrap_mode = 0
@@ -534,3 +579,4 @@ vertical_alignment = 1
 [connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]
 [connection signal="BuildModeChanged" from="UI" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="build_mode_changed"]
 [connection signal="OnItemChanged" from="UI" to="." method="new_build"]
+[connection signal="OnItemPlaced" from="UI" to="." method="place_ghost_block"]

@@ -40,13 +40,8 @@ func move_ghost(delta):
 		#ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, 
 		#ghost_block.rotation_degrees + Vector3(0, 90, 0), 0.5)
 
-	if Input.is_action_just_pressed("Interact") and ghost_block.can_place:
-		var block_instance = currentItem.ItemModelPrefab.instantiate()
-		get_parent().add_child(block_instance)
-		block_instance.place()
-		block_instance.global_transform.origin = snap_to_grid(
-			ghost_block.global_transform.origin, grid_size)
-		block_instance.global_rotation = ghost_block.global_rotation
+	#if Input.is_action_just_released("Place") and ghost_block.can_place:
+		
 
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 	# decorations have more fine tuned placements
@@ -75,6 +70,15 @@ func new_build(item: ItemData) -> void:
 	if item:
 		currentItem = item
 		spawn_ghost_block()
+# handles signal when ghost block is placed
+func place_ghost_block() -> void:
+	var block_instance = currentItem.ItemModelPrefab.instantiate()
+	get_parent().add_child(block_instance)
+	block_instance.place()
+	block_instance.global_transform.origin = snap_to_grid(
+		ghost_block.global_transform.origin, grid_size)
+	block_instance.global_rotation = ghost_block.global_rotation
+	ghost_block.destroy()
 
 func _physics_process(delta: float) -> void:
 		
@@ -86,7 +90,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# allow mouse to excape to quit
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("Exit"):
 		if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
@@ -95,7 +99,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_released("ZoomIn"):
 		camera.position.z -= 0.5

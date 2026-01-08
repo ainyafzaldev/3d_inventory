@@ -9,7 +9,7 @@ func _process(_delta: float) -> void:
 		HighlightNearestItem()
 		
 func _input(event: InputEvent)-> void:
-	if(event.is_action_pressed("Interact") and not build_mode):
+	if(event.is_action_pressed("Delete") and not build_mode):
 		PickupNearestItem()
 		
 func FindNearestItem() -> InteractableItem:
@@ -27,9 +27,11 @@ func HighlightNearestItem():
 	var nearestItem: InteractableItem = FindNearestItem()
 	if highlightedObject != null:
 		highlightedObject.unfocus()
+		Globals.FurnitureHighlighted = false
 	if nearestItem != null:
 		highlightedObject = nearestItem
 		nearestItem.focus()	
+		Globals.FurnitureHighlighted = true
 	
 func PickupNearestItem():
 	var nearestItem: InteractableItem = FindNearestItem()
