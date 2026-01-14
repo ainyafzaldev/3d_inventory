@@ -39,6 +39,7 @@ func _ready() -> void:
 	$".".release_focus()
 	%RightArrow.grab_focus()
 	updateActionHints()
+	focus(selectedSlot, selectedSlot)
 
 func _unhandled_input(_event: InputEvent)-> void:
 	
@@ -142,7 +143,7 @@ func updateActionHints():
 		
 	for action in $ActionBar/GridContainer.get_children():
 		action.visible = false
-	%Move.visible = true
+	#%Move.visible = true
 	
 	if mode == "MenuBarHover":
 		%Left.visible = true
