@@ -588,7 +588,6 @@ vertical_alignment = 1
 
 [connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]
-[connection signal="BuildModeChanged" from="UI" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="build_mode_changed"]
 [connection signal="ChangeCamera" from="UI" to="." method="change_camera"]
 [connection signal="OnItemChanged" from="UI" to="." method="new_build"]
 [connection signal="OnItemPlaced" from="UI" to="." method="place_ghost_block"]

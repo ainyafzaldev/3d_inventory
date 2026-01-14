@@ -284,6 +284,8 @@ mesh = SubResource("ArrayMesh_jfk5p")
 [node name="ClippingHitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0393403, 0.141543, -0.112966)
+collision_layer = 4
+collision_mask = 7
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0348358, -0.0334426, 0.0491028)

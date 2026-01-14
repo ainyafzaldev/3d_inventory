@@ -179,6 +179,8 @@ script = ExtResource("1_ctjky")
 [node name="ClippingHitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.627101, 0, 0.660869)
+collision_layer = 8
+collision_mask = 7
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.672141, 0.214447, -1.15565)

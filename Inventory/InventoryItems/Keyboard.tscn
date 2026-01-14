@@ -143,6 +143,7 @@ isDecoration = true
 [node name="Model" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143384, 0, 0.0544169)
+layers = 4
 mesh = SubResource("ArrayMesh_6f3bp")
 skeleton = NodePath("")
 
@@ -158,6 +159,8 @@ shape = SubResource("ConvexPolygonShape3D_dcdx8")
 [node name="ClippingHitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143384, 0, 0.0544169)
+collision_layer = 8
+collision_mask = 7
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145905, 0.013958, -0.057373)

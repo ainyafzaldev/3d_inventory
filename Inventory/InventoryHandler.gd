@@ -7,8 +7,6 @@ signal OnItemPlaced()
 signal ZoomIn()
 signal ZoomOut()
 signal ChangeCamera()
-# signal to Interaction Handler
-signal BuildModeChanged(new_build_mode: bool)
 
 @export var ItemSlotsCount : int = 20
 @export var InventoryGrid : GridContainer
@@ -111,15 +109,7 @@ func _unhandled_input(_event: InputEvent)-> void:
 		if Globals.InventorySelected:
 			# placing ghost block
 			OnItemPlaced.emit()
-			BuildModeChanged.emit(false)
 		else:
-			# place selected inventory ghost block
-			if InventorySlots[selectedSlot].SlotFilled:
-				# slot should have item in it
-				BuildModeChanged.emit(true)
-			else:
-				BuildModeChanged.emit(false)
-				
 			OnItemChanged.emit(InventorySlots[selectedSlot].SlotData)
 	
 	elif (uiRight or uiLeft) and not Globals.InventorySelected:
@@ -139,7 +129,6 @@ func _unhandled_input(_event: InputEvent)-> void:
 		else:
 			arrowHover = false
 	elif delete and Globals.InventorySelected:
-		BuildModeChanged.emit(false)
 		OnItemChanged.emit()
 	updateActionHints()
 	

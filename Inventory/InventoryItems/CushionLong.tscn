@@ -138,6 +138,8 @@ shape = SubResource("ConcavePolygonShape3D_krday")
 [node name="ClippingHitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.197805, 0, 0.0149286)
+collision_layer = 4
+collision_mask = 7
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
 transform = Transform3D(1, 0, 0, 0, 0.967006, 0.254754, 0, -0.254754, 0.967006, 0.201041, 0.113957, -0.0455827)

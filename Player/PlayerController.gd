@@ -69,20 +69,29 @@ func spawn_ghost_block() -> void:
 func new_build(item: ItemData) -> void:
 	if ghost_block:
 		ghost_block.destroy()
+		%PlayerInteractionHandler.build_mode = false
 	if item:
+		%PlayerInteractionHandler.build_mode = true
 		currentItem = item
 		spawn_ghost_block()
 		
-# handles signal when ghost block is placed
-func place_ghost_block() -> void:
+# handles signal from UI when user requests ghost block be placed
+# returns if successfull
+func place_ghost_block() -> bool:
+	if not ghost_block.can_place:
+		return false
+	ghost_block.destroy()
+	await get_tree().create_timer(0.2).timeout
 	var block_instance = currentItem.ItemModelPrefab.instantiate()
 	get_parent().add_child(block_instance)
 	block_instance.place()
 	block_instance.global_transform.origin = snap_to_grid(
 		ghost_block.global_transform.origin, grid_size)
 	block_instance.global_rotation = ghost_block.global_rotation
-	ghost_block.destroy()
+	
 	Globals.InventorySelected = false
+	%PlayerInteractionHandler.build_mode = false
+	return true
 	
 func zoom_in() -> void:
 	if camera == first_person_camera:
