@@ -54,7 +54,7 @@ _surfaces = [{
 points = PackedVector3Array(-0.460996, -3.60956e-16, -0.3, -0.460996, -3.60956e-16, 0.1, -0.460996, 0.23, -0.3, 0.2, -3.60956e-16, -0.3, -0.460996, 0.23, 0.1, 0.2, -3.60956e-16, 0.1, 0.2, 0.23, -0.3, 0.2, 0.23, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yqt4x"]
-size = Vector3(0.297333, 0.0751419, 0.180618)
+size = Vector3(0.614433, 0.219713, 0.352894)
 
 [sub_resource type="Animation" id="Animation_rlfp4"]
 resource_name = "Destroy"
@@ -141,7 +141,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159928, 0.063446, 0.0906807)
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0666442, 0.0384407, -0.0478592)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130575, 0.0628481, -0.0940686)
 shape = SubResource("BoxShape3D_yqt4x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

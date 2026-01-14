@@ -30,16 +30,20 @@ func _process(delta: float) -> void:
 		can_place = bodies.is_empty() or (bodies.size() == 1 and bodies[0] is InvisiblePlayer)
 
 		if can_place:
-			model.material_override = blue_material
+			set_material(blue_material)
 		else:
 			#print(clipping_hitbox.get_overlapping_bodies())
-			model.material_override = red_material 
+			set_material(red_material)
 func focus():
 	outline.visible = true
 	
 func unfocus():
 	outline.visible = false
-	
+func set_material(material: Material):
+	model.material_override = material
+	for child in model.get_children():
+		if child.name != "Outline":
+			child.material_override = material
 func place():
 	anim.play("Place")
 	clipping_hitbox.queue_free()

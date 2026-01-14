@@ -1,6 +1,7 @@
-[gd_scene load_steps=69 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=70 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
+[ext_resource type="PackedScene" uid="uid://dullkcttobhjl" path="res://Player/WalkingGirl.tscn" id="2_dy65m"]
 [ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
 [ext_resource type="Script" uid="uid://dwyq2nc7fnqp7" path="res://Inventory/ItemData.gd" id="3_fhl08"]
 [ext_resource type="Texture2D" uid="uid://b3w5nlu3svyb3" path="res://Textures/InventoryItems/sofa.png" id="5_8ynux"]
@@ -66,18 +67,18 @@ height = 0.1
 [sub_resource type="SphereShape3D" id="SphereShape3D_gpjlu"]
 radius = 0.170117
 
+[sub_resource type="Resource" id="Resource_qemgg"]
+script = ExtResource("3_fhl08")
+ItemName = "Desk"
+ItemModelPrefab = ExtResource("21_7emwf")
+Icon = ExtResource("31_1kmt7")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
 [sub_resource type="Resource" id="Resource_fhl08"]
 script = ExtResource("3_fhl08")
 ItemName = "Sofa"
 ItemModelPrefab = ExtResource("6_od3ui")
 Icon = ExtResource("5_8ynux")
-metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
-
-[sub_resource type="Resource" id="Resource_x3vf3"]
-script = ExtResource("3_fhl08")
-ItemName = "Bed"
-ItemModelPrefab = ExtResource("8_od3ui")
-Icon = ExtResource("7_d30e8")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_apopc"]
@@ -108,18 +109,18 @@ ItemModelPrefab = ExtResource("12_5htga")
 Icon = ExtResource("15_maysp")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
-[sub_resource type="Resource" id="Resource_dkpta"]
-script = ExtResource("3_fhl08")
-ItemName = "Television"
-ItemModelPrefab = ExtResource("13_p5o4e")
-Icon = ExtResource("17_1l10g")
-metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
-
 [sub_resource type="Resource" id="Resource_lfmf2"]
 script = ExtResource("3_fhl08")
 ItemName = "TVCabinet"
 ItemModelPrefab = ExtResource("14_gu6f8")
 Icon = ExtResource("19_6rl0i")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_dkpta"]
+script = ExtResource("3_fhl08")
+ItemName = "Television"
+ItemModelPrefab = ExtResource("13_p5o4e")
+Icon = ExtResource("17_1l10g")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="Resource" id="Resource_n471f"]
@@ -143,6 +144,13 @@ ItemModelPrefab = ExtResource("17_o28un")
 Icon = ExtResource("25_wvbyc")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
+[sub_resource type="Resource" id="Resource_8viyr"]
+script = ExtResource("3_fhl08")
+ItemName = "Chair"
+ItemModelPrefab = ExtResource("22_hshwv")
+Icon = ExtResource("33_c4i3b")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
 [sub_resource type="Resource" id="Resource_o28un"]
 script = ExtResource("3_fhl08")
 ItemName = "Monitor"
@@ -164,25 +172,18 @@ ItemModelPrefab = ExtResource("20_n471f")
 Icon = ExtResource("29_gvnt1")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
-[sub_resource type="Resource" id="Resource_qemgg"]
-script = ExtResource("3_fhl08")
-ItemName = "Desk"
-ItemModelPrefab = ExtResource("21_7emwf")
-Icon = ExtResource("31_1kmt7")
-metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
-
-[sub_resource type="Resource" id="Resource_8viyr"]
-script = ExtResource("3_fhl08")
-ItemName = "Chair"
-ItemModelPrefab = ExtResource("22_hshwv")
-Icon = ExtResource("33_c4i3b")
-metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
-
 [sub_resource type="Resource" id="Resource_sm0op"]
 script = ExtResource("3_fhl08")
 ItemName = "Books"
 ItemModelPrefab = ExtResource("23_gpjlu")
 Icon = ExtResource("35_uvbbp")
+metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
+
+[sub_resource type="Resource" id="Resource_x3vf3"]
+script = ExtResource("3_fhl08")
+ItemName = "Bed"
+ItemModelPrefab = ExtResource("8_od3ui")
+Icon = ExtResource("7_d30e8")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
 [sub_resource type="FontVariation" id="FontVariation_sm0op"]
@@ -197,8 +198,12 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_gwnis")
 
+[node name="WalkingGirl" parent="." instance=ExtResource("2_dy65m")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 layers = 2
 mesh = SubResource("CapsuleMesh_6adnx")
 
@@ -215,6 +220,7 @@ mesh = SubResource("BoxMesh_6adnx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81724, -0.365104)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_uhqqe")
 debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 
@@ -240,8 +246,13 @@ script = ExtResource("2_k53q1")
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_gpjlu")
 
-[node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
+[node name="FirstPerson" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118421, -0.671601)
+
+[node name="Overhead" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965927, 0, -0.965927, 0.258819, 0, 42, 13)
+current = true
+fov = 47.3535
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
 layout_mode = 3
@@ -254,7 +265,7 @@ mouse_filter = 1
 script = ExtResource("6_vtle1")
 ItemSlotsCount = 24
 InventoryGrid = NodePath("InventoryBox/Panel/MarginContainer/GridContainer")
-ItemTypes = Array[ExtResource("3_fhl08")]([null, SubResource("Resource_fhl08"), SubResource("Resource_x3vf3"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_dkpta"), SubResource("Resource_lfmf2"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_sm0op")])
+ItemTypes = Array[ExtResource("3_fhl08")]([SubResource("Resource_qemgg"), SubResource("Resource_fhl08"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_dkpta"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_8viyr"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_sm0op"), SubResource("Resource_x3vf3"), null])
 
 [node name="MenuBar" type="Control" parent="UI"]
 custom_minimum_size = Vector2(64, 64)
@@ -578,5 +589,8 @@ vertical_alignment = 1
 [connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]
 [connection signal="BuildModeChanged" from="UI" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="build_mode_changed"]
+[connection signal="ChangeCamera" from="UI" to="." method="change_camera"]
 [connection signal="OnItemChanged" from="UI" to="." method="new_build"]
 [connection signal="OnItemPlaced" from="UI" to="." method="place_ghost_block"]
+[connection signal="ZoomIn" from="UI" to="." method="zoom_in"]
+[connection signal="ZoomOut" from="UI" to="." method="zoom_out"]

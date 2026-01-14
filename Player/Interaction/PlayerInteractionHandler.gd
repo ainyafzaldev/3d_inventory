@@ -24,6 +24,8 @@ func FindNearestItem() -> InteractableItem:
 	return nearestItem
 	
 func HighlightNearestItem():
+	if Globals.Mode == Globals.viewMode:
+		return
 	var nearestItem: InteractableItem = FindNearestItem()
 	if highlightedObject != null:
 		highlightedObject.unfocus()

@@ -4,6 +4,9 @@ class_name InventoryHandler
 # signal to PlayerController
 signal OnItemChanged(item: ItemData)
 signal OnItemPlaced()
+signal ZoomIn()
+signal ZoomOut()
+signal ChangeCamera()
 # signal to Interaction Handler
 signal BuildModeChanged(new_build_mode: bool)
 
@@ -49,7 +52,7 @@ func _unhandled_input(_event: InputEvent)-> void:
 	
 	if Input.is_action_just_pressed("Click"):
 		click = true
-	elif Input.is_action_just_released("Place"):
+	elif Input.is_action_just_pressed("Place"):
 		place = true
 	elif Input.is_action_just_pressed("UIRight"):
 		uiRight = true
@@ -60,7 +63,7 @@ func _unhandled_input(_event: InputEvent)-> void:
 	
 	var buttonName = menuButtons[selectedButton].name
 	
-	if click:
+	if click and not Globals.InventorySelected:
 		if arrowHover:
 			# changing selected invetory slot
 			
@@ -74,17 +77,42 @@ func _unhandled_input(_event: InputEvent)-> void:
 			
 		else:
 			# toggle menu buttons
-			pass
+			buttonName = menuButtons[selectedButton].name
+			if buttonName == "Mode":
+				if Globals.Mode == Globals.buildMode:
+					Globals.Mode = Globals.viewMode
+					menuButtons[selectedButton].text = "eye_tracking"
+					menuButtons = menuButtons.slice(2, len(menuButtons))
+					
+					selectedButton = 0
+					$InventoryBox.visible = false
+				elif Globals.Mode == Globals.viewMode:
+					Globals.Mode = Globals.buildMode
+					menuButtons[selectedButton].text = "construction"
+					menuButtons.push_front(%RightArrow)
+					menuButtons.push_front(%LeftArrow)
+
+					selectedButton = 2
+					$InventoryBox.visible = true
+			elif buttonName == "ZoomIn":
+				ZoomIn.emit()
+			elif buttonName == "ZoomOut":
+				ZoomOut.emit()
+			elif buttonName == "Camera":
+				if menuButtons[selectedButton].text == "man":
+					menuButtons[selectedButton].text = "face_down"
+				elif menuButtons[selectedButton].text == "face_down":
+					menuButtons[selectedButton].text = "man"
+				ChangeCamera.emit()
+				
+				
 		
 	elif place and arrowHover:
 		if Globals.InventorySelected:
 			# placing ghost block
-			Globals.InventorySelected = false
 			OnItemPlaced.emit()
 			BuildModeChanged.emit(false)
 		else:
-			# showing ghost block
-			Globals.InventorySelected = true
 			# place selected inventory ghost block
 			if InventorySlots[selectedSlot].SlotFilled:
 				# slot should have item in it
@@ -112,6 +140,7 @@ func _unhandled_input(_event: InputEvent)-> void:
 			arrowHover = false
 	elif delete and Globals.InventorySelected:
 		BuildModeChanged.emit(false)
+		OnItemChanged.emit()
 	updateActionHints()
 	
 func updateActionHints():

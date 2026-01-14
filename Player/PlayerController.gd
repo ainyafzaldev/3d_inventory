@@ -4,9 +4,11 @@ class_name InvisiblePlayer
 @onready var horizontal_pivot := $HorizontalPivot
 @onready var vertical_pivot := $HorizontalPivot/VerticalPivot
 @onready var hand_target: Marker3D = $HorizontalPivot/VerticalPivot/HandTarget
-@onready var camera = $HorizontalPivot/VerticalPivot/Camera3D
+@onready var first_person_camera = $HorizontalPivot/VerticalPivot/FirstPerson
+@onready var overhead_camera = $HorizontalPivot/VerticalPivot/Overhead
 
-const SPEED = 1.0
+var camera = first_person_camera
+const SPEED = 1.3
 const JUMP_VELOCITY = 4.5
 
 var horizontal_speed := 0.01
@@ -21,7 +23,9 @@ var currentItem: ItemData = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	camera.position =  Vector3(0.0, 3.0, 3.0)
+	first_person_camera.make_current()
+	camera = first_person_camera
+	#camera.position =  Vector3(0.0, 3.0, 3.0)
 	
 func move_ghost(delta):
 	
@@ -40,9 +44,6 @@ func move_ghost(delta):
 		#ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, 
 		#ghost_block.rotation_degrees + Vector3(0, 90, 0), 0.5)
 
-	#if Input.is_action_just_released("Place") and ghost_block.can_place:
-		
-
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 	# decorations have more fine tuned placements
 	# just follow the hand target
@@ -56,6 +57,7 @@ func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 	return Vector3(x, y, z)
 	
 func spawn_ghost_block() -> void:
+	Globals.InventorySelected = true
 	ghost_block = currentItem.ItemModelPrefab.instantiate()
 	get_parent().add_child(ghost_block)
 	ghost_block.global_position = self.global_position
@@ -70,6 +72,7 @@ func new_build(item: ItemData) -> void:
 	if item:
 		currentItem = item
 		spawn_ghost_block()
+		
 # handles signal when ghost block is placed
 func place_ghost_block() -> void:
 	var block_instance = currentItem.ItemModelPrefab.instantiate()
@@ -79,7 +82,51 @@ func place_ghost_block() -> void:
 		ghost_block.global_transform.origin, grid_size)
 	block_instance.global_rotation = ghost_block.global_rotation
 	ghost_block.destroy()
-
+	Globals.InventorySelected = false
+	
+func zoom_in() -> void:
+	if camera == first_person_camera:
+		camera.position.z -= 0.5
+		camera.position.y -= 0.5
+		camera.position =  clamp(
+			camera.position,
+			Vector3(0.0, 0.0, 0.0),
+			Vector3(0.0, 5.0, 5.0)
+		)
+	else:
+		camera.position.y -= 1.0
+		camera.position =  clamp(
+			camera.position,
+			Vector3(0.0, 32.0, 0.0),
+			Vector3(0.0, 42.0, 0.0)
+		)
+		
+func zoom_out() -> void:
+	
+	if camera == first_person_camera:
+		camera.position.z += 0.5
+		camera.position.y += 0.5
+		camera.position =  clamp(
+			camera.position,
+			Vector3(0.0, 0.0, 0.0),
+			Vector3(0.0, 5.0, 5.0)
+		)
+	else:
+		camera.position.y += 1.0
+		camera.position =  clamp(
+			camera.position,
+			Vector3(0.0, 32.0, 0.0),
+			Vector3(0.0, 42.0, 0.0)
+		)
+func change_camera() -> void:
+	if camera == first_person_camera:
+		first_person_camera.clear_current()
+		overhead_camera.make_current()
+		camera = overhead_camera
+	elif camera == overhead_camera:
+		overhead_camera.clear_current()
+		first_person_camera.make_current()
+		camera = first_person_camera
 func _physics_process(delta: float) -> void:
 		
 	if ghost_block:
@@ -102,27 +149,26 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_released("ZoomIn"):
-		camera.position.z -= 0.5
-		camera.position.y -= 0.5
-		camera.position =  clamp(
-			camera.position,
-			Vector3(0.0, 0.0, 0.0),
-			Vector3(0.0, 5.0, 5.0)
-		)
+		zoom_in()
 	if Input.is_action_just_released("ZoomOut"):
-		camera.position.z += 0.5
-		camera.position.y += 0.5
-		camera.position =  clamp(
-			camera.position,
-			Vector3(0.0, 0.0, 0.0),
-			Vector3(0.0, 5.0, 5.0)
-		)
+		zoom_out()
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom 
 	# gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")
-	
+	# if right pressed, face right
+	if input_dir.x == 1.0:
+		$WalkingGirl.rotation_degrees = Vector3(0.0, 90.0, 0.0)
+	# if left pressed face left
+	if input_dir.x == -1.0:
+		$WalkingGirl.rotation_degrees = Vector3(0.0, 270.0, 0.0)
+	# if up pressed, face up
+	if input_dir.y == 1.0:
+		$WalkingGirl.rotation_degrees = Vector3(0.0, 0.0, 0.0)
+	# if down pressed face down
+	if input_dir.y == -1.0:
+		$WalkingGirl.rotation_degrees = Vector3(0.0, 180.0, 0.0)
 	var move_direction = (
 		transform.basis * Vector3(input_dir.x, 
 		0, 
@@ -130,9 +176,11 @@ func _physics_process(delta: float) -> void:
 	if move_direction:
 		velocity.x = move_direction.x * SPEED
 		velocity.z = move_direction.z * SPEED
+		$WalkingGirl.startWalking()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		$WalkingGirl.stopWalking()
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -141,6 +189,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			horizontal_input = - event.relative.x * horizontal_speed
 			vertical_input = - event.relative.y * vertical_speed
+			#horizontal_pivot.rotate_y(horizontal_input)
+			#$WalkingGirl.rotate_y(horizontal_input)
 			rotate_y(horizontal_input)
 			vertical_pivot.rotate_x(vertical_input)
 			vertical_pivot.rotation.x = clamp(

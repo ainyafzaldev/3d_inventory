@@ -186,7 +186,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfk5p"]
-size = Vector3(0.7677, 0.134033, 0.847168)
+size = Vector3(0.850372, 0.175537, 1.02155)
 
 [sub_resource type="Animation" id="Animation_rlfp4"]
 resource_name = "Destroy"
@@ -286,7 +286,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0393403, 0.141543, -0.112966)
 
 [node name="ClippingCollision" type="CollisionShape3D" parent="ClippingHitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0532837, 0.0260398, 0.076416)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0348358, -0.0334426, 0.0491028)
 shape = SubResource("BoxShape3D_jfk5p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
