@@ -1,45 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhbtwquigvuid"]
+[gd_scene load_steps=5 format=3 uid="uid://dhbtwquigvuid"]
 
 [ext_resource type="PackedScene" uid="uid://b2onfrpu6itfk" path="res://Player/player.tscn" id="2_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://c2yjpv7v2jgaw" path="res://Inventory/InventoryItems/Wall.tscn" id="2_sasra"]
 [ext_resource type="PackedScene" uid="uid://br6aveoiqkj52" path="res://Inventory/InventoryItems/WoodFloor.tscn" id="4_2nij2"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6adnx"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_uhqqe"]
-sky_material = SubResource("ProceduralSkyMaterial_6adnx")
-
-[sub_resource type="Environment" id="Environment_ia1lp"]
-background_mode = 2
-sky = SubResource("Sky_uhqqe")
-tonemap_mode = 2
-glow_enabled = true
+[sub_resource type="Environment" id="Environment_sasra"]
+ambient_light_source = 3
+ambient_light_color = Color(0.937404, 0.909928, 0.905789, 1)
+ambient_light_energy = 0.8
 
 [node name="TestScene" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ia1lp")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 16.3737, 6.20719, 2.83448)
-light_color = Color(0.994169, 0.980266, 0.964132, 1)
-light_energy = 0.25
-light_indirect_energy = 5.63
-light_volumetric_fog_energy = 0.875
-light_angular_distance = 74.6
-shadow_enabled = true
+transform = Transform3D(-0.478288, -0.36045, 0.800822, -0.306761, 0.923019, 0.232238, -0.822884, -0.134584, -0.552041, 5.1972, 6.33526, -6.79049)
+light_energy = 0.17
+shadow_blur = 9.18
+sky_mode = 1
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0222373, -0.694072, -0.719561, 0.0890305, -0.715505, 0.692912, -0.995781, -0.0794714, 0.0458826, -9.32776, 6.20719, 22.4432)
-light_energy = 0.11
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 56.1
-light_specular = 6.011
+transform = Transform3D(-0.722816, 0.403483, -0.561016, -0.589806, 0.0628305, 0.805097, 0.360092, 0.912827, 0.192562, -3.92896, 6.33526, -0.504737)
+light_energy = 0.04
 shadow_enabled = true
-directional_shadow_mode = 1
+shadow_normal_bias = 7.625
+shadow_transmittance_bias = -10.161
+shadow_opacity = 0.55
+shadow_blur = 8.7
 sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sasra")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_ia1lp")]
 transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, 0, -3.40515)
@@ -63,4 +52,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.82995, -4.02571, 0.0123964, -3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.84323, -0.75482, 0.0123964, -2.0156)
 
 [node name="floorFull" parent="." instance=ExtResource("4_2nij2")]
-transform = Transform3D(0.689829, 0, 0, 0, 1, 0, 0, 0, 0.490698, 0, -0.1, -3.00517)
+transform = Transform3D(0.689829, 0, 0, 0, 1, 0, 0, 0, 0.490698, 0, -0.0533565, -3.00517)

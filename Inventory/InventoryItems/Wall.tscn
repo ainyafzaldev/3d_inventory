@@ -1,7 +1,9 @@
 [gd_scene load_steps=5 format=4 uid="uid://c2yjpv7v2jgaw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwnre"]
-albedo_color = Color(0.997989, 0.916624, 0.86995, 1)
+shading_mode = 2
+albedo_color = Color(0.968627, 0.945098, 0.894118, 1)
+disable_receive_shadows = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_y2e4v"]
 _surfaces = [{
@@ -41,6 +43,7 @@ points = PackedVector3Array(0.05, 2.4, 1, -0.05, 2.4, 1, 0.0499902, 0, 1, 0.05, 
 [node name="Wall" type="Node3D"]
 
 [node name="wall" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_8jouq")
 skeleton = NodePath("")
 

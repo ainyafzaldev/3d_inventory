@@ -16,6 +16,8 @@ func FindNearestItem() -> InteractableItem:
 	# finds the nearest item in the pickup area
 	var nearestItem: InteractableItem = null
 	var nearestItemDistance : float = INF
+	if not NearbyBodies.is_empty():
+		print(NearbyBodies)
 	# find the nearest item in the area
 	for item in NearbyBodies:
 		if (item.global_position.distance_to(global_position) < nearestItemDistance):

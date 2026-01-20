@@ -2,4 +2,5 @@
 
 [resource]
 resource_name = "carpet"
+shading_mode = 2
 albedo_color = Color(0.884583, 0.791714, 0.753189, 1)

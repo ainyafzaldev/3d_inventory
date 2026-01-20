@@ -21,11 +21,36 @@ var ghost_block: InteractableItem = null
 
 var currentItem: ItemData = null
 
+var capture_mouse = false
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	first_person_camera.make_current()
 	camera = first_person_camera
 	#camera.position =  Vector3(0.0, 3.0, 3.0)
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventMouseMotion:
+		##onlu move camera if mouse motion set to capture
+		#if capture_mouse:
+			#mouse_motion = -event.relative * 0.011
+	#if event is InputEventMouseButton:
+		#if not capture_mouse:
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			#capture_mouse = true
+			##capture_label.hide()
+			#Engine.time_scale = 1.0
+	#if event.is_action_pressed("ui_cancel"):
+		#if capture_mouse:
+			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			#capture_mouse = false
+			##capture_label.show()
+			#Engine.time_scale = 0.0
+func _input(event):
+	if Input.is_action_just_pressed("mouse_capture"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+	if Input.is_action_just_pressed("mouse_release"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func move_ghost(delta):
 	

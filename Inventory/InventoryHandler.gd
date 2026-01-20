@@ -8,15 +8,13 @@ signal ZoomIn()
 signal ZoomOut()
 signal ChangeCamera()
 
-@export var ItemSlotsCount : int = 20
-@export var InventoryGrid : GridContainer
-@export var InventorySlotPrefab : PackedScene = preload('res://Inventory/InventoryUI/InventorySlot.tscn')
+#@export var InventorySlotPrefab : PackedScene = preload('res://Inventory/InventoryUI/InventorySlot.tscn')
 @export var ItemTypes : Array[ItemData] = []
 @onready var menuButtons : Array[RichTextLabel] = [%LeftArrow, %RightArrow, %Mode, %ZoomIn, %ZoomOut, %Camera]
-@onready var InventorySlots : Array[InventorySlot] = []
-
+@onready var InventorySlots : Array[Node] = $InventoryBox/Panel/MarginContainer/GridContainer.get_children()
 @onready var InventoryHoverStyle = preload("res://Assets/Textures/BrownUIHover.tres")
-@onready var InventoryNormalStyle = preload("res://Assets/Textures/BrownUI.tres")
+@onready var InventoryNormalStyle = preload("res://Assets/Textures/brownUI.tres")
+#var ItemSlotsCount : int = 24
 
 var selectedSlot = 0
 var selectedButton = 1
@@ -27,14 +25,17 @@ var arrowHover: bool = true
 
 func _ready() -> void:
 	# create Inventory
-	for i in ItemSlotsCount:
-		var slot = InventorySlotPrefab.instantiate() as InventorySlot
-		InventoryGrid.add_child(slot)
+	for i in ItemTypes.size():
+		#var slot = InventorySlotPrefab.instantiate() as InventorySlot
+		#InventoryGrid.add_child(slot)
+		#$InventoryBox/Panel/MarginContainer/GridContainer.call_deferred("add_child", slot)
+		var slot = InventorySlots[i]
 		slot.InventorySlotID = i
 		if i < ItemTypes.size():
 			if ItemTypes[i] != null:
 				slot.FillSlot(ItemTypes[i])
-		InventorySlots.append(slot)
+				print(ItemTypes[i].ItemName)
+		#InventorySlots.append(slot)
 	# focus button
 	$".".release_focus()
 	%RightArrow.grab_focus()

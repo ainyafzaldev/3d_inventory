@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=71 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="PackedScene" uid="uid://dullkcttobhjl" path="res://Player/WalkingGirl.tscn" id="2_dy65m"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://cwa3t2p281a8l" path="res://Textures/InventoryItems/chair.png" id="33_c4i3b"]
 [ext_resource type="Texture2D" uid="uid://bleta7n2vhd33" path="res://Textures/InventoryItems/books.png" id="35_uvbbp"]
 [ext_resource type="StyleBox" uid="uid://dgd8c7gs7t8md" path="res://Assets/Textures/roundUI.tres" id="40_ie76m"]
+[ext_resource type="PackedScene" uid="uid://blc40qtonvnfd" path="res://Inventory/InventoryUI/InventorySlot.tscn" id="45_maysp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -254,7 +255,7 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965927, 0, -0.965927, 0.258819, 
 current = true
 fov = 47.3535
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,9 +264,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_vtle1")
-ItemSlotsCount = 24
-InventoryGrid = NodePath("InventoryBox/Panel/MarginContainer/GridContainer")
-ItemTypes = Array[ExtResource("3_fhl08")]([SubResource("Resource_qemgg"), SubResource("Resource_fhl08"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_dkpta"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_8viyr"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_sm0op"), SubResource("Resource_x3vf3"), null])
+ItemTypes = Array[ExtResource("3_fhl08")]([SubResource("Resource_qemgg"), SubResource("Resource_fhl08"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_dkpta"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_8viyr"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_sm0op"), SubResource("Resource_x3vf3"), null, null, null, null, null, null, null])
 
 [node name="MenuBar" type="Control" parent="UI"]
 custom_minimum_size = Vector2(64, 64)
@@ -545,6 +544,78 @@ size_flags_horizontal = 4
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
+
+[node name="InventorySlot" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot21" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot22" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot23" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
+
+[node name="InventorySlot24" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
+layout_mode = 2
 
 [node name="LeftArrow" type="RichTextLabel" parent="UI/InventoryBox"]
 unique_name_in_owner = true
