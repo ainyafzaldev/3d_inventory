@@ -8,6 +8,12 @@ class_name InvisiblePlayer
 @onready var overhead_camera = $HorizontalPivot/VerticalPivot/Overhead
 
 var camera = first_person_camera
+var fpc_min = 1.0
+var fpc_max = 5.0
+
+var ohc_min = 12.0
+var ohc_max = 42.0
+
 const SPEED = 1.3
 const JUMP_VELOCITY = 4.5
 
@@ -131,15 +137,15 @@ func zoom_in() -> void:
 		camera.position.y -= 0.5
 		camera.position =  clamp(
 			camera.position,
-			Vector3(0.0, 0.0, 0.0),
-			Vector3(0.0, 5.0, 5.0)
+			Vector3(0.0, fpc_min, fpc_min),
+			Vector3(0.0, fpc_max, fpc_max)
 		)
 	else:
 		camera.position.y -= 1.0
 		camera.position =  clamp(
 			camera.position,
-			Vector3(0.0, 32.0, 0.0),
-			Vector3(0.0, 42.0, 0.0)
+			Vector3(0.0, ohc_min, 0.0),
+			Vector3(0.0, ohc_max, 0.0)
 		)
 		
 func zoom_out() -> void:
@@ -148,15 +154,15 @@ func zoom_out() -> void:
 		camera.position.y += 0.5
 		camera.position =  clamp(
 			camera.position,
-			Vector3(0.0, 0.0, 0.0),
-			Vector3(0.0, 5.0, 5.0)
+			Vector3(0.0, fpc_min, fpc_min),
+			Vector3(0.0, fpc_max, fpc_max)
 		)
 	else:
 		camera.position.y += 1.0
 		camera.position =  clamp(
 			camera.position,
-			Vector3(0.0, 32.0, 0.0),
-			Vector3(0.0, 42.0, 0.0)
+			Vector3(0.0, ohc_min, 0.0),
+			Vector3(0.0, ohc_max, 0.0)
 		)
 func change_camera() -> void:
 	if camera == first_person_camera:
