@@ -10,7 +10,7 @@ signal ChangeCamera()
 
 #@export var InventorySlotPrefab : PackedScene = preload('res://Inventory/InventoryUI/InventorySlot.tscn')
 @export var ItemTypes : Array[ItemData] = []
-@onready var menuButtons : Array[RichTextLabel] = [%LeftArrow, %RightArrow, %Mode, %ZoomIn, %ZoomOut, %Camera]
+#@onready var menuButtons : Array[RichTextLabel] = [%LeftArrow, %RightArrow, %Mode, %ZoomIn, %ZoomOut, %Camera]
 @onready var InventorySlots : Array[Node] = $InventoryBox/Panel/MarginContainer/GridContainer.get_children()
 @onready var InventoryHoverStyle = preload("res://Assets/Textures/BrownUIHover.tres")
 @onready var InventoryNormalStyle = preload("res://Assets/Textures/brownUI.tres")
@@ -19,9 +19,6 @@ signal ChangeCamera()
 var selectedSlot = 0
 var selectedButton = 1
 
-# when the hover is over the bottom two inventory arrows
-# false when the hover is in the top menu buttons
-var arrowHover: bool = true
 
 func _ready() -> void:
 	# create Inventory
@@ -34,135 +31,92 @@ func _ready() -> void:
 		if i < ItemTypes.size():
 			if ItemTypes[i] != null:
 				slot.FillSlot(ItemTypes[i])
-				print(ItemTypes[i].ItemName)
 		#InventorySlots.append(slot)
 	# focus button
 	$".".release_focus()
-	%RightArrow.grab_focus()
 	updateActionHints()
 	focus(selectedSlot, selectedSlot)
 
-func _unhandled_input(_event: InputEvent)-> void:
+#func _unhandled_input(_event: InputEvent)-> void:
+func _process(delta: float)-> void:
+	if Input.is_action_just_pressed("Exit"):
+		if $Tutorial.visible:
+			$Tutorial.visible = false
+		else:
+			$Tutorial.visible = true
+		return
 	
-	var click = false
+	#var click = false
 	var place = false
 	var delete = false
 	var uiRight = false
 	var uiLeft = false
+	var buildToggle = false
+	var cameraToggle = false
 	
-	if Input.is_action_just_pressed("Click"):
-		click = true
-	elif Input.is_action_just_pressed("Place"):
+	if Input.is_action_just_pressed("Place"):
 		place = true
 	elif Input.is_action_just_pressed("UIRight"):
 		uiRight = true
 	elif Input.is_action_just_pressed("UILeft"):
 		uiLeft = true
+	elif Input.is_action_just_pressed("BuildMode"):
+		buildToggle = true
+	elif Input.is_action_just_pressed("Camera"):
+		cameraToggle = true
 	elif Input.is_action_just_pressed("Delete"):
 		delete = true
 	
-	var buttonName = menuButtons[selectedButton].name
-	
-	if click and not Globals.InventorySelected:
-		if arrowHover:
-			# changing selected invetory slot
-			
-			var previously_selected = selectedSlot
-			if buttonName == "RightArrow":
-				selectedSlot = (selectedSlot + 1) % InventorySlots.size()
-			elif buttonName == "LeftArrow":
-				selectedSlot = (selectedSlot - 1) % InventorySlots.size()
-			
-			focus(previously_selected, selectedSlot)
-			
-		else:
-			# toggle menu buttons
-			buttonName = menuButtons[selectedButton].name
-			if buttonName == "Mode":
-				if Globals.Mode == Globals.buildMode:
-					Globals.Mode = Globals.viewMode
-					menuButtons[selectedButton].text = "eye_tracking"
-					menuButtons = menuButtons.slice(2, len(menuButtons))
-					
-					selectedButton = 0
-					$InventoryBox.visible = false
-				elif Globals.Mode == Globals.viewMode:
-					Globals.Mode = Globals.buildMode
-					menuButtons[selectedButton].text = "construction"
-					menuButtons.push_front(%RightArrow)
-					menuButtons.push_front(%LeftArrow)
-
-					selectedButton = 2
-					$InventoryBox.visible = true
-			elif buttonName == "ZoomIn":
-				ZoomIn.emit()
-			elif buttonName == "ZoomOut":
-				ZoomOut.emit()
-			elif buttonName == "Camera":
-				if menuButtons[selectedButton].text == "man":
-					menuButtons[selectedButton].text = "face_down"
-				elif menuButtons[selectedButton].text == "face_down":
-					menuButtons[selectedButton].text = "man"
-				ChangeCamera.emit()
-				
-				
+	if (uiRight or uiLeft) and not Globals.InventorySelected and (Globals.Mode == Globals.buildMode):
+		# changing selected invetory slot
 		
-	elif place and arrowHover:
+		var previously_selected = selectedSlot
+		if uiRight:
+			selectedSlot = (selectedSlot + 1) % InventorySlots.size()
+		elif uiLeft:
+			selectedSlot = (selectedSlot - 1) % InventorySlots.size()
+		
+		focus(previously_selected, selectedSlot)
+			
+	elif buildToggle and not Globals.InventorySelected:
+		# toggle inventory show button
+		if Globals.Mode == Globals.buildMode:
+			Globals.Mode = Globals.viewMode
+			$InventoryBox.visible = false
+		elif Globals.Mode == Globals.viewMode:
+			Globals.Mode = Globals.buildMode
+			$InventoryBox.visible = true
+	elif cameraToggle:
+		if %Camera.text == "man":
+			%Camera.text = "face_down"
+		elif %Camera.text == "face_down":
+			%Camera.text = "man"
+		ChangeCamera.emit()
+	elif place and (Globals.Mode == Globals.buildMode):
 		if Globals.InventorySelected:
 			# placing ghost block
 			OnItemPlaced.emit()
 		else:
 			OnItemChanged.emit(InventorySlots[selectedSlot].SlotData)
-	
-	elif (uiRight or uiLeft) and not Globals.InventorySelected:
-		# changing selected menu button
-		menuButtons[selectedButton].release_focus()
-		
-		if uiRight:
-			selectedButton = (selectedButton + 1) % menuButtons.size()
-		else:
-			selectedButton = (selectedButton - 1) % menuButtons.size()
-		
-		menuButtons[selectedButton].grab_focus()
-		buttonName = menuButtons[selectedButton].name
-		
-		if buttonName == "LeftArrow" or buttonName == "RightArrow":
-			arrowHover = true
-		else:
-			arrowHover = false
+
 	elif delete and Globals.InventorySelected:
-		OnItemChanged.emit()
+		OnItemChanged.emit(null)
 	updateActionHints()
 	
 func updateActionHints():
-			
-	var mode = "MenuBarHover"
-	if arrowHover and not Globals.InventorySelected:
-		mode = "InventoryHover"
-	elif arrowHover and Globals.InventorySelected:
-		mode = "InventorySelected"
-		
 	for action in $ActionBar/GridContainer.get_children():
 		action.visible = false
-	#%Move.visible = true
+	%Inv.visible = true
 	
-	if mode == "MenuBarHover":
-		%Left.visible = true
-		%Right.visible = true
-		%Toggle.visible = true
-	elif mode == "InventoryHover":
-		%Left.visible = true
-		%Right.visible = true
-		%Click.visible = true
-		if InventorySlots[selectedSlot].SlotFilled:
-			%Place.visible = true
-	elif mode == "InventorySelected":
+	if InventorySlots[selectedSlot].SlotFilled:
+		%Place.visible = true
+		
+	if Globals.InventorySelected:
 		%Place.visible = true
 		%Rotate.visible = true
 		%Cancel.visible = true
 		
-		
-	if Globals.FurnitureHighlighted and mode != "InventorySelected":
+	if Globals.FurnitureHighlighted and not Globals.InventorySelected:
 		%Delete.visible = true
 
 		

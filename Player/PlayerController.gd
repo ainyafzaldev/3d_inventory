@@ -46,6 +46,24 @@ func _ready() -> void:
 			##capture_label.show()
 			#Engine.time_scale = 0.0
 func _input(event):
+	# mouse movement for camera
+	if event is InputEventMouseMotion:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			horizontal_input = - event.relative.x * horizontal_speed
+			vertical_input = - event.relative.y * vertical_speed
+			#horizontal_pivot.rotate_y(horizontal_input)
+			#$WalkingGirl.rotate_y(horizontal_input)
+			rotate_y(horizontal_input)
+			vertical_pivot.rotate_x(vertical_input)
+			vertical_pivot.rotation.x = clamp(
+				vertical_pivot.rotation.x,
+				deg_to_rad(-60),
+				deg_to_rad(30)
+			)
+		vertical_input = 0.0
+		horizontal_input = 0.0
+		if hand_target.global_position.y < 0:
+			hand_target.global_position.y = 0
 	if Input.is_action_just_pressed("mouse_capture"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
@@ -53,21 +71,12 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func move_ghost(delta):
-	
 	# move ghost block on imaginary grid
 	var snap_pos : Vector3 = snap_to_grid(hand_target.global_position,grid_size)
-	
-	# slowly move:
-	# ghost_block.global_position = lerp(ghost_block.position, snap_pos, 0.1)
-	# instant move:
 	ghost_block.global_position = snap_pos
 	
 	if Input.is_action_just_pressed("Rotate"):
-		#instantly rotate:
 		ghost_block.rotation.y += deg_to_rad(45)
-		# slowly rotate:
-		#ghost_block.rotation_degrees = lerp(ghost_block.rotation_degrees, 
-		#ghost_block.rotation_degrees + Vector3(0, 90, 0), 0.5)
 
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 	# decorations have more fine tuned placements
@@ -94,9 +103,8 @@ func spawn_ghost_block() -> void:
 func new_build(item: ItemData) -> void:
 	if ghost_block:
 		ghost_block.destroy()
-		%PlayerInteractionHandler.build_mode = false
+		Globals.InventorySelected = false
 	if item:
-		%PlayerInteractionHandler.build_mode = true
 		currentItem = item
 		spawn_ghost_block()
 		
@@ -115,7 +123,6 @@ func place_ghost_block() -> bool:
 	block_instance.global_rotation = ghost_block.global_rotation
 	
 	Globals.InventorySelected = false
-	%PlayerInteractionHandler.build_mode = false
 	return true
 	
 func zoom_in() -> void:
@@ -136,7 +143,6 @@ func zoom_in() -> void:
 		)
 		
 func zoom_out() -> void:
-	
 	if camera == first_person_camera:
 		camera.position.z += 0.5
 		camera.position.y += 0.5
@@ -161,6 +167,7 @@ func change_camera() -> void:
 		overhead_camera.clear_current()
 		first_person_camera.make_current()
 		camera = first_person_camera
+		
 func _physics_process(delta: float) -> void:
 		
 	if ghost_block:
@@ -217,22 +224,3 @@ func _physics_process(delta: float) -> void:
 		$WalkingGirl.stopWalking()
 	move_and_slide()
 	
-func _unhandled_input(event: InputEvent) -> void:
-	# mouse movement for camera
-	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			horizontal_input = - event.relative.x * horizontal_speed
-			vertical_input = - event.relative.y * vertical_speed
-			#horizontal_pivot.rotate_y(horizontal_input)
-			#$WalkingGirl.rotate_y(horizontal_input)
-			rotate_y(horizontal_input)
-			vertical_pivot.rotate_x(vertical_input)
-			vertical_pivot.rotation.x = clamp(
-				vertical_pivot.rotation.x,
-				deg_to_rad(-60),
-				deg_to_rad(30)
-			)
-		vertical_input = 0.0
-		horizontal_input = 0.0
-		if hand_target.global_position.y < 0:
-			hand_target.global_position.y = 0

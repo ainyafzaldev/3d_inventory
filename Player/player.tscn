@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=76 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="PackedScene" uid="uid://dullkcttobhjl" path="res://Player/WalkingGirl.tscn" id="2_dy65m"]
@@ -43,7 +43,10 @@
 [ext_resource type="Texture2D" uid="uid://sr0q2rxhb4by" path="res://Textures/InventoryItems/desk.png" id="31_1kmt7"]
 [ext_resource type="Texture2D" uid="uid://cwa3t2p281a8l" path="res://Textures/InventoryItems/chair.png" id="33_c4i3b"]
 [ext_resource type="Texture2D" uid="uid://bleta7n2vhd33" path="res://Textures/InventoryItems/books.png" id="35_uvbbp"]
+[ext_resource type="StyleBox" uid="uid://cfq6j6oveovrs" path="res://Assets/Textures/brownUI.tres" id="40_7x5p2"]
 [ext_resource type="StyleBox" uid="uid://dgd8c7gs7t8md" path="res://Assets/Textures/roundUI.tres" id="40_ie76m"]
+[ext_resource type="StyleBox" uid="uid://c7wajkvthk4vf" path="res://Assets/Textures/button.tres" id="41_1l10g"]
+[ext_resource type="FontFile" uid="uid://cxyiblowv6li2" path="res://Assets/UI/Nunito-Medium.ttf" id="41_6eb1q"]
 [ext_resource type="PackedScene" uid="uid://blc40qtonvnfd" path="res://Inventory/InventoryUI/InventorySlot.tscn" id="45_maysp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
@@ -187,8 +190,32 @@ ItemModelPrefab = ExtResource("8_od3ui")
 Icon = ExtResource("7_d30e8")
 metadata/_custom_type_script = "uid://dwyq2nc7fnqp7"
 
+[sub_resource type="FontVariation" id="FontVariation_1l10g"]
+base_font = ExtResource("26_8viyr")
+
 [sub_resource type="FontVariation" id="FontVariation_sm0op"]
 base_font = ExtResource("26_8viyr")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l10g"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.756863, 0.631373, 0.580392, 0.623529)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.514829, 0.41399, 0.374309, 1)
+border_blend = true
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.447059, 0.337255, 0.294118, 0.772549)
+shadow_size = 5
 
 [node name="PlayerController" type="CharacterBody3D"]
 top_level = true
@@ -275,77 +302,20 @@ offset_top = 50.0
 offset_bottom = 114.0
 grow_horizontal = 2
 
-[node name="Buttons" type="GridContainer" parent="UI/MenuBar"]
+[node name="Camera" type="RichTextLabel" parent="UI/MenuBar"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 40
-columns = 4
-
-[node name="Mode" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-unique_name_in_owner = true
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_right = -50.0
+offset_bottom = 64.0
+grow_horizontal = 0
 focus_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/focus = ExtResource("25_sm0op")
-theme_override_styles/normal = ExtResource("40_ie76m")
-text = "construction"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ZoomIn" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-unique_name_in_owner = true
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-focus_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/focus = ExtResource("25_sm0op")
-theme_override_styles/normal = ExtResource("40_ie76m")
-text = "zoom_in"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ZoomOut" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-unique_name_in_owner = true
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-focus_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/focus = ExtResource("25_sm0op")
-theme_override_styles/normal = ExtResource("40_ie76m")
-text = "zoom_out"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Camera" type="RichTextLabel" parent="UI/MenuBar/Buttons"]
-unique_name_in_owner = true
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-focus_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_fonts/normal_font = SubResource("FontVariation_1l10g")
 theme_override_font_sizes/normal_font_size = 40
 theme_override_styles/focus = ExtResource("25_sm0op")
 theme_override_styles/normal = ExtResource("40_ie76m")
@@ -383,7 +353,6 @@ theme_override_constants/v_separation = 10
 
 [node name="Place" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
 unique_name_in_owner = true
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
@@ -397,7 +366,6 @@ horizontal_alignment = 1
 
 [node name="Rotate" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
 unique_name_in_owner = true
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
@@ -411,7 +379,6 @@ horizontal_alignment = 1
 
 [node name="Delete" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
 unique_name_in_owner = true
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
@@ -425,7 +392,6 @@ horizontal_alignment = 1
 
 [node name="Cancel" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
 unique_name_in_owner = true
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
@@ -437,58 +403,15 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="Toggle" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
+[node name="Inv" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
 unique_name_in_owner = true
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
-text = "Toggle [Z]"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="Click" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
-unique_name_in_owner = true
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/normal = ExtResource("28_efx54")
-text = "Click [Z]"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="Left" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
-unique_name_in_owner = true
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/normal = ExtResource("28_efx54")
-text = "Left [Q]"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="Right" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
-unique_name_in_owner = true
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("24_qemgg")
-theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/normal = ExtResource("28_efx54")
-text = "Right [E]"
+text = "← Q  E →"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -508,20 +431,65 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
+[node name="Mode2" type="RichTextLabel" parent="UI"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = 30.0
+offset_top = 110.0
+offset_right = 94.0
+offset_bottom = 174.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+focus_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/focus = ExtResource("41_1l10g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1l10g")
+text = "construction"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="InventoryBox" type="Control" parent="UI"]
-anchors_preset = 0
-offset_left = 1880.0
-offset_top = 1040.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mode" type="RichTextLabel" parent="UI/InventoryBox"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_left = 572.0
+offset_top = 110.0
+offset_right = 636.0
+offset_bottom = 174.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+focus_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_styles/focus = ExtResource("41_1l10g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1l10g")
+text = "construction"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="UI/InventoryBox"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 1
-offset_left = -1830.0
-offset_top = -840.0
-offset_right = -1258.0
-offset_bottom = 8.0
+custom_minimum_size = Vector2(552, 828)
+layout_mode = 2
+offset_left = 20.0
+offset_top = 92.0
+offset_right = 572.0
+offset_bottom = 920.0
 theme_override_styles/panel = ExtResource("28_efx54")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/InventoryBox/Panel"]
@@ -617,45 +585,145 @@ layout_mode = 2
 [node name="InventorySlot24" parent="UI/InventoryBox/Panel/MarginContainer/GridContainer" instance=ExtResource("45_maysp")]
 layout_mode = 2
 
-[node name="LeftArrow" type="RichTextLabel" parent="UI/InventoryBox"]
-unique_name_in_owner = true
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
+[node name="Tutorial" type="Control" parent="UI"]
 layout_mode = 1
-offset_left = -1820.0
-offset_top = 40.0
-offset_right = -1756.0
-offset_bottom = 106.0
-focus_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/focus = ExtResource("25_sm0op")
-theme_override_styles/normal = ExtResource("40_ie76m")
-text = "arrow_back"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RightArrow" type="RichTextLabel" parent="UI/InventoryBox"]
-unique_name_in_owner = true
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
+[node name="CameraLine" type="Panel" parent="UI/Tutorial"]
 layout_mode = 1
-offset_left = -1340.0
-offset_top = 40.0
-offset_right = -1276.0
-offset_bottom = 106.0
-focus_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_sm0op")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/focus = ExtResource("25_sm0op")
-theme_override_styles/normal = ExtResource("40_ie76m")
-text = "arrow_forward"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -340.0
+offset_top = 100.0
+offset_right = -140.0
+offset_bottom = 105.0
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("40_7x5p2")
+
+[node name="CameraToggle" type="RichTextLabel" parent="UI/Tutorial"]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -370.0
+offset_top = 50.0
+offset_right = -70.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.433415, 0.297649, 0.219337, 1)
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Camera Toggle [ C ]"
 fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="BuildLine" type="Panel" parent="UI/Tutorial"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 100.0
+offset_right = 850.0
+offset_bottom = 105.0
+theme_override_styles/panel = ExtResource("40_7x5p2")
+
+[node name="BuildToggle" type="RichTextLabel" parent="UI/Tutorial"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 800.0
+offset_top = 50.0
+offset_right = 1100.0
+offset_bottom = 84.0
+theme_override_colors/default_color = Color(0.435294, 0.298039, 0.219608, 1)
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Build Mode Toggle [ B ]"
+fit_content = true
+
+[node name="BuildLine2" type="Panel" parent="UI/Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 300.0
+offset_bottom = 205.0
+theme_override_styles/panel = ExtResource("40_7x5p2")
+
+[node name="BuildToggle2" type="RichTextLabel" parent="UI/Tutorial"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 200.0
+offset_top = 220.0
+offset_right = 500.0
+offset_bottom = 254.0
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Build Mode Toggle"
+fit_content = true
+
+[node name="InventoryC" type="RichTextLabel" parent="UI/Tutorial"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 300.0
+offset_top = 950.0
+offset_right = 600.0
+offset_bottom = 984.0
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Inventory Control
+ [ Q ] and [ E ]"
+fit_content = true
+
+[node name="InventoryLine" type="Panel" parent="UI/Tutorial"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 720.0
+offset_right = 800.0
+offset_bottom = 725.0
+theme_override_styles/panel = ExtResource("40_7x5p2")
+
+[node name="InventoryControl" type="RichTextLabel" parent="UI/Tutorial"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 600.0
+offset_top = 750.0
+offset_right = 1000.0
+offset_bottom = 886.0
+theme_override_colors/default_color = Color(0.435294, 0.298039, 0.219608, 1)
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Inventory Control [ Q ] and [ E ]
+Inventory Select [ F ]
+Cancel Selection [ X ]"
+fit_content = true
+
+[node name="FurnitureControl" type="RichTextLabel" parent="UI/Tutorial"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 1600.0
+offset_top = 600.0
+offset_right = 1900.0
+offset_bottom = 668.0
+theme_override_colors/default_color = Color(0.435294, 0.298039, 0.219608, 1)
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Place Furniture [ F ]
+Rotate Furniture [ R ]
+Pickup Furniture [ X ]"
+fit_content = true
+
+[node name="FurnitureLine" type="Panel" parent="UI/Tutorial"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 580.0
+offset_right = 1800.0
+offset_bottom = 585.0
+theme_override_styles/panel = ExtResource("40_7x5p2")
 
 [connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]

@@ -1,23 +1,23 @@
 extends Area3D
 
-@export var build_mode = false
 var NearbyBodies : Array[InteractableItem]
 var highlightedObject: InteractableItem = null
 
 func _process(_delta: float) -> void:
-	if not build_mode:
+	
+	if (highlightedObject != null):
+		highlightedObject.unfocus()
+	if Globals.buildMode == Globals.buildMode:
 		HighlightNearestItem()
 		
 func _input(event: InputEvent)-> void:
-	if(event.is_action_pressed("Delete") and not build_mode):
+	if(event.is_action_pressed("Delete") and Globals.buildMode ==  Globals.buildMode):
 		PickupNearestItem()
 		
 func FindNearestItem() -> InteractableItem:
 	# finds the nearest item in the pickup area
 	var nearestItem: InteractableItem = null
 	var nearestItemDistance : float = INF
-	if not NearbyBodies.is_empty():
-		print(NearbyBodies)
 	# find the nearest item in the area
 	for item in NearbyBodies:
 		if (item.global_position.distance_to(global_position) < nearestItemDistance):
@@ -61,9 +61,3 @@ func OnObjectEnteredArea(body: Node3D):
 func OnObjectExitedArea(body: Node3D):
 	if(body is InteractableItem and NearbyBodies.has(body)):
 		NearbyBodies.remove_at(NearbyBodies.find(body))
-
-# handles signal when new inventory item is selected
-func build_mode_changed(new_build_mode: bool) -> void:
-	build_mode = new_build_mode
-	if (highlightedObject != null):
-		highlightedObject.unfocus()
