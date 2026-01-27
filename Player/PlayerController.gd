@@ -33,32 +33,15 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	first_person_camera.make_current()
 	camera = first_person_camera
-	#camera.position =  Vector3(0.0, 3.0, 3.0)
-#func _input(event: InputEvent) -> void:
-	#if event is InputEventMouseMotion:
-		##onlu move camera if mouse motion set to capture
-		#if capture_mouse:
-			#mouse_motion = -event.relative * 0.011
-	#if event is InputEventMouseButton:
-		#if not capture_mouse:
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			#capture_mouse = true
-			##capture_label.hide()
-			#Engine.time_scale = 1.0
-	#if event.is_action_pressed("ui_cancel"):
-		#if capture_mouse:
-			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			#capture_mouse = false
-			##capture_label.show()
-			#Engine.time_scale = 0.0
+
 func _input(event):
 	# mouse movement for camera
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			horizontal_input = - event.relative.x * horizontal_speed
 			vertical_input = - event.relative.y * vertical_speed
-			#horizontal_pivot.rotate_y(horizontal_input)
-			#$WalkingGirl.rotate_y(horizontal_input)
+			# since walking girl is a child, it will also rotate
+			# to face the camera
 			rotate_y(horizontal_input)
 			vertical_pivot.rotate_x(vertical_input)
 			vertical_pivot.rotation.x = clamp(
@@ -204,22 +187,39 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom 
 	# gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")
-	# if right pressed, face right
-	if input_dir.x == 1.0:
-		$WalkingGirl.rotation_degrees = Vector3(0.0, 90.0, 0.0)
-	# if left pressed face left
-	if input_dir.x == -1.0:
-		$WalkingGirl.rotation_degrees = Vector3(0.0, 270.0, 0.0)
+	# make character turn to direction they are walking in
 	# if up pressed, face up
-	if input_dir.y == 1.0:
+	if input_dir == Vector2(0.0, 1.0):
 		$WalkingGirl.rotation_degrees = Vector3(0.0, 0.0, 0.0)
+	# if right pressed, face right
+	if input_dir == Vector2(1.0, 0.0):
+		$WalkingGirl.rotation_degrees = Vector3(0.0, 90.0, 0.0)
 	# if down pressed face down
-	if input_dir.y == -1.0:
+	elif input_dir == Vector2(0.0, -1.0):
 		$WalkingGirl.rotation_degrees = Vector3(0.0, 180.0, 0.0)
+	# if left pressed face left
+	elif input_dir == Vector2(-1.0, 0.0):
+		$WalkingGirl.rotation_degrees = Vector3(0.0, 270.0, 0.0)
+	else:
+		# diagonals
+		if input_dir.x > 0 and input_dir.y > 0:
+			# top right
+			$WalkingGirl.rotation_degrees = Vector3(0.0, 45.0, 0.0)
+		elif input_dir.x > 0 and input_dir.y < 0:
+			# bottom right
+			$WalkingGirl.rotation_degrees = Vector3(0.0, 135.0, 0.0)
+
+		elif input_dir.x < 0 and input_dir.y < 0:
+			# bottom left
+			$WalkingGirl.rotation_degrees = Vector3(0.0, 225.0, 0.0)
+		elif input_dir.x < 0 and input_dir.y > 0:
+			# top left
+			$WalkingGirl.rotation_degrees = Vector3(0.0, 315.0, 0.0)
 	var move_direction = (
 		transform.basis * Vector3(input_dir.x, 
 		0, 
 		input_dir.y)).normalized()
+
 	if move_direction:
 		velocity.x = move_direction.x * SPEED
 		velocity.z = move_direction.z * SPEED
