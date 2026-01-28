@@ -39,9 +39,11 @@ func _process(delta: float) -> void:#
 			set_material(red_material)
 func focus():
 	outline.visible = true
+	Globals.FurnitureHighlighted = true
 	
 func unfocus():
 	outline.visible = false
+	Globals.FurnitureHighlighted = false
 func set_material(material: Material):
 	model.material_override = material
 	for child in model.get_children():
@@ -61,6 +63,3 @@ func destroy():
 	
 func delete():
 	queue_free()
-	
-func seen() -> void:
-	print("seen")

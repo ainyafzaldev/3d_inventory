@@ -71,6 +71,7 @@ func move_ghost(delta):
 	ghost_block.global_position = snap_pos
 	
 	if Input.is_action_just_pressed("Rotate"):
+		$UI/UiSounds/furnitureRotated.play()
 		ghost_block.rotation.y += deg_to_rad(45)
 
 func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
@@ -183,6 +184,11 @@ func _physics_process(delta: float) -> void:
 		highlightedObject.unfocus()
 		if Globals.Mode == Globals.buildMode:
 			highlightedObject.focus()
+	if (Input.is_action_pressed("Delete") and Globals.buildMode ==  Globals.buildMode):
+		if highlightedObject:
+			$UI/UiSounds/cancel.play()
+			highlightedObject.destroy()
+			highlightedObject = null
 		
 	if ghost_block:
 		move_ghost(delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=82 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="PackedScene" uid="uid://dullkcttobhjl" path="res://Player/WalkingGirl.tscn" id="2_dy65m"]
@@ -48,6 +48,15 @@
 [ext_resource type="FontFile" uid="uid://cxyiblowv6li2" path="res://Assets/UI/Nunito-Medium.ttf" id="41_6eb1q"]
 [ext_resource type="PackedScene" uid="uid://blc40qtonvnfd" path="res://Inventory/InventoryUI/InventorySlot.tscn" id="45_maysp"]
 [ext_resource type="Script" uid="uid://dv31mlo1bry2g" path="res://Player/crosshair.gd" id="49_6eb1q"]
+[ext_resource type="AudioStream" uid="uid://dxpj2aukcfote" path="res://Assets/Sounds/Modern2.wav" id="49_wvbyc"]
+[ext_resource type="AudioStream" uid="uid://d1348ixf130sc" path="res://Assets/Sounds/Modern3.wav" id="50_gvnt1"]
+[ext_resource type="AudioStream" uid="uid://dw5q786g1m123" path="res://Assets/Sounds/Retro1.wav" id="51_8hx1r"]
+[ext_resource type="AudioStream" uid="uid://dxoiu7lu5ov2w" path="res://Assets/Sounds/Retro6.wav" id="52_qas3k"]
+[ext_resource type="AudioStream" uid="uid://c4h2lusoogtgq" path="res://Assets/Sounds/Minimalist13.wav" id="53_ntwt4"]
+[ext_resource type="AudioStream" uid="uid://dda4nlg1tkgpl" path="res://Assets/Sounds/Wood Block2.wav" id="54_kdg72"]
+[ext_resource type="AudioStream" uid="uid://bcf4lt8535k0s" path="res://Assets/Sounds/Wood Block3.wav" id="55_qpoj2"]
+[ext_resource type="AudioStream" uid="uid://3bhcud6e0vy7" path="res://Assets/Sounds/controller_button_press_2.wav" id="56_3e3ym"]
+[ext_resource type="AudioStream" uid="uid://cr0lts2blos0v" path="res://Assets/Sounds/controller_button_press.wav" id="57_8hx1r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -721,6 +730,48 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("49_6eb1q")
+
+[node name="UiSounds" type="Node" parent="UI"]
+
+[node name="tutOn" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("49_wvbyc")
+volume_db = 6.0
+max_db = 6.0
+bus = &"UI"
+
+[node name="tutOff" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("50_gvnt1")
+volume_db = 3.0
+bus = &"UI"
+
+[node name="inventoryShuffle" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("51_8hx1r")
+volume_db = 3.0
+
+[node name="inventorySelected" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("52_qas3k")
+volume_db = 2.0
+
+[node name="cancel" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("53_ntwt4")
+volume_db = 3.0
+
+[node name="furniturePlaced" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("54_kdg72")
+volume_db = 3.0
+bus = &"UI"
+
+[node name="furnitureRotated" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("55_qpoj2")
+volume_db = 3.0
+
+[node name="cameraToggle" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("56_3e3ym")
+volume_db = 3.0
+
+[node name="modeToggle" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
+stream = ExtResource("57_8hx1r")
+volume_db = 3.0
 
 [connection signal="ChangeCamera" from="UI" to="." method="change_camera"]
 [connection signal="OnItemChanged" from="UI" to="." method="new_build"]

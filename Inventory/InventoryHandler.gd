@@ -41,8 +41,10 @@ func _ready() -> void:
 func _process(delta: float)-> void:
 	if Input.is_action_just_pressed("Exit"):
 		if $Tutorial.visible:
+			$UiSounds/tutOff.play()
 			$Tutorial.visible = false
 		else:
+			$UiSounds/tutOn.play()
 			$Tutorial.visible = true
 		return
 	
@@ -69,7 +71,7 @@ func _process(delta: float)-> void:
 	
 	if (uiRight or uiLeft) and not Globals.InventorySelected and (Globals.Mode == Globals.buildMode):
 		# changing selected invetory slot
-		
+		$UiSounds/inventoryShuffle.play()
 		var previously_selected = selectedSlot
 		if uiRight:
 			selectedSlot = (selectedSlot + 1) % InventorySlots.size()
@@ -80,6 +82,7 @@ func _process(delta: float)-> void:
 			
 	elif buildToggle and not Globals.InventorySelected:
 		# toggle inventory show button
+		$UiSounds/modeToggle.play()
 		if Globals.Mode == Globals.buildMode:
 			Globals.Mode = Globals.viewMode
 			$InventoryBox.visible = false
@@ -87,6 +90,7 @@ func _process(delta: float)-> void:
 			Globals.Mode = Globals.buildMode
 			$InventoryBox.visible = true
 	elif cameraToggle:
+		$UiSounds/cameraToggle.play()
 		if %Camera.text == "man":
 			%Camera.text = "face_down"
 		elif %Camera.text == "face_down":
@@ -95,11 +99,15 @@ func _process(delta: float)-> void:
 	elif place and (Globals.Mode == Globals.buildMode):
 		if Globals.InventorySelected:
 			# placing ghost block
+			$UiSounds/furniturePlaced.play()
 			OnItemPlaced.emit()
 		else:
+			# selecting furniture
+			$UiSounds/inventorySelected.play()
 			OnItemChanged.emit(InventorySlots[selectedSlot].SlotData)
 
 	elif delete and Globals.InventorySelected:
+		$UiSounds/cancel.play()
 		OnItemChanged.emit(null)
 	updateActionHints()
 	
@@ -121,5 +129,6 @@ func updateActionHints():
 
 		
 func focus(prev: int, curr: int):
+	
 	InventorySlots[prev].add_theme_stylebox_override("normal", InventoryNormalStyle)
 	InventorySlots[curr].add_theme_stylebox_override("normal", InventoryHoverStyle)
