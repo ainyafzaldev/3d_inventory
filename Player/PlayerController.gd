@@ -4,8 +4,9 @@ class_name InvisiblePlayer
 @onready var horizontal_pivot := $HorizontalPivot
 @onready var vertical_pivot := $HorizontalPivot/VerticalPivot
 @onready var hand_target: Marker3D = $HorizontalPivot/VerticalPivot/HandTarget
-@onready var first_person_camera = $HorizontalPivot/VerticalPivot/FirstPerson
+@onready var first_person_camera: Camera3D = $HorizontalPivot/VerticalPivot/FirstPerson
 @onready var overhead_camera = $HorizontalPivot/VerticalPivot/Overhead
+@onready var raycast := $HorizontalPivot/VerticalPivot/FirstPerson/RayCast3D
 
 var camera = first_person_camera
 var fpc_min = 1.0
@@ -28,6 +29,11 @@ var ghost_block: InteractableItem = null
 var currentItem: ItemData = null
 
 var capture_mouse = false
+
+var interaction_distance := 6.0
+var interactin_cast_result
+
+var highlightedObject: InteractableItem = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -82,9 +88,10 @@ func snap_to_grid(position: Vector3, grid_snap: float) -> Vector3:
 func spawn_ghost_block() -> void:
 	Globals.InventorySelected = true
 	ghost_block = currentItem.ItemModelPrefab.instantiate()
-	get_parent().add_child(ghost_block)
+	
 	ghost_block.global_position = self.global_position
 	ghost_block.global_position.y = 0.5
+	get_parent().add_child(ghost_block)
 	# the rotation is snapped, but faces the general direction of the player
 	ghost_block.rotation_degrees.y = round(self.rotation_degrees.y / 45) * 45
 		
@@ -156,8 +163,26 @@ func change_camera() -> void:
 		overhead_camera.clear_current()
 		first_person_camera.make_current()
 		camera = first_person_camera
-		
+
+	
 func _physics_process(delta: float) -> void:
+	# set highlighted object using raycast
+	if raycast.is_colliding():
+		if raycast.get_collider() is InteractableItem:
+			if highlightedObject and raycast.get_collider() != highlightedObject:
+				highlightedObject.unfocus()
+				highlightedObject = null
+			else:
+				highlightedObject = raycast.get_collider()
+	elif highlightedObject:
+		highlightedObject.unfocus()
+		highlightedObject = null
+		
+	# highlihght object based on build mode
+	if highlightedObject:
+		highlightedObject.unfocus()
+		if Globals.Mode == Globals.buildMode:
+			highlightedObject.focus()
 		
 	if ghost_block:
 		move_ghost(delta)
@@ -229,4 +254,25 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		$WalkingGirl.stopWalking()
 	move_and_slide()
+
+	
+#func HighlightNearestItem():
+	#if Globals.Mode == Globals.viewMode:
+		#return
+	#var nearestItem: InteractableItem = FindNearestItem()
+	#if highlightedObject != null:
+		#highlightedObject.unfocus()
+		#Globals.FurnitureHighlighted = false
+	#if nearestItem != null:
+		#highlightedObject = nearestItem
+		#nearestItem.focus()	
+		#Globals.FurnitureHighlighted = true
+	#
+#func PickupNearestItem():
+	#var nearestItem: InteractableItem = FindNearestItem()
+	## remove item from view
+	#if (nearestItem != null):
+		#nearestItem.destroy()
+		#NearbyBodies.remove_at(NearbyBodies.find(nearestItem))
+		#var itemPrefab = nearestItem.scene_file_path
 	

@@ -1,8 +1,7 @@
-[gd_scene load_steps=76 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=73 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="PackedScene" uid="uid://dullkcttobhjl" path="res://Player/WalkingGirl.tscn" id="2_dy65m"]
-[ext_resource type="Script" uid="uid://bsb5qj72e06x7" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_k53q1"]
 [ext_resource type="Script" uid="uid://dwyq2nc7fnqp7" path="res://Inventory/ItemData.gd" id="3_fhl08"]
 [ext_resource type="Texture2D" uid="uid://b3w5nlu3svyb3" path="res://Textures/InventoryItems/sofa.png" id="5_8ynux"]
 [ext_resource type="PackedScene" uid="uid://vpfbqj3nxlke" path="res://Inventory/InventoryItems/Sofa.tscn" id="6_od3ui"]
@@ -48,6 +47,7 @@
 [ext_resource type="StyleBox" uid="uid://c7wajkvthk4vf" path="res://Assets/Textures/button.tres" id="41_1l10g"]
 [ext_resource type="FontFile" uid="uid://cxyiblowv6li2" path="res://Assets/UI/Nunito-Medium.ttf" id="41_6eb1q"]
 [ext_resource type="PackedScene" uid="uid://blc40qtonvnfd" path="res://Inventory/InventoryUI/InventorySlot.tscn" id="45_maysp"]
+[ext_resource type="Script" uid="uid://dv31mlo1bry2g" path="res://Player/crosshair.gd" id="49_6eb1q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -59,17 +59,6 @@ size = Vector3(0.8, 0.5, 0.8)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uhqqe"]
 points = PackedVector3Array(0.387471, 0.247619, 0.4, -0.396269, -0.25, -0.396269, -0.396269, -0.25, 0.396269, 0.396269, -0.25, -0.396269, -0.4, 0.24757, -0.4, 0.387471, 0.247619, -0.4, -0.4, 0.24757, 0.4, 0.396269, -0.25, 0.396269)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpjlu"]
-albedo_color = Color(0.338473, 0.338473, 0.338473, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_8mwp6"]
-material = SubResource("StandardMaterial3D_gpjlu")
-radius = 0.05
-height = 0.1
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_gpjlu"]
-radius = 0.170117
 
 [sub_resource type="Resource" id="Resource_qemgg"]
 script = ExtResource("3_fhl08")
@@ -258,24 +247,14 @@ debug_color = Color(0, 0.358585, 0.422965, 0.92549)
 transform = Transform3D(1, 0, 0, 0, 0.984807, 0.173648, 0, -0.173648, 0.984807, 0, 2, 0)
 
 [node name="HandTarget" type="Marker3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0.601457, -6.24231)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
-layers = 16
-mesh = SubResource("SphereMesh_8mwp6")
-
-[node name="PlayerInteractionHandler" type="Area3D" parent="HorizontalPivot/VerticalPivot/HandTarget"]
-unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 6
-script = ExtResource("2_k53q1")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-shape = SubResource("SphereShape3D_gpjlu")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.0005247, 0.116641, -6.3278)
 
 [node name="FirstPerson" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118421, -0.671601)
+
+[node name="RayCast3D" type="RayCast3D" parent="HorizontalPivot/VerticalPivot/FirstPerson"]
+target_position = Vector3(0, 0, -6)
+collision_mask = 4
 
 [node name="Overhead" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965927, 0, -0.965927, 0.258819, 0, 42, 13)
@@ -289,6 +268,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("6_vtle1")
 ItemTypes = Array[ExtResource("3_fhl08")]([SubResource("Resource_qemgg"), SubResource("Resource_fhl08"), SubResource("Resource_apopc"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_dkpta"), SubResource("Resource_n471f"), SubResource("Resource_7emwf"), SubResource("Resource_hshwv"), SubResource("Resource_8viyr"), SubResource("Resource_o28un"), SubResource("Resource_gpjlu"), SubResource("Resource_8mwp6"), SubResource("Resource_sm0op"), SubResource("Resource_x3vf3"), null, null, null, null, null, null, null])
@@ -726,8 +707,21 @@ offset_right = 1800.0
 offset_bottom = 585.0
 theme_override_styles/panel = ExtResource("40_7x5p2")
 
-[connection signal="body_entered" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectEnteredArea"]
-[connection signal="body_exited" from="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" to="HorizontalPivot/VerticalPivot/HandTarget/PlayerInteractionHandler" method="OnObjectExitedArea"]
+[node name="Crosshair" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("49_6eb1q")
+
 [connection signal="ChangeCamera" from="UI" to="." method="change_camera"]
 [connection signal="OnItemChanged" from="UI" to="." method="new_build"]
 [connection signal="OnItemPlaced" from="UI" to="." method="place_ghost_block"]

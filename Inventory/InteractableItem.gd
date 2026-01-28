@@ -1,5 +1,6 @@
-extends StaticBody3D
 class_name InteractableItem
+extends StaticBody3D
+
 @onready var model : MeshInstance3D = %Model
 #@onready var collision_shape : CollisionShape3D = $ModelCollision
 @onready var collision_shape : CollisionShape3D = %ModelCollision
@@ -24,6 +25,7 @@ func _ready() -> void:
 	#clipping_hitbox.queue_free()
 
 func _process(delta: float) -> void:#
+	#unfocus()
 	if clipping_hitbox:
 		model.transparency = 0.6
 		var bodies = clipping_hitbox.get_overlapping_bodies()
@@ -59,3 +61,6 @@ func destroy():
 	
 func delete():
 	queue_free()
+	
+func seen() -> void:
+	print("seen")
