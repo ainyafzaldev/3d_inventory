@@ -28,7 +28,7 @@ var ghost_block: InteractableItem = null
 
 var currentItem: ItemData = null
 
-var capture_mouse = false
+var first_capture = true
 
 var interaction_distance := 6.0
 var interactin_cast_result
@@ -36,10 +36,11 @@ var interactin_cast_result
 var highlightedObject: InteractableItem = null
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	first_person_camera.make_current()
 	camera = first_person_camera
-
+	$UI/Tutorial.visible =  true
+	$UI/StartLine.visible = true
 func _input(event):
 	# mouse movement for camera
 	if event is InputEventMouseMotion:
@@ -60,10 +61,14 @@ func _input(event):
 		if hand_target.global_position.y < 0:
 			hand_target.global_position.y = 0
 	if Input.is_action_just_pressed("mouse_capture"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
-	if Input.is_action_just_pressed("mouse_release"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if first_capture:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			first_capture = false
+			$UI/Tutorial.visible =  false
+			$UI/StartLine.visible = false
+		#
+	#if Input.is_action_just_pressed("mouse_release"):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func move_ghost(delta):
 	# move ghost block on imaginary grid
@@ -167,6 +172,19 @@ func change_camera() -> void:
 
 	
 func _physics_process(delta: float) -> void:
+	# allow mouse to excape to quit
+	if Input.is_action_just_pressed("Exit"):
+		if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	# extra check because of itch io escape
+	if $UI/Tutorial.visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
+		move_and_slide()
+		return
+	
 	# set highlighted object using raycast
 	if raycast.is_colliding():
 		if raycast.get_collider() is InteractableItem:
@@ -197,15 +215,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	# allow mouse to excape to quit
-	if Input.is_action_just_pressed("Exit"):
-		if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
-		move_and_slide()
-		return
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY

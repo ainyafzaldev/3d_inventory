@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://b2onfrpu6itfk"]
+[gd_scene load_steps=84 format=3 uid="uid://b2onfrpu6itfk"]
 
 [ext_resource type="Script" uid="uid://0f32iurejs1b" path="res://Player/PlayerController.gd" id="1_gwnis"]
 [ext_resource type="PackedScene" uid="uid://dullkcttobhjl" path="res://Player/WalkingGirl.tscn" id="2_dy65m"]
@@ -46,6 +46,7 @@
 [ext_resource type="StyleBox" uid="uid://dgd8c7gs7t8md" path="res://Assets/Textures/roundUI.tres" id="40_ie76m"]
 [ext_resource type="StyleBox" uid="uid://c7wajkvthk4vf" path="res://Assets/Textures/button.tres" id="41_1l10g"]
 [ext_resource type="FontFile" uid="uid://cxyiblowv6li2" path="res://Assets/UI/Nunito-Medium.ttf" id="41_6eb1q"]
+[ext_resource type="Texture2D" uid="uid://c06rtboo6np5e" path="res://Assets/NicePng_white-arrow-png_97633.png" id="44_qas3k"]
 [ext_resource type="PackedScene" uid="uid://blc40qtonvnfd" path="res://Inventory/InventoryUI/InventorySlot.tscn" id="45_maysp"]
 [ext_resource type="Script" uid="uid://dv31mlo1bry2g" path="res://Player/crosshair.gd" id="49_6eb1q"]
 [ext_resource type="AudioStream" uid="uid://dxpj2aukcfote" path="res://Assets/Sounds/Modern2.wav" id="49_wvbyc"]
@@ -57,6 +58,7 @@
 [ext_resource type="AudioStream" uid="uid://bcf4lt8535k0s" path="res://Assets/Sounds/Wood Block3.wav" id="55_qpoj2"]
 [ext_resource type="AudioStream" uid="uid://3bhcud6e0vy7" path="res://Assets/Sounds/controller_button_press_2.wav" id="56_3e3ym"]
 [ext_resource type="AudioStream" uid="uid://cr0lts2blos0v" path="res://Assets/Sounds/controller_button_press.wav" id="57_8hx1r"]
+[ext_resource type="AudioStream" uid="uid://bmd2mnr84pv80" path="res://Assets/Sounds/background.ogg" id="59_ntwt4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
 
@@ -401,10 +403,34 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("24_qemgg")
 theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource("28_efx54")
-text = "← Q  E →"
+text = "Q  E"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/ActionBar/GridContainer/Inv"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 14.0
+offset_right = 110.0
+offset_bottom = 54.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("44_qas3k")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="UI/ActionBar/GridContainer/Inv"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 29.0
+offset_right = 65.0
+offset_bottom = 69.0
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("44_qas3k")
+expand_mode = 4
+metadata/_edit_lock_ = true
 
 [node name="Move" type="RichTextLabel" parent="UI/ActionBar/GridContainer"]
 unique_name_in_owner = true
@@ -420,6 +446,7 @@ text = "Move
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Mode2" type="RichTextLabel" parent="UI"]
 unique_name_in_owner = true
@@ -716,6 +743,28 @@ offset_right = 1800.0
 offset_bottom = 585.0
 theme_override_styles/panel = ExtResource("40_7x5p2")
 
+[node name="StartLine" type="RichTextLabel" parent="UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -51.0
+offset_right = 150.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.435294, 0.298039, 0.219608, 1)
+theme_override_fonts/normal_font = ExtResource("41_6eb1q")
+theme_override_font_sizes/normal_font_size = 24
+text = "Left Click to Start"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Crosshair" type="CenterContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
@@ -747,6 +796,7 @@ bus = &"UI"
 [node name="inventoryShuffle" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
 stream = ExtResource("51_8hx1r")
 volume_db = 3.0
+bus = &"UI"
 
 [node name="inventorySelected" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
 stream = ExtResource("52_qas3k")
@@ -772,6 +822,12 @@ volume_db = 3.0
 [node name="modeToggle" type="AudioStreamPlayer3D" parent="UI/UiSounds"]
 stream = ExtResource("57_8hx1r")
 volume_db = 3.0
+
+[node name="background" type="AudioStreamPlayer3D" parent="UI"]
+stream = ExtResource("59_ntwt4")
+autoplay = true
+bus = &"Background"
+parameters/looping = true
 
 [connection signal="ChangeCamera" from="UI" to="." method="change_camera"]
 [connection signal="OnItemChanged" from="UI" to="." method="new_build"]

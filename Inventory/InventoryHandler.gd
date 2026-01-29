@@ -39,6 +39,8 @@ func _ready() -> void:
 
 #func _unhandled_input(_event: InputEvent)-> void:
 func _process(delta: float)-> void:
+	if not $background.playing:
+		$background.play()
 	if Input.is_action_just_pressed("Exit"):
 		if $Tutorial.visible:
 			$UiSounds/tutOff.play()
